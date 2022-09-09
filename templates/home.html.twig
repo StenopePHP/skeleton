@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% set page = content_get('App\\Model\\Page', 'home') %}
+
+{% block meta_title page.title %}
+
+{% block meta %}
+    {{ parent() }}
+{% endblock %}
+
+{% block content %}
+
+    {{ page.content|raw }}
+
+    <a class="button" href="{{ path('article_list') }}">Read the articles</a>
+{% endblock %}

@@ -1,0 +1,35 @@
+.articles {
+  article {
+    margin: 0 0 $gutter * 2 0;
+
+    .article_header {
+      margin: 0 0 $gutter * 2 0;
+      border-bottom: 1px solid rgba($color-primary, 0.33);
+
+      a {
+        color: $color-primary;
+      }
+    }
+
+    .thumbnail {
+      line-height: 0;
+
+      img {
+        max-width: unset;
+        width: 400px;
+        height: 287px;
+      }
+    }
+
+    .content {
+      display: flex;
+      flex-direction: column;
+      padding: 0 $gutter;
+      margin: 0;
+
+      p {
+        flex: 1;
+      }
+    }
+  }
+}

@@ -1,0 +1,22 @@
+# Exposes any variables you need to access in your templates globally regarding your site:
+twig:
+    globals:
+        site:
+            title: "Stenope Skeleton"
+            description: "The (opinionated) Stenope Skeleton to build your static site"
+            twitter:
+                name: "elao"
+                creator: "elao"
+
+            menu:
+                - { path: 'home', label: 'Home' }
+                - { path: 'article_list', label: 'Articles', children: ['article_show'] }
+                - { path: 'page', params: { slug: 'about' }, label: 'About' }
+                - { url: 'https://stenopephp.github.io/Stenope', label: 'Docs' }
+
+            footer:
+                - { path: 'home', label: 'Home' }
+                - { path: 'page', params: { slug: 'about' }, label: 'About' }
+                - { path: 'article_list', label: 'Articles' }
+                - { url: 'https://github.com/StenopePHP/stenope', label: 'Stenope on Github' }
+                - { url: 'https://github.com/StenopePHP/skeleton', label: 'This skeleton on Github' }

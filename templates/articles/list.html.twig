@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block meta_title "Articles" ~ ' | ' ~ parent() %}
+
+{% block content %}
+    <h1>Articles</h1>
+
+    <p>Learn more about Stenope and the skeleton app.</p>
+
+    <main class="articles">
+        {% for article in articles %}
+            <article class="row">
+                <div class="column-50 thumbnail">
+                    <img src="{{ article.image|glide_image_preset('article_thumbnail') }}" alt="{{ article.title }}" />
+                </div>
+
+                <div class="column content">
+                    <h2 class="article_header">
+                        <a href="{{ path('article_show', { article: article.slug }) }}">{{ article.title }}</a>
+                    </h2>
+
+                    <p>{{ article.description }}</p>
+
+                    <div>
+                        <a href="{{ path('article_show', { article: article.slug }) }}" class="button button-outline">
+                            Read the post
+                        </a>
+
+                        <aside>
+                            {% for tag in article.tags %}
+                                <span class="chip">#{{ tag }}</span>
+                            {% endfor %}
+                        </aside>
+                    </div>
+                </div>
+            </article>
+        {% endfor %}
+    </main>
+{% endblock %}

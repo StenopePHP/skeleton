@@ -1,0 +1,92 @@
+name: Deploy to GH Pages
+
+on:
+  workflow_dispatch: ~
+  push:
+    branches:
+      - main
+
+jobs:
+
+  deploy:
+    name: '🚧  Build & deploy 🚀'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: 'Checkout'
+        uses: actions/checkout@v3
+
+      - name: 'Setup node'
+        uses: actions/setup-node@v2
+        with:
+          node-version: '16'
+
+      - name: 'Setup PHP'
+        uses: shivammathur/setup-php@v2
+        with:
+          coverage: "none"
+          ini-values: "memory_limit=-1"
+          php-version: "8.1"
+
+      - name: 'Determine composer cache directory'
+        id: composer-cache
+        run: echo "::set-output name=directory::$(composer config cache-dir)"
+
+      - name: 'Cache composer dependencies'
+        uses: actions/cache@v2
+        with:
+          path: ${{ steps.composer-cache.outputs.directory }}
+          key: composer-${{ hashFiles('composer.lock') }}
+
+      - name: 'Cache resized images'
+        uses: actions/cache@v2
+        with:
+          path: public/resized
+          key: resized-images-${{ secrets.CACHE_VERSION }}
+
+      - name: 'Cache NPM dependencies'
+        uses: actions/cache@v2
+        with:
+          path: ~/.npm
+          key: node-${{ hashFiles('package-lock.json') }}
+
+      - name: 'Install dependencies'
+        run: |
+          echo "::group::composer install"
+            composer install --no-progress --ansi
+          echo "::endgroup::"
+
+          echo "::group::npm install"
+            npm install --color=always --no-progress --no-audit
+          echo "::endgroup::"
+
+      - name: 'Warmup'
+        run: |
+          echo "::group::warmup production env"
+            npx encore production --color
+            bin/console cache:clear --ansi
+            bin/console cache:warmup --ansi
+          echo "::endgroup::"
+        env:
+          NODE_ENV: production
+          APP_ENV: prod
+          WEBPACK_PUBLIC_PATH: /${{ github.event.repository.name }}/build
+
+      - name: 'Build static site'
+        run: bin/console stenope:build --no-interaction -vvv --ansi
+        env:
+          APP_ENV: prod
+          # Replace with your GH Pages URL:
+          ROUTER_DEFAULT_URI: https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}
+
+      # https://github.com/marketplace/actions/deploy-to-github-pages
+      - name: '🚀 Deploy'
+        uses: JamesIves/github-pages-deploy-action@3.7.1
+        with:
+          COMMIT_MESSAGE: "[AUTO] Static site update for ${{ github.sha }}"
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          BRANCH: gh-pages # The branch the action should deploy to.
+          FOLDER: build # The folder the action should deploy.
+          CLEAN: true # Automatically remove deleted files from the deploy branch
+          CLEAN_EXCLUDE: '["CNAME", ".nojekyll"]' # Don't clean CNAME file for custom domain nor .nojekyll file to disable Jekyll on Github Pages

@@ -1,0 +1,10 @@
+imports:
+    - { resource: ../site.yaml }
+
+twig:
+    strict_variables: true
+    default_path: '%kernel.project_dir%/templates'
+
+when@test:
+    twig:
+        strict_variables: true
