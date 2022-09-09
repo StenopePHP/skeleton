@@ -1,0 +1,12 @@
+stenope:
+    shared_html_crawlers: true
+
+    providers:
+        App\Model\Article: '%kernel.project_dir%/content/articles'
+        App\Model\Author: '%kernel.project_dir%/content/authors'
+        App\Model\Page: '%kernel.project_dir%/content/pages'
+
+    resolve_links:
+        #App\Model\Author: { route: 'author_show', slug: 'author' }
+        App\Model\Article: { route: 'article_show', slug: 'article' }
+        App\Model\Page: { route: 'page', slug: 'slug' }

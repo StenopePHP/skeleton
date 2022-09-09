@@ -1,0 +1,43 @@
+glide:
+    base_url: /image/resize
+    source: '%kernel.project_dir%'
+    cache: '%kernel.project_dir%/public/resized'
+    pre_generate: '%env(bool:GLIDE_PRE_GENERATE_CACHE)%'
+    cache_with_file_extensions: true
+    group_cache_in_folders: true
+    skipped_types:
+        - 'image/gif'
+        - 'image/svg+xml'
+
+    # https://glide.thephpleague.com/1.0/api/quick-reference/
+    presets:
+        article_thumbnail:
+            w: 400
+            h: 287
+            fit: crop
+        article_banner:
+            w: 1080
+            h: 420
+            fit: crop
+
+        # Base format for images inside an article content.
+        # It's declined with dpr 2x automatically for retina screens.
+        article_content:
+            w: 1080
+            fit: fill-max
+            dpr: 1
+
+        author_avatar:
+            w: 100
+            h: 100
+            fit: crop
+
+        # Recommended sizes for social network images:
+        twitter_card:
+            w: 600
+            h: 600
+
+        opengraph_image:
+            w: 1200
+            h: 627
+            q: 85

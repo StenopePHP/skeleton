@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+
+{% block meta_title article.title ~ ' | ' ~ parent() %}
+{% block meta_description article.description %}
+
+{% block og_image asset(article.image|glide_image_preset('opengraph_image')) %}
+{% block twitter_image absolute_url(asset(article.image|glide_image_preset('twitter_card'))) %}
+
+{% block content %}
+    <main class="article">
+        <nav>
+            <a href="{{ path('article_list') }}">← Back to the list</a>
+        </nav>
+
+        <header>
+            <div class="banner">
+                <img src="{{ article.image|glide_image_preset('article_banner') }}" alt="{{ article.title }}" />
+            </div>
+            <h1>{{ article.title }}</h1>
+        </header>
+
+        {% include 'articles/toc.html.twig' with { toc: article.tableOfContent } only %}
+
+        <article>
+            {{ article.content|raw }}
+        </article>
+
+        <footer>
+            <small>
+                Published on {{ article.publishedAt|date('d/m/Y') }}
+                by
+                {% for authorSlug in article.authors %}
+                    {% set author = content_get('App\\Model\\Author', authorSlug) %}
+                    {{ author.name -}}
+                    {%- if loop.length > 1 -%}
+                        {{ loop.revindex0 > 1 ? ', ' : '' }}
+                        {{ loop.revindex0 == 1 ? 'and ' : '' }}
+                    {% endif %}
+                {% endfor %}
+            </small>
+        </footer>
+
+        <nav class="row">
+            <div class="column">
+                <a href="{{ path('article_list') }}">← Back to the list</a>
+            </div>
+            <div class="column">
+                {% if article.nextArticle %}
+                    {% set nextArticle = content_get('App\\Model\\Article', article.nextArticle) %}
+                    <a href="{{ path('article_show', { article: nextArticle.slug }) }}">
+                        ➜ Next: « {{ nextArticle.title }} »
+                    </a>
+                {% endif %}
+            </div>
+        </nav>
+    </main>
+{% endblock %}

@@ -1,0 +1,51 @@
+.header {
+  display: flex;
+  align-items: center;
+  margin: 0 0 $gutter * 2 0;
+  border-bottom: 1px solid rgba($color-primary, 0.33);
+
+  .title {
+    flex: 0;
+    white-space: nowrap;
+    font-size: 1.5em;
+    font-weight: 700;
+    margin: $gutter 0;
+  }
+
+  nav {
+    flex: 1;
+    margin: $gutter 0;
+
+    ul {
+      display: flex;
+      justify-content: flex-end;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .nav__item {
+      margin: 0 $gutter * 0.5 0 0;
+      padding: 0 $gutter * 0.5;
+
+      &--active {
+        font-weight: 700;
+        background-color: $color-secondary;
+        border-radius: $border-radius;
+
+        a {
+          color: $color-text-light;
+        }
+      }
+    }
+  }
+
+  aside {
+    display: flex;
+    flex: 1;
+
+    .note {
+      color: rgba($color-primary, 0.66);
+    }
+  }
+}

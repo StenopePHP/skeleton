@@ -1,0 +1,23 @@
+<footer class="footer">
+    <aside>
+        <p class="note">
+            <a href="https://stenopephp.github.io/Stenope">Stenope</a>,
+            the static website generation tool for Symfony.
+        </p>
+    </aside>
+
+    <nav>
+        <ul>
+            {% for item in site.footer %}
+                <li>
+                    <a
+                        href="{{ item.url ?? path(item.path, item.params ?? {}) }}"
+                        {% if item.url is defined %}target="_blank"{% endif %}
+                    >
+                        <span>{{ item.label }}</span>
+                    </a>
+                </li>
+            {% endfor %}
+        </ul>
+    </nav>
+</footer>

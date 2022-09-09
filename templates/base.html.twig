@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="{% block meta_locale app.request.locale %}" class="no-js">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>{% block meta_title site.title %}</title>
+
+        {% block meta %}
+            <meta name="description" content="{% block meta_description site.description %}" />
+            <link rel="canonical" href="{{ app.request.uri }}" />
+
+            <!-- Open Graph / Facebook -->
+            <meta property="og:title" content="{% block og_title block('meta_title') %}" />
+            <meta property="og:locale" content="{% block og_locale block('meta_locale') %}" />
+            <meta property="og:description" content="{% block og_description block('meta_description') %}" />
+            <meta property="og:url" content="{{ app.request.uri }}" />
+            <meta property="og:site_name" content="{{ site.title }}" />
+
+            {% set og_image %}{% block og_image %}{% endblock %}{% endset %}
+            {% if og_image|default(false) %}
+                <meta property="og:image" content="{{ og_image }}">
+            {% endif %}
+
+            <!-- Twitter -->
+            <meta property="twitter:card" content="{% block twitter_card_type 'summary_large_image' %}">
+            <meta property="twitter:title" content="{% block twitter_title block('meta_title') %}">
+            <meta property="twitter:description" content="{% block twitter_description block('meta_description') %}">
+            <meta property="twitter:site" content="@{{ site.twitter.name }}">
+            <meta property="twitter:creator" content="@{{ site.twitter.creator }}">
+            {% set twitter_image %}{% block twitter_image %}{% endblock %}{% endset %}
+            {% if twitter_image|default(false) %}
+                <meta property="twitter:image" content="{{ twitter_image }}">
+            {% endif %}
+        {% endblock %}
+
+        {% block stylesheets %}
+            {{ encore_entry_link_tags('app') }}
+        {% endblock %}
+
+        {% block javascripts %}
+            {{ encore_entry_script_tags('app') }}
+        {% endblock %}
+    </head>
+    <body
+        {{ stimulus_controller('swup_plugins')
+        | stimulus_controller('symfony/ux-swup/swup', {
+            cache: true,
+            animateHistoryBrowsing: true,
+            debug: app.debug,
+            linkSelector: [
+                'a[href^="' ~ app.request.schemeAndHttpHost ~ app.request.basePath ~ '"]',
+                'a[href^="/"]',
+            ]|map(s => s ~ ':not([data-no-swup]):not([target="_blank"])')|join(',')
+        }) }}>
+
+        <div class="container" id="swup">
+            {% block header %}
+                {% include 'layout/header.html.twig' %}
+            {% endblock %}
+
+            <main>
+                {% block content %}{% endblock %}
+            </main>
+
+            {% block footer %}
+                {% include 'layout/footer.html.twig' %}
+            {% endblock %}
+        </div>
+    </body>
+</html>

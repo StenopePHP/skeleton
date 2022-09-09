@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block meta_title page.title ~ ' | ' ~ parent() %}
+
+{% block meta %}
+    {{ parent() }}
+{% endblock %}
+
+{% block content %}
+
+    {{ page.content|raw }}
+
+    <nav>
+        <a href="{{ path('home') }}">< Back to home</a>
+    </nav>
+{% endblock %}

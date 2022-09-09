@@ -1,0 +1,12 @@
+errors_404:
+    path: 404.html
+    controller: Symfony\Bundle\FrameworkBundle\Controller\TemplateController
+    defaults:
+        template: errors/404.html.twig
+    options:
+        stenope:
+            sitemap: false
+
+controllers:
+    resource: ../src/Controller/
+    type: attribute

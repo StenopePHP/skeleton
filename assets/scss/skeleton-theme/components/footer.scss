@@ -1,0 +1,31 @@
+.footer {
+  display: flex;
+  flex: 0;
+  margin: $gutter * 2 0;
+  padding: $gutter 0;
+  border-top: 1px solid rgba($color-secondary, 0.33);
+
+  nav {
+    ul {
+      display: flex;
+      justify-content: space-between;
+      flex-direction: column;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    li {
+      text-align: right;
+    }
+  }
+
+  aside {
+    display: flex;
+    flex: 1;
+
+    .note {
+      color: rgba($color-secondary, 0.66);
+    }
+  }
+}

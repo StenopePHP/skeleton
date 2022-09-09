@@ -1,0 +1,25 @@
+<header id="nav" class="header">
+    <a href="{{ path('home') }}" class="title">
+        <span class="screen-reader">{{ site.title }}</span>
+    </a>
+
+    <nav class="nav">
+        <ul>
+            {% for item in site.menu %}
+                {% set route = app.request.attributes.get( '_route' ) %}
+                {% set isActive = item.path is defined and route == item.path or route in item.children ?? [] %}
+                <li class="nav__item {{ isActive ? 'nav__item--active' }}">
+                    <a
+                        href="{{ item.url ?? path(item.path, item.params ?? {}) }}"
+                        {% if item.url is defined %}target="_blank"{% endif %}
+                    >
+                        {% if item.icon ?? false %}
+                            <i class="icon icon--{{ item.icon }}" aria-hidden="true"></i>
+                        {% endif %}
+                        <span>{{ item.label }}</span>
+                    </a>
+                </li>
+            {% endfor %}
+        </ul>
+    </nav>
+</header>

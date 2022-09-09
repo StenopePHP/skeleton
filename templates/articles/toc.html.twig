@@ -1,0 +1,19 @@
+{% if toc is not empty %}
+    <ol class="table-of-content" data-aos="fade-up">
+        {% for headline in toc %}
+            <li class="table-of-content__item">
+                <a href="#{{ headline.id }}">{{ headline.content }}</a>
+
+                {% if headline.children is not empty %}
+                    <ol class="table-of-content__sub-level">
+                        {% for child in headline.children %}
+                            <li>
+                                <a href="#{{ child.id }}">{{ child.content }}</a>
+                            </li>
+                        {% endfor %}
+                    </ol>
+                {% endif %}
+            </li>
+        {% endfor %}
+    </ol>
+{% endif %}
