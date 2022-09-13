@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="fr" class="no-js">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>What is Stenope? | Stenope Skeleton</title>
+
+                    <meta name="description" content="Discover Stenope: the static site generator for Symfony developers and its purposes." />
+            <link rel="canonical" href="https://stenopephp.github.io/skeleton/articles/what-is-stenope" />
+
+            <!-- Open Graph / Facebook -->
+            <meta property="og:title" content="What is Stenope? | Stenope Skeleton" />
+            <meta property="og:locale" content="fr" />
+            <meta property="og:description" content="Discover Stenope: the static site generator for Symfony developers and its purposes." />
+            <meta property="og:url" content="https://stenopephp.github.io/skeleton/articles/what-is-stenope" />
+            <meta property="og:site_name" content="Stenope Skeleton" />
+
+                                        <meta property="og:image" content="/skeleton/resized/content/images/articles/banners/what-is-stenope.jpg/c2e5ab0fcc7fc5bf749376703646e5c4.jpg">
+            
+            <!-- Twitter -->
+            <meta property="twitter:card" content="summary_large_image">
+            <meta property="twitter:title" content="What is Stenope? | Stenope Skeleton">
+            <meta property="twitter:description" content="Discover Stenope: the static site generator for Symfony developers and its purposes.">
+            <meta property="twitter:site" content="@elao">
+            <meta property="twitter:creator" content="@elao">
+                                        <meta property="twitter:image" content="https://stenopephp.github.io/skeleton/resized/content/images/articles/banners/what-is-stenope.jpg/c67c7e47c2551ccbd3e602380e772fde.jpg">
+                    
+                    <link rel="stylesheet" href="/build/app.29bd8b2d.css">
+        
+                    <script src="/build/runtime.bbcd9364.js" defer></script><script src="/build/80.994455e5.js" defer></script><script src="/build/app.e41c3b11.js" defer></script>
+            </head>
+    <body
+        data-controller="swup-plugins symfony--ux-swup--swup" data-symfony--ux-swup--swup-cache-value="true" data-symfony--ux-swup--swup-animate-history-browsing-value="true" data-symfony--ux-swup--swup-debug-value="false">
+
+        <div class="container" id="swup">
+                            <header id="nav" class="header">
+    <a href="/skeleton/" class="title">
+        <span class="screen-reader">Stenope Skeleton</span>
+    </a>
+
+    <nav class="nav">
+        <ul>
+                                                            <li class="nav__item ">
+                    <a href="/skeleton/" >
+                                                <span>Home</span>
+                    </a>
+                </li>
+                                                            <li class="nav__item nav__item--active">
+                    <a href="/skeleton/articles/" >
+                                                <span>Articles</span>
+                    </a>
+                </li>
+                                                            <li class="nav__item ">
+                    <a href="https://stenopephp.github.io/Stenope" target="_blank">
+                                                <span>Docs</span>
+                    </a>
+                </li>
+                    </ul>
+    </nav>
+</header>
+            
+            <main>
+                    <main class="article">
+        <nav>
+            <a href="/skeleton/articles/">← Back to the list</a>
+        </nav>
+
+        <header>
+            <div class="banner">
+                <img src="/skeleton/resized/content/images/articles/banners/what-is-stenope.jpg/fe0d3029a39cdec30a1d27d01950389c.jpg" alt="What is Stenope?" />
+            </div>
+            <h1>What is Stenope?</h1>
+        </header>
+
+            <ol class="table-of-content" data-aos="fade-up">
+                    <li class="table-of-content__item">
+                <a href="#a-tailored-solution">A tailored solution</a>
+
+                            </li>
+                    <li class="table-of-content__item">
+                <a href="#symfony-static-stenope">Symfony + Static = Stenope</a>
+
+                                    <ol class="table-of-content__sub-level">
+                                                    <li>
+                                <a href="#philosophy">Philosophy</a>
+                            </li>
+                                                    <li>
+                                <a href="#how-it-works">How it works</a>
+                            </li>
+                                                    <li>
+                                <a href="#what-stenope-is-not">What Stenope is not</a>
+                            </li>
+                                            </ol>
+                            </li>
+            </ol>
+
+        <article>
+            <body><h2 id="a-tailored-solution">A tailored solution<a href="#a-tailored-solution" class="anchor"></a></h2>
+<p>For our site <a href="https://www.elao.com" target="_blank">at Elao</a>, we were seduced by the approach of the static site automatically generated
+from Markdown content.</p>
+<p>In the previous version of it, we used <a href="https://gohugo.io/" target="_blank">Hugo</a>, but we also tested
+<a href="https://jamstack.org/generators/" target="_blank">many of the existing static generation tools</a>.  </p>
+<p>It has the advantage of serving a high-performance site, with very low susceptibility to attacks and whose content is
+controlled through a git workflow: an article is written as a feature, via a PR, with proofreading and validation by
+colleagues.</p>
+<p>We really liked the concept, but most of the time we felt limited by these solutions: the source code that was too closed
+or difficult to extend. So, either we adapt our needs to what the solution is capable of offering, or we accumulate workarounds…</p>
+<p>But at Elao, we consider ourselves as artisans. So this time, we wanted to be completely free, have total control over
+the solution and no longer depend on a project or language we don't know well.</p>
+<p>Hence, we developed a simple tool, for PHP developers, that can be used over any Symfony web-app and tailored to any needs.</p>
+<h2 id="symfony-static-stenope">Symfony + Static = Stenope<a href="#symfony-static-stenope" class="anchor"></a></h2>
+<p>As Symfony experts, it was the evidence: to completely master our code base, let's develop our site with Symfony, then
+serve it statically!</p>
+<p>So we started developing <a href="https://stenopephp.github.io/Stenope/" target="_blank">Stenope</a>, a simple tool registered as a bundle and
+relying on the Symfony HTTP Kernel to generate a static site.</p>
+<blockquote>
+<p>Stenope generates a static site from any Symfony project.</p>
+</blockquote>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>
+    Stenope <a href="https://jamstack.org/generators/stenope/" target="_blank">is referenced</a> in the static generators sections
+    of the <a href="https://jamstack.org/" target="_blank">Jamstack initiative</a>.
+</p>
+</div>
+<h3 id="philosophy">Philosophy<a href="#philosophy" class="anchor"></a></h3>
+<p>Stenope was designed with these goals in mind:</p>
+<ul>
+<li>Stenope meets your needs, not the other way around. No structure nor format is imposed.</li>
+<li>Stenope runs in any Symfony project out of the box, connects with standard Symfony components and feels natural to
+Symfony developers.</li>
+<li>Stenope is highly extensible: features can be replaced, added or removed.</li>
+</ul>
+<p>The bundle also comes with a handy set of content manager, providers &amp; tools to help you generate pages from YAML,
+Markdown or JSON content files (or virtually any format supported by Symfony's Serializer or your owns).</p>
+<h3 id="how-it-works">How it works<a href="#how-it-works" class="anchor"></a></h3>
+<ul>
+<li>🔍 Stenope scans your Symfony app (like a search engine crawler would) and dumps every page into a static HTML file.</li>
+<li>🛠 Stenope provides tools for loading and parsing various data sources (like local Markdown files or distant headless
+CMS).</li>
+<li>🖌 Stenope enriches the parsed data by applying a series of processors (like Syntax Highlighting, slug generation,
+etc.).</li>
+<li>🧲 Stenope finally hydrates your custom PHP objects with the enriched data and provides interfaces for listing and
+retrieving them (like an ORM would).</li>
+<li>⚙️ Stenope gives you a lot of control over the whole process by providing entrypoints, interfaces and default
+implementations that are entirely replaceable.</li>
+</ul>
+<h3 id="what-stenope-is-not">What Stenope is not<a href="#what-stenope-is-not" class="anchor"></a></h3>
+<p>Stenope is not a ready-to-use blogging system: but you could quickly write your own blog system with it!</p>
+<p>It strictly targets Symfony developers &amp; web integrators to build the content management system of their dreams.<br>
+But once the engine is set up, anybody should be able to write content.</p></body>
+        </article>
+
+        <footer>
+            <small>
+                Published on 01/09/2022
+                by
+                                                        Tom32i, 
+                        
+                                                                            Ogi
+                        and 
+                                                                            Elao
+                        
+                                                </small>
+        </footer>
+
+        <nav class="row">
+            <div class="column">
+                <a href="/skeleton/articles/">← Back to the list</a>
+            </div>
+            <div class="column">
+                                                        <a href="/skeleton/articles/guide">
+                        ➜ Next: « Guide »
+                    </a>
+                            </div>
+        </nav>
+    </main>
+            </main>
+
+                            <footer class="footer">
+    <aside>
+        <p class="note">
+            <a href="https://stenopephp.github.io/Stenope">Stenope</a>,
+            the static website generation tool for Symfony.
+        </p>
+    </aside>
+
+    <nav>
+        <ul>
+                            <li>
+                    <a href="/skeleton/" >
+                        <span>Home</span>
+                    </a>
+                </li>
+                            <li>
+                    <a href="/skeleton/articles/" >
+                        <span>Articles</span>
+                    </a>
+                </li>
+                            <li>
+                    <a href="https://github.com/StenopePHP/stenope" target="_blank">
+                        <span>Stenope on Github</span>
+                    </a>
+                </li>
+                            <li>
+                    <a href="https://github.com/StenopePHP/skeleton" target="_blank">
+                        <span>This skeleton on Github</span>
+                    </a>
+                </li>
+                    </ul>
+    </nav>
+</footer>
+                    </div>
+    </body>
+</html>

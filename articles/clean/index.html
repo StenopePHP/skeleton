@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="fr" class="no-js">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Clean the skeleton | Stenope Skeleton</title>
+
+                    <meta name="description" content="Whenever you feel ready and does not need anymore some of the features provided by the skeleton, you can remove them." />
+            <link rel="canonical" href="https://stenopephp.github.io/skeleton/articles/clean" />
+
+            <!-- Open Graph / Facebook -->
+            <meta property="og:title" content="Clean the skeleton | Stenope Skeleton" />
+            <meta property="og:locale" content="fr" />
+            <meta property="og:description" content="Whenever you feel ready and does not need anymore some of the features provided by the skeleton, you can remove them." />
+            <meta property="og:url" content="https://stenopephp.github.io/skeleton/articles/clean" />
+            <meta property="og:site_name" content="Stenope Skeleton" />
+
+                                        <meta property="og:image" content="/skeleton/resized/content/images/articles/banners/clean.jpg/75306ddd6707c67fc1eb884dd9426e17.jpg">
+            
+            <!-- Twitter -->
+            <meta property="twitter:card" content="summary_large_image">
+            <meta property="twitter:title" content="Clean the skeleton | Stenope Skeleton">
+            <meta property="twitter:description" content="Whenever you feel ready and does not need anymore some of the features provided by the skeleton, you can remove them.">
+            <meta property="twitter:site" content="@elao">
+            <meta property="twitter:creator" content="@elao">
+                                        <meta property="twitter:image" content="https://stenopephp.github.io/skeleton/resized/content/images/articles/banners/clean.jpg/c92951842969036e16e2b4a58139adbd.jpg">
+                    
+                    <link rel="stylesheet" href="/build/app.29bd8b2d.css">
+        
+                    <script src="/build/runtime.bbcd9364.js" defer></script><script src="/build/80.994455e5.js" defer></script><script src="/build/app.e41c3b11.js" defer></script>
+            </head>
+    <body
+        data-controller="swup-plugins symfony--ux-swup--swup" data-symfony--ux-swup--swup-cache-value="true" data-symfony--ux-swup--swup-animate-history-browsing-value="true" data-symfony--ux-swup--swup-debug-value="false">
+
+        <div class="container" id="swup">
+                            <header id="nav" class="header">
+    <a href="/skeleton/" class="title">
+        <span class="screen-reader">Stenope Skeleton</span>
+    </a>
+
+    <nav class="nav">
+        <ul>
+                                                            <li class="nav__item ">
+                    <a href="/skeleton/" >
+                                                <span>Home</span>
+                    </a>
+                </li>
+                                                            <li class="nav__item nav__item--active">
+                    <a href="/skeleton/articles/" >
+                                                <span>Articles</span>
+                    </a>
+                </li>
+                                                            <li class="nav__item ">
+                    <a href="https://stenopephp.github.io/Stenope" target="_blank">
+                                                <span>Docs</span>
+                    </a>
+                </li>
+                    </ul>
+    </nav>
+</header>
+            
+            <main>
+                    <main class="article">
+        <nav>
+            <a href="/skeleton/articles/">← Back to the list</a>
+        </nav>
+
+        <header>
+            <div class="banner">
+                <img src="/skeleton/resized/content/images/articles/banners/clean.jpg/b8084637fc29fd66eadc6e94de0efc52.jpg" alt="Clean the skeleton" />
+            </div>
+            <h1>Clean the skeleton</h1>
+        </header>
+
+            <ol class="table-of-content" data-aos="fade-up">
+                    <li class="table-of-content__item">
+                <a href="#styles">Styles</a>
+
+                            </li>
+                    <li class="table-of-content__item">
+                <a href="#models">Models</a>
+
+                            </li>
+                    <li class="table-of-content__item">
+                <a href="#templates">Templates</a>
+
+                            </li>
+                    <li class="table-of-content__item">
+                <a href="#controllers">Controllers</a>
+
+                            </li>
+                    <li class="table-of-content__item">
+                <a href="#contents">Contents</a>
+
+                            </li>
+                    <li class="table-of-content__item">
+                <a href="#images">Images</a>
+
+                            </li>
+                    <li class="table-of-content__item">
+                <a href="#swup">Swup</a>
+
+                            </li>
+            </ol>
+
+        <article>
+            <body><p>Whenever you feel ready and does not need anymore some of the features provided by the skeleton, you can remove them.</p>
+<h2 id="styles">Styles<a href="#styles" class="anchor"></a></h2>
+<p>Remove the <code class="code-inline" id="8d88bbac42fda2540672d17df23ec1fc">assets/scss/skeleton-theme</code> directory and the <code class="code-inline" id="8b8948c0e5e7f071104fe271cf63c7eb">@import</code> from <code class="code-inline" id="458314dda11b66a3f5bc2634b91c5d43">assets/styles.scss</code> file.<br>
+You shouldn't need to remove any dependency from <code class="code-inline" id="b9cfc7f2cdf78a7f4b91a753d10865a2">package.json</code> as the skeleton theme was only using a CDN.</p>
+<h2 id="models">Models<a href="#models" class="anchor"></a></h2>
+<p>Remove any unused modale from the <code class="code-inline" id="05aeb43f8c5ed8fb2ea5ab8bde71ff35">src/Model</code> directory.</p>
+<p>You might also want to update the <code class="code-inline" id="90a026eff90ce95fb30fb88b26e2040a">config/packages/stenope.yaml</code> file to remove the references to models you don't need anymore.</p>
+<h2 id="templates">Templates<a href="#templates" class="anchor"></a></h2>
+<p>Remove any unused template from the <code class="code-inline" id="fed36e93a0509e20f2dc96cbbd85b678">templates</code> directory.</p>
+<h2 id="controllers">Controllers<a href="#controllers" class="anchor"></a></h2>
+<p>Remove the <code class="code-inline" id="a1e269aebfa57193deba10af89bdc1ec">src/Controller/ArticleController.php</code> file, unless you adapted the model to your own needs.
+Beware you might still have references to the following articles routes in your templates or <code class="code-inline" id="e93a5c202460fbb4bfb0a6164cd4332c">config/site.yaml</code>: </p>
+<ul>
+<li><code class="code-inline" id="f18d08448ba6d05e47f0e0bdab5eb9f2">article_show</code></li>
+<li><code class="code-inline" id="3ae84669af4c546f364e3464fe3fc1a2">article_list</code></li>
+</ul>
+<h2 id="contents">Contents<a href="#contents" class="anchor"></a></h2>
+<p>Remove any unused file from the <code class="code-inline" id="52d615a58b825e8f2741ec196b11a414">content/{articles,authors}</code> and <code class="code-inline" id="3f7ac855f23dca600324d6cea5c54ded">content/images/articles</code> directory.</p>
+<h2 id="images">Images<a href="#images" class="anchor"></a></h2>
+<h3 id="automatic-resize-of-content-images">Automatic resize of content images<a href="#automatic-resize-of-content-images" class="anchor"></a></h3>
+<p>If you don't need the automatic resize of content images, you can remove
+the <code class="code-inline" id="ebed0e915af95dcbdd34a989ed404779">src/Bridge/Glide/Stenope/Processor/ResizeImagesContentProcessor.php</code> file and references to it in
+the <code class="code-inline" id="55b5b167120840a9198b5779c9b1de66">config/services.yaml</code> file.</p>
+<h3 id="glide-integration">Glide integration<a href="#glide-integration" class="anchor"></a></h3>
+<p>If you don't need to resize image, or want to use your own tool or third-party integration, you can remove the embedded Glide bundle:</p>
+<ul>
+<li>the <code class="code-inline" id="54883a9bbe6aa85ed63bde51f2e7e833">config/packages/glide.yaml</code> file.</li>
+<li>reference to <code class="code-inline" id="2156934fa6f40a78a549526c5ab987e2">GlideBundle</code> in <code class="code-inline" id="40fa33b4e89e4613ffa4459314636c07">config/bundles.php</code></li>
+<li>source code in <code class="code-inline" id="64dc9eaed34327aa949a95b7ffca5820">src/Bridge/Glide</code></li>
+</ul>
+<h2 id="swup">Swup<a href="#swup" class="anchor"></a></h2>
+<p>If you don't need the Swup integration, you can remove the <code class="code-inline" id="c4abfb79e2ef5fca18fb05ff85f457fb">assets/js/controllers/swup_plugins_controller.js</code> file,
+update <code class="code-inline" id="66c1bb1be81fba286ce73fa5e6c8207b">templates/base.html.twig</code> to remove the <code class="code-inline" id="c077bdcee3192dd0a9074c16b1990544">data-controller="swup-plugins"</code> attribute from the <code class="code-inline" id="841a2d689ad86bd1611447453c22c6fc">body</code> tag:</p>
+<pre class="code-multiline language-diff"><code class="language-diff" id="620f487adbc74b1831dff21ea9762193"><span class="token deleted-sign deleted"><span class="token prefix deleted">-</span><span class="token line">    &lt;body
+</span><span class="token prefix deleted">-</span><span class="token line">        {{ stimulus_controller('swup_plugins')
+</span><span class="token prefix deleted">-</span><span class="token line">         | stimulus_controller('symfony/ux-swup/swup', {
+</span><span class="token prefix deleted">-</span><span class="token line">               cache: true,
+</span><span class="token prefix deleted">-</span><span class="token line">               animateHistoryBrowsing: true,
+</span><span class="token prefix deleted">-</span><span class="token line">               debug: app.debug,
+</span><span class="token prefix deleted">-</span><span class="token line">           })
+</span><span class="token prefix deleted">-</span><span class="token line">        }}&gt;
+</span></span><span class="token inserted-sign inserted"><span class="token prefix inserted">+</span><span class="token line">    &lt;body&gt;</span></span></code></pre>
+<p>and run:</p>
+<pre class="code-multiline language-shell"><code class="language-shell" id="a88d8c33471016a5c433c1a5c9011575">symfony <span class="token function">composer</span> remove symfony/ux-swup
+<span class="token function">npm</span> uninstall @swup/debug-plugin @swup/fade-theme @swup/progress-plugin @swup/scroll-plugin @swup/slide-theme</code></pre></body>
+        </article>
+
+        <footer>
+            <small>
+                Published on 12/09/2022
+                by
+                                                        Ogi                            </small>
+        </footer>
+
+        <nav class="row">
+            <div class="column">
+                <a href="/skeleton/articles/">← Back to the list</a>
+            </div>
+            <div class="column">
+                            </div>
+        </nav>
+    </main>
+            </main>
+
+                            <footer class="footer">
+    <aside>
+        <p class="note">
+            <a href="https://stenopephp.github.io/Stenope">Stenope</a>,
+            the static website generation tool for Symfony.
+        </p>
+    </aside>
+
+    <nav>
+        <ul>
+                            <li>
+                    <a href="/skeleton/" >
+                        <span>Home</span>
+                    </a>
+                </li>
+                            <li>
+                    <a href="/skeleton/articles/" >
+                        <span>Articles</span>
+                    </a>
+                </li>
+                            <li>
+                    <a href="https://github.com/StenopePHP/stenope" target="_blank">
+                        <span>Stenope on Github</span>
+                    </a>
+                </li>
+                            <li>
+                    <a href="https://github.com/StenopePHP/skeleton" target="_blank">
+                        <span>This skeleton on Github</span>
+                    </a>
+                </li>
+                    </ul>
+    </nav>
+</footer>
+                    </div>
+    </body>
+</html>

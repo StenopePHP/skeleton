@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="fr" class="no-js">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Writing your own contents | Stenope Skeleton</title>
+
+                    <meta name="description" content="Take control over your app and start creating your own models, contents and templates" />
+            <link rel="canonical" href="https://stenopephp.github.io/skeleton/articles/write-your-own-contents" />
+
+            <!-- Open Graph / Facebook -->
+            <meta property="og:title" content="Writing your own contents | Stenope Skeleton" />
+            <meta property="og:locale" content="fr" />
+            <meta property="og:description" content="Take control over your app and start creating your own models, contents and templates" />
+            <meta property="og:url" content="https://stenopephp.github.io/skeleton/articles/write-your-own-contents" />
+            <meta property="og:site_name" content="Stenope Skeleton" />
+
+                                        <meta property="og:image" content="/skeleton/resized/content/images/articles/banners/writing-your-own-contents.jpg/471b8f58c16fed87e6871f796caac907.jpg">
+            
+            <!-- Twitter -->
+            <meta property="twitter:card" content="summary_large_image">
+            <meta property="twitter:title" content="Writing your own contents | Stenope Skeleton">
+            <meta property="twitter:description" content="Take control over your app and start creating your own models, contents and templates">
+            <meta property="twitter:site" content="@elao">
+            <meta property="twitter:creator" content="@elao">
+                                        <meta property="twitter:image" content="https://stenopephp.github.io/skeleton/resized/content/images/articles/banners/writing-your-own-contents.jpg/53ce799d12b27c4499c3fc9d423cf7b5.jpg">
+                    
+                    <link rel="stylesheet" href="/build/app.29bd8b2d.css">
+        
+                    <script src="/build/runtime.bbcd9364.js" defer></script><script src="/build/80.994455e5.js" defer></script><script src="/build/app.e41c3b11.js" defer></script>
+            </head>
+    <body
+        data-controller="swup-plugins symfony--ux-swup--swup" data-symfony--ux-swup--swup-cache-value="true" data-symfony--ux-swup--swup-animate-history-browsing-value="true" data-symfony--ux-swup--swup-debug-value="false">
+
+        <div class="container" id="swup">
+                            <header id="nav" class="header">
+    <a href="/skeleton/" class="title">
+        <span class="screen-reader">Stenope Skeleton</span>
+    </a>
+
+    <nav class="nav">
+        <ul>
+                                                            <li class="nav__item ">
+                    <a href="/skeleton/" >
+                                                <span>Home</span>
+                    </a>
+                </li>
+                                                            <li class="nav__item nav__item--active">
+                    <a href="/skeleton/articles/" >
+                                                <span>Articles</span>
+                    </a>
+                </li>
+                                                            <li class="nav__item ">
+                    <a href="https://stenopephp.github.io/Stenope" target="_blank">
+                                                <span>Docs</span>
+                    </a>
+                </li>
+                    </ul>
+    </nav>
+</header>
+            
+            <main>
+                    <main class="article">
+        <nav>
+            <a href="/skeleton/articles/">← Back to the list</a>
+        </nav>
+
+        <header>
+            <div class="banner">
+                <img src="/skeleton/resized/content/images/articles/banners/writing-your-own-contents.jpg/b768af4d466318956f260a8c49d681e4.jpg" alt="Writing your own contents" />
+            </div>
+            <h1>Writing your own contents</h1>
+        </header>
+
+            <ol class="table-of-content" data-aos="fade-up">
+                    <li class="table-of-content__item">
+                <a href="#model">Model</a>
+
+                            </li>
+                    <li class="table-of-content__item">
+                <a href="#configuration">Configuration</a>
+
+                            </li>
+                    <li class="table-of-content__item">
+                <a href="#writing-your-first-content">Writing your first content</a>
+
+                            </li>
+                    <li class="table-of-content__item">
+                <a href="#controller">Controller</a>
+
+                            </li>
+                    <li class="table-of-content__item">
+                <a href="#templates">Templates</a>
+
+                            </li>
+                    <li class="table-of-content__item">
+                <a href="#referencing-your-content-pages">Referencing your content pages</a>
+
+                            </li>
+            </ol>
+
+        <article>
+            <body><p>First of all, you can start by reading the <a href="https://stenopephp.github.io/Stenope/loading-content/#setup" target="_blank">Stenope documentation</a>.</p>
+<p>Since this skeleton already showcases writing blog-post like content, using Markdown,
+let's take another example and use a different format.</p>
+<p>Let's say you'd like to expose galleries of images somewhere in your app.</p>
+<h2 id="model">Model<a href="#model" class="anchor"></a></h2>
+<p>Start by creating your model in <code class="code-inline" id="77262d6b5fa1b2393a6b39e11924dd92">src/Model/Gallery.php</code>:</p>
+<pre class="code-multiline language-php"><code class="language-php" id="84fee52e72bb82e262e7a4162fd0c205"><span class="token keyword">namespace</span> <span class="token package">App<span class="token punctuation">\</span>Model</span><span class="token punctuation">;</span>
+
+<span class="token keyword">use</span> <span class="token package">Symfony<span class="token punctuation">\</span>Component<span class="token punctuation">\</span>Serializer<span class="token punctuation">\</span>Annotation<span class="token punctuation">\</span>Context</span><span class="token punctuation">;</span>
+<span class="token keyword">use</span> <span class="token package">Symfony<span class="token punctuation">\</span>Component<span class="token punctuation">\</span>Serializer<span class="token punctuation">\</span>Normalizer<span class="token punctuation">\</span>DateTimeNormalizer</span><span class="token punctuation">;</span>
+
+<span class="token keyword">class</span> <span class="token class-name-definition class-name">Gallery</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">public</span> <span class="token keyword">function</span> <span class="token function-definition function">__construct</span><span class="token punctuation">(</span>
+        <span class="token keyword">public</span> <span class="token keyword type-declaration">string</span> <span class="token variable">$slug</span><span class="token punctuation">,</span>
+        <span class="token keyword">public</span> <span class="token keyword type-declaration">string</span> <span class="token variable">$title</span><span class="token punctuation">,</span>
+        <span class="token keyword">public</span> <span class="token keyword type-declaration">string</span> <span class="token variable">$description</span><span class="token punctuation">,</span>
+        <span class="token attribute"><span class="token delimiter punctuation">#[</span><span class="token attribute-content"><span class="token attribute-class-name class-name">Context</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token attribute-class-name class-name">DateTimeNormalizer</span><span class="token operator">::</span><span class="token constant">FORMAT_KEY</span> <span class="token operator">=&gt;</span> <span class="token string single-quoted-string">'Y-m-d'</span><span class="token punctuation">]</span><span class="token punctuation">)</span></span><span class="token delimiter punctuation">]</span></span>
+        <span class="token keyword">public</span> <span class="token class-name class-name-fully-qualified type-declaration"><span class="token punctuation">\</span>DateTime</span> <span class="token variable">$createdAt</span><span class="token punctuation">,</span>
+        <span class="token keyword">public</span> <span class="token keyword type-declaration">bool</span> <span class="token variable">$published</span> <span class="token operator">=</span> <span class="token constant boolean">true</span><span class="token punctuation">,</span>
+    <span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
+<p>Our gallery consists of a <code class="code-inline" id="d5d3db1765287eef77d7927cc956f50a">title</code>, a <code class="code-inline" id="67daf92c833c41c95db874e18fcb2786">description</code> a <code class="code-inline" id="26c7cdd6cafe7fd24f89fd1db80f5101">creation date</code> and a <code class="code-inline" id="b129ff443d34ebac45ff2b608c54fb95">published/unpublished</code> status.<br>
+The <code class="code-inline" id="2dbcba41b9ac4c5d22886ba672463cb4">slug</code> property is automatically injected by Stenope, and consists of the content filename.</p>
+<p>Let's add a property holding an array of images:</p>
+<pre class="code-multiline language-diff"><code class="language-diff" id="aa82f272c59f8d86968277c86ab92cd8">class Gallery
+{
+<span class="token unchanged"><span class="token prefix unchanged"> </span><span class="token line">   public function __construct(
+</span><span class="token prefix unchanged"> </span><span class="token line">       public string $slug,
+</span><span class="token prefix unchanged"> </span><span class="token line">       public string $title,
+</span><span class="token prefix unchanged"> </span><span class="token line">       public string $description,
+</span></span><span class="token inserted-sign inserted"><span class="token prefix inserted">+</span><span class="token line">        /** @var GalleryImage[] */
+</span><span class="token prefix inserted">+</span><span class="token line">        public array $images,
+</span></span><span class="token unchanged"><span class="token prefix unchanged"> </span><span class="token line">       #[Context([DateTimeNormalizer::FORMAT_KEY =&gt; 'Y-m-d'])]
+</span><span class="token prefix unchanged"> </span><span class="token line">       public \DateTime $createdAt,
+</span><span class="token prefix unchanged"> </span><span class="token line">       public bool $published = true,
+</span><span class="token prefix unchanged"> </span><span class="token line">   ) {
+</span><span class="token prefix unchanged"> </span><span class="token line">   }
+</span></span>}</code></pre>
+<p>and a dedicated model:</p>
+<pre class="code-multiline language-php"><code class="language-php" id="ce76620f373f4f46b8c32f934ecac0f1"><span class="token keyword">namespace</span> <span class="token package">App<span class="token punctuation">\</span>Model</span><span class="token punctuation">;</span>
+
+<span class="token keyword">class</span> <span class="token class-name-definition class-name">GalleryImage</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">public</span> <span class="token keyword">function</span> <span class="token function-definition function">__construct</span><span class="token punctuation">(</span>
+        <span class="token keyword">public</span> <span class="token keyword type-declaration">string</span> <span class="token variable">$path</span><span class="token punctuation">,</span>
+        <span class="token keyword">public</span> <span class="token operator">?</span><span class="token keyword type-hint">string</span> <span class="token variable">$title</span> <span class="token operator">=</span> <span class="token constant">null</span><span class="token punctuation">,</span>
+        <span class="token keyword">public</span> <span class="token operator">?</span><span class="token keyword type-hint">string</span> <span class="token variable">$description</span> <span class="token operator">=</span> <span class="token constant">null</span><span class="token punctuation">,</span>
+    <span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
+<p>Each image will have a mandatory path on the filesystem, and an optional title and description.</p>
+<h2 id="configuration">Configuration<a href="#configuration" class="anchor"></a></h2>
+<p>Let's now indicate to Stenope where our gallery contents will be stored:</p>
+<pre class="code-multiline language-yaml"><code class="language-yaml" id="726db4097705fbd59a42e6528724b444"><span class="token comment"># config/packages/stenope.yaml</span>
+<span class="token key atrule">stenope</span><span class="token punctuation">:</span>
+    <span class="token key atrule">providers</span><span class="token punctuation">:</span>
+        <span class="token comment"># […]</span>
+        <span class="token key atrule">App\Model\Gallery</span><span class="token punctuation">:</span> <span class="token string">'%kernel.project_dir%/content/galleries'</span></code></pre>
+<h2 id="writing-your-first-content">Writing your first content<a href="#writing-your-first-content" class="anchor"></a></h2>
+<p>For our use-case, since we do not have a main textual content, like we do with our articles in markdown, we'll use YAML
+as a structured format for our galleries.</p>
+<p>Let's create a first gallery in <code class="code-inline" id="e2a64bc287cb661ddf153a2cda5b2f33">content/galleries/christmas.yaml</code>:</p>
+<pre class="code-multiline language-yaml"><code class="language-yaml" id="62d397b3ae16f77334c3309d1a70b0fb"><span class="token key atrule">title</span><span class="token punctuation">:</span> Christmas photos
+<span class="token key atrule">description</span><span class="token punctuation">:</span> A gallery of Christmas photos
+<span class="token key atrule">createdAt</span><span class="token punctuation">:</span> <span class="token string">"2020-12-25"</span>
+
+<span class="token key atrule">images</span><span class="token punctuation">:</span>
+    <span class="token punctuation">-</span> <span class="token punctuation">{</span> <span class="token key atrule">path</span><span class="token punctuation">:</span> <span class="token string">'/content/images/galleries/christmas/img1.jpg'</span><span class="token punctuation">,</span> <span class="token key atrule">title</span><span class="token punctuation">:</span> <span class="token string">'Image 1'</span><span class="token punctuation">,</span> <span class="token key atrule">description</span><span class="token punctuation">:</span> <span class="token string">'Some description'</span> <span class="token punctuation">}</span>
+    <span class="token punctuation">-</span> <span class="token punctuation">{</span> <span class="token key atrule">path</span><span class="token punctuation">:</span> <span class="token string">'/content/images/galleries/christmas/img2.jpg'</span><span class="token punctuation">,</span> <span class="token key atrule">title</span><span class="token punctuation">:</span> <span class="token string">'Image 2'</span> <span class="token punctuation">}</span>
+    <span class="token punctuation">-</span> <span class="token punctuation">{</span> <span class="token key atrule">path</span><span class="token punctuation">:</span> <span class="token string">'/content/images/galleries/christmas/img3.jpg'</span> <span class="token punctuation">}</span></code></pre>
+<h2 id="controller">Controller<a href="#controller" class="anchor"></a></h2>
+<p>Now, we need to create a controller action for each pages we want to expose our galleries.<br>
+We'll start with a simple list of galleries and a detail page for each:</p>
+<pre class="code-multiline language-php"><code class="language-php" id="96dcb565faa5a1ef87b46a85a2677b57"><span class="token keyword">namespace</span> <span class="token package">App<span class="token punctuation">\</span>Controller</span><span class="token punctuation">;</span>
+
+<span class="token keyword">use</span> <span class="token package">App<span class="token punctuation">\</span>Model<span class="token punctuation">\</span>Gallery</span><span class="token punctuation">;</span>
+<span class="token keyword">use</span> <span class="token package">Stenope<span class="token punctuation">\</span>Bundle<span class="token punctuation">\</span>ContentManagerInterface</span><span class="token punctuation">;</span>
+<span class="token keyword">use</span> <span class="token package">Symfony<span class="token punctuation">\</span>Bundle<span class="token punctuation">\</span>FrameworkBundle<span class="token punctuation">\</span>Controller<span class="token punctuation">\</span>AbstractController</span><span class="token punctuation">;</span>
+<span class="token keyword">use</span> <span class="token package">Symfony<span class="token punctuation">\</span>Component<span class="token punctuation">\</span>HttpFoundation<span class="token punctuation">\</span>Response</span><span class="token punctuation">;</span>
+<span class="token keyword">use</span> <span class="token package">Symfony<span class="token punctuation">\</span>Component<span class="token punctuation">\</span>Routing<span class="token punctuation">\</span>Annotation<span class="token punctuation">\</span>Route</span><span class="token punctuation">;</span>
+
+<span class="token attribute"><span class="token delimiter punctuation">#[</span><span class="token attribute-content"><span class="token attribute-class-name class-name">Route</span><span class="token punctuation">(</span><span class="token string single-quoted-string">'/galleries'</span><span class="token punctuation">)</span></span><span class="token delimiter punctuation">]</span></span>
+<span class="token keyword">class</span> <span class="token class-name-definition class-name">GalleryController</span> <span class="token keyword">extends</span> <span class="token class-name">AbstractController</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">public</span> <span class="token keyword">function</span> <span class="token function-definition function">__construct</span><span class="token punctuation">(</span><span class="token keyword">private</span> <span class="token keyword">readonly</span> <span class="token class-name type-declaration">ContentManagerInterface</span> <span class="token variable">$manager</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token attribute"><span class="token delimiter punctuation">#[</span><span class="token attribute-content"><span class="token attribute-class-name class-name">Route</span><span class="token punctuation">(</span><span class="token string single-quoted-string">'/'</span><span class="token punctuation">,</span> <span class="token attribute-class-name class-name">name</span><span class="token punctuation">:</span> <span class="token string single-quoted-string">'gallery_list'</span><span class="token punctuation">)</span></span><span class="token delimiter punctuation">]</span></span>
+    <span class="token keyword">public</span> <span class="token keyword">function</span> <span class="token function-definition function">list</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token class-name return-type">Response</span>
+    <span class="token punctuation">{</span>
+        <span class="token variable">$galleries</span> <span class="token operator">=</span> <span class="token this keyword">$this</span><span class="token operator">-&gt;</span><span class="token property">manager</span><span class="token operator">-&gt;</span><span class="token function">getContents</span><span class="token punctuation">(</span>
+            <span class="token scope">Gallery<span class="token punctuation">::</span></span><span class="token keyword">class</span><span class="token punctuation">,</span>
+            <span class="token argument-name">sortBy</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string single-quoted-string">'createdAt'</span> <span class="token operator">=&gt;</span> <span class="token constant boolean">false</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token comment">// Sort by creation date, descending</span>
+            filterBy<span class="token punctuation">:</span> <span class="token string single-quoted-string">'_.published'</span><span class="token punctuation">,</span> <span class="token comment">// Filters out unpublished galleries</span>
+        <span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token keyword">return</span> <span class="token this keyword">$this</span><span class="token operator">-&gt;</span><span class="token function">render</span><span class="token punctuation">(</span><span class="token string single-quoted-string">'galleries/list.html.twig'</span><span class="token punctuation">,</span> <span class="token punctuation">[</span>
+            <span class="token string single-quoted-string">'galleries'</span> <span class="token operator">=&gt;</span> <span class="token variable">$galleries</span><span class="token punctuation">,</span>
+        <span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token attribute"><span class="token delimiter punctuation">#[</span><span class="token attribute-content"><span class="token attribute-class-name class-name">Route</span><span class="token punctuation">(</span><span class="token string single-quoted-string">'/{gallery}'</span><span class="token punctuation">,</span> <span class="token attribute-class-name class-name">name</span><span class="token punctuation">:</span> <span class="token string single-quoted-string">'gallery_show'</span><span class="token punctuation">,</span> <span class="token attribute-class-name class-name">requirements</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string single-quoted-string">'gallery'</span> <span class="token operator">=&gt;</span> <span class="token string single-quoted-string">'.+'</span><span class="token punctuation">]</span><span class="token punctuation">)</span></span><span class="token delimiter punctuation">]</span></span>
+    <span class="token keyword">public</span> <span class="token keyword">function</span> <span class="token function-definition function">show</span><span class="token punctuation">(</span><span class="token class-name type-declaration">Gallery</span> <span class="token variable">$gallery</span><span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token class-name return-type">Response</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token this keyword">$this</span><span class="token operator">-&gt;</span><span class="token function">render</span><span class="token punctuation">(</span><span class="token string single-quoted-string">'galleries/show.html.twig'</span><span class="token punctuation">,</span> <span class="token punctuation">[</span>
+            <span class="token string single-quoted-string">'gallery'</span> <span class="token operator">=&gt;</span> <span class="token variable">$gallery</span><span class="token punctuation">,</span>
+        <span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
+<p>This controller makes use of the <code class="code-inline" id="24cd57f15588b440541f69dda62d76ca">ContentManagerInterface</code> to fetch, sort and filter contents managed by Stenope.  </p>
+<p>Learn more on the documentation about:</p>
+<ul>
+<li><a href="https://stenopephp.github.io/Stenope/loading-content/#fetching-a-specific-content" target="_blank">Fetching</a></li>
+<li><a href="https://stenopephp.github.io/Stenope/loading-content/#sorting-contents" target="_blank">Sorting</a></li>
+<li><a href="https://stenopephp.github.io/Stenope/loading-content/#filtering-contents" target="_blank">Filtering</a></li>
+</ul>
+<h2 id="templates">Templates<a href="#templates" class="anchor"></a></h2>
+<p>Let's create the templates for each controller:</p>
+<p><strong>List</strong>:</p>
+<pre class="code-multiline language-twig"><code class="language-twig" id="abfe2ddb50ebd129289b963e39459790"><span class="token twig language-twig"><span class="token comment">{# templates/galleries/show.html.twig #}</span></span>
+<span class="token twig language-twig"><span class="token delimiter punctuation">{%</span> <span class="token tag-name keyword">extends</span> <span class="token string"><span class="token punctuation">'</span>base.html.twig<span class="token punctuation">'</span></span> <span class="token delimiter punctuation">%}</span></span>
+
+<span class="token twig language-twig"><span class="token delimiter punctuation">{%</span> <span class="token tag-name keyword">block</span> meta_title <span class="token string"><span class="token punctuation">'</span>List of galleries<span class="token punctuation">'</span></span> <span class="token delimiter punctuation">%}</span></span>
+
+<span class="token twig language-twig"><span class="token delimiter punctuation">{%</span> <span class="token tag-name keyword">block</span> content <span class="token delimiter punctuation">%}</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h1</span><span class="token punctuation">&gt;</span></span>Galleries<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h1</span><span class="token punctuation">&gt;</span></span>
+
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>ul</span><span class="token punctuation">&gt;</span></span>
+        <span class="token twig language-twig"><span class="token delimiter punctuation">{%</span> <span class="token tag-name keyword">for</span> gallery <span class="token operator">in</span> galleries <span class="token delimiter punctuation">%}</span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>li</span><span class="token punctuation">&gt;</span></span>
+                <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span><span class="token twig language-twig"><span class="token delimiter punctuation">{{</span> path<span class="token punctuation">(</span><span class="token string"><span class="token punctuation">'</span>gallery_show<span class="token punctuation">'</span></span><span class="token punctuation">,</span> <span class="token punctuation">{</span> gallery<span class="token punctuation">:</span> gallery<span class="token punctuation">.</span>slug <span class="token punctuation">}</span><span class="token punctuation">)</span> <span class="token delimiter punctuation">}}</span></span><span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+                    <span class="token twig language-twig"><span class="token delimiter punctuation">{{</span> gallery<span class="token punctuation">.</span>title <span class="token delimiter punctuation">}}</span></span>
+                <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a</span><span class="token punctuation">&gt;</span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>li</span><span class="token punctuation">&gt;</span></span>
+        <span class="token twig language-twig"><span class="token delimiter punctuation">{%</span> <span class="token tag-name keyword">endfor</span> <span class="token delimiter punctuation">%}</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>ul</span><span class="token punctuation">&gt;</span></span>
+<span class="token twig language-twig"><span class="token delimiter punctuation">{%</span> <span class="token tag-name keyword">endblock</span> <span class="token delimiter punctuation">%}</span></span></code></pre>
+<p><strong>Show</strong>:</p>
+<pre class="code-multiline language-twig"><code class="language-twig" id="daece1b44838808579f2bd4b81b87696"><span class="token twig language-twig"><span class="token comment">{# templates/galleries/show.html.twig #}</span></span>
+<span class="token twig language-twig"><span class="token delimiter punctuation">{%</span> <span class="token tag-name keyword">extends</span> <span class="token string"><span class="token punctuation">'</span>base.html.twig<span class="token punctuation">'</span></span> <span class="token delimiter punctuation">%}</span></span>
+
+<span class="token twig language-twig"><span class="token delimiter punctuation">{%</span> <span class="token tag-name keyword">block</span> meta_title gallery<span class="token punctuation">.</span>title <span class="token delimiter punctuation">%}</span></span>
+
+<span class="token twig language-twig"><span class="token delimiter punctuation">{%</span> <span class="token tag-name keyword">block</span> content <span class="token delimiter punctuation">%}</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h1</span><span class="token punctuation">&gt;</span></span><span class="token twig language-twig"><span class="token delimiter punctuation">{{</span> gallery<span class="token punctuation">.</span>title <span class="token delimiter punctuation">}}</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h1</span><span class="token punctuation">&gt;</span></span>
+
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>small</span><span class="token punctuation">&gt;</span></span>Created on <span class="token twig language-twig"><span class="token delimiter punctuation">{{</span> gallery<span class="token punctuation">.</span>createdAt<span class="token operator">|</span>date<span class="token punctuation">(</span><span class="token string"><span class="token punctuation">'</span>Y-m-d<span class="token punctuation">'</span></span><span class="token punctuation">)</span> <span class="token delimiter punctuation">}}</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>small</span><span class="token punctuation">&gt;</span></span>
+
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">&gt;</span></span><span class="token twig language-twig"><span class="token delimiter punctuation">{{</span> gallery<span class="token punctuation">.</span>description <span class="token delimiter punctuation">}}</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span>
+
+    <span class="token twig language-twig"><span class="token delimiter punctuation">{%</span> <span class="token tag-name keyword">for</span> image <span class="token operator">in</span> gallery<span class="token punctuation">.</span>images <span class="token delimiter punctuation">%}</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>figure</span><span class="token punctuation">&gt;</span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>img</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span><span class="token twig language-twig"><span class="token delimiter punctuation">{{</span> asset<span class="token punctuation">(</span>image<span class="token punctuation">.</span>path<span class="token punctuation">)</span> <span class="token delimiter punctuation">}}</span></span><span class="token punctuation">"</span></span> <span class="token attr-name">alt</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span><span class="token twig language-twig"><span class="token delimiter punctuation">{{</span> image<span class="token punctuation">.</span>title <span class="token delimiter punctuation">}}</span></span><span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>figcaption</span><span class="token punctuation">&gt;</span></span><span class="token twig language-twig"><span class="token delimiter punctuation">{{</span> image<span class="token punctuation">.</span>description <span class="token delimiter punctuation">}}</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>figcaption</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>figure</span><span class="token punctuation">&gt;</span></span>
+    <span class="token twig language-twig"><span class="token delimiter punctuation">{%</span> <span class="token tag-name keyword">endfor</span> <span class="token delimiter punctuation">%}</span></span>
+<span class="token twig language-twig"><span class="token delimiter punctuation">{%</span> <span class="token tag-name keyword">endblock</span> <span class="token delimiter punctuation">%}</span></span></code></pre>
+<h2 id="referencing-your-content-pages">Referencing your content pages<a href="#referencing-your-content-pages" class="anchor"></a></h2>
+<p>Our galleries are now available at <code class="code-inline" id="226b33b32547bfaf22ce96e2cee897bb">/galleries</code> and <code class="code-inline" id="e1d6f11036b9fad6c8f7207afeb658d2">/galleries/{slug}</code> path, but there is no link pointing to these pages,
+so it'll be excluded from the static build, since unreachable.</p>
+<p>Let's add a link to our galleries listing in the main menu:</p>
+<pre class="code-multiline language-yaml"><code class="language-yaml" id="f586e751393c19857f160751d60d746a"><span class="token comment"># config/site.yaml</span>
+<span class="token key atrule">twig</span><span class="token punctuation">:</span>
+  <span class="token key atrule">globals</span><span class="token punctuation">:</span>
+    <span class="token key atrule">site</span><span class="token punctuation">:</span>
+      <span class="token comment">#[…]</span>
+
+      <span class="token key atrule">menu</span><span class="token punctuation">:</span>
+        <span class="token punctuation">-</span> <span class="token punctuation">{</span> <span class="token key atrule">path</span><span class="token punctuation">:</span> <span class="token string">'home'</span><span class="token punctuation">,</span> <span class="token key atrule">label</span><span class="token punctuation">:</span> <span class="token string">'Home'</span> <span class="token punctuation">}</span>
+        <span class="token punctuation">-</span> <span class="token punctuation">{</span> <span class="token key atrule">path</span><span class="token punctuation">:</span> <span class="token string">'article_list'</span><span class="token punctuation">,</span> <span class="token key atrule">label</span><span class="token punctuation">:</span> <span class="token string">'Articles'</span><span class="token punctuation">,</span> <span class="token key atrule">children</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string">'article_show'</span><span class="token punctuation">]</span> <span class="token punctuation">}</span>
+        <span class="token punctuation">-</span> <span class="token punctuation">{</span> <span class="token key atrule">path</span><span class="token punctuation">:</span> <span class="token string">'gallery_list'</span><span class="token punctuation">,</span> <span class="token key atrule">label</span><span class="token punctuation">:</span> <span class="token string">'Galleries'</span><span class="token punctuation">,</span> <span class="token key atrule">children</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string">'gallery_show'</span><span class="token punctuation">]</span> <span class="token punctuation">}</span></code></pre>
+<p>Of course this is just an exemple using the skeleton layout. Adapt to your own needs!</p></body>
+        </article>
+
+        <footer>
+            <small>
+                Published on 03/09/2022
+                by
+                                                        Ogi                            </small>
+        </footer>
+
+        <nav class="row">
+            <div class="column">
+                <a href="/skeleton/articles/">← Back to the list</a>
+            </div>
+            <div class="column">
+                                                        <a href="/skeleton/articles/clean">
+                        ➜ Next: « Clean the skeleton »
+                    </a>
+                            </div>
+        </nav>
+    </main>
+            </main>
+
+                            <footer class="footer">
+    <aside>
+        <p class="note">
+            <a href="https://stenopephp.github.io/Stenope">Stenope</a>,
+            the static website generation tool for Symfony.
+        </p>
+    </aside>
+
+    <nav>
+        <ul>
+                            <li>
+                    <a href="/skeleton/" >
+                        <span>Home</span>
+                    </a>
+                </li>
+                            <li>
+                    <a href="/skeleton/articles/" >
+                        <span>Articles</span>
+                    </a>
+                </li>
+                            <li>
+                    <a href="https://github.com/StenopePHP/stenope" target="_blank">
+                        <span>Stenope on Github</span>
+                    </a>
+                </li>
+                            <li>
+                    <a href="https://github.com/StenopePHP/skeleton" target="_blank">
+                        <span>This skeleton on Github</span>
+                    </a>
+                </li>
+                    </ul>
+    </nav>
+</footer>
+                    </div>
+    </body>
+</html>

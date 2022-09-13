@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="fr" class="no-js">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Deploy | Stenope Skeleton</title>
+
+                    <meta name="description" content="Learn how to deploy your static website" />
+            <link rel="canonical" href="https://stenopephp.github.io/skeleton/articles/deployment" />
+
+            <!-- Open Graph / Facebook -->
+            <meta property="og:title" content="Deploy | Stenope Skeleton" />
+            <meta property="og:locale" content="fr" />
+            <meta property="og:description" content="Learn how to deploy your static website" />
+            <meta property="og:url" content="https://stenopephp.github.io/skeleton/articles/deployment" />
+            <meta property="og:site_name" content="Stenope Skeleton" />
+
+                                        <meta property="og:image" content="/skeleton/resized/content/images/articles/banners/deploy.jpg/532807f78aca458b16ff5e2203d5f767.jpg">
+            
+            <!-- Twitter -->
+            <meta property="twitter:card" content="summary_large_image">
+            <meta property="twitter:title" content="Deploy | Stenope Skeleton">
+            <meta property="twitter:description" content="Learn how to deploy your static website">
+            <meta property="twitter:site" content="@elao">
+            <meta property="twitter:creator" content="@elao">
+                                        <meta property="twitter:image" content="https://stenopephp.github.io/skeleton/resized/content/images/articles/banners/deploy.jpg/bce229b23ed7a4b5df9e5a90ed1e363a.jpg">
+                    
+                    <link rel="stylesheet" href="/build/app.29bd8b2d.css">
+        
+                    <script src="/build/runtime.bbcd9364.js" defer></script><script src="/build/80.994455e5.js" defer></script><script src="/build/app.e41c3b11.js" defer></script>
+            </head>
+    <body
+        data-controller="swup-plugins symfony--ux-swup--swup" data-symfony--ux-swup--swup-cache-value="true" data-symfony--ux-swup--swup-animate-history-browsing-value="true" data-symfony--ux-swup--swup-debug-value="false">
+
+        <div class="container" id="swup">
+                            <header id="nav" class="header">
+    <a href="/skeleton/" class="title">
+        <span class="screen-reader">Stenope Skeleton</span>
+    </a>
+
+    <nav class="nav">
+        <ul>
+                                                            <li class="nav__item ">
+                    <a href="/skeleton/" >
+                                                <span>Home</span>
+                    </a>
+                </li>
+                                                            <li class="nav__item nav__item--active">
+                    <a href="/skeleton/articles/" >
+                                                <span>Articles</span>
+                    </a>
+                </li>
+                                                            <li class="nav__item ">
+                    <a href="https://stenopephp.github.io/Stenope" target="_blank">
+                                                <span>Docs</span>
+                    </a>
+                </li>
+                    </ul>
+    </nav>
+</header>
+            
+            <main>
+                    <main class="article">
+        <nav>
+            <a href="/skeleton/articles/">← Back to the list</a>
+        </nav>
+
+        <header>
+            <div class="banner">
+                <img src="/skeleton/resized/content/images/articles/banners/deploy.jpg/c8a243ab8c36a0fd18a8c818a50138e8.jpg" alt="Deploy" />
+            </div>
+            <h1>Deploy</h1>
+        </header>
+
+            <ol class="table-of-content" data-aos="fade-up">
+                    <li class="table-of-content__item">
+                <a href="#deploy">Deploy</a>
+
+                                    <ol class="table-of-content__sub-level">
+                                                    <li>
+                                <a href="#deploy-to-gh-pages">Deploy to GH Pages</a>
+                            </li>
+                                                    <li>
+                                <a href="#deploy-to-a-server">Deploy to a server</a>
+                            </li>
+                                            </ol>
+                            </li>
+            </ol>
+
+        <article>
+            <body><h2 id="deploy">Deploy<a href="#deploy" class="anchor"></a></h2>
+<p>The process of deploying a static website with Stenope is quite straightforward.</p>
+<ol>
+<li>Build your assets (e.g: with Webpack Encore: <code class="code-inline" id="c2e271c01f7796f63bbfc5a42accb6c6">npx encore production</code>)</li>
+<li>Build your content with Stenope (<code class="code-inline" id="73b43f5fb8d25ad3d89d7e28483c3fb1">APP_ENV=PROD symfony console stenope:build</code>)</li>
+<li>Upload the generated files from the <code class="code-inline" id="4fef79e7177ba769987a8da36c892c5f">build/</code> directory to your server.</li>
+</ol>
+<h3 id="deploy-to-gh-pages">Deploy to GH Pages<a href="#deploy-to-gh-pages" class="anchor"></a></h3>
+<p>This starter kit already provides a Github workflow (<code class="code-inline" id="119080786fc51b98f6a3ed888678047e">.github/workflows/deploy.yaml</code>) to deploy your static website to
+Github Pages. You can reuse it as is or adapt it to your needs.</p>
+<p>You can even build a version of your site into a subdir to generate a preview for each of your PR.
+Have a look to <a href="https://github.com/Elao/elao_/blob/master/.github/workflows/deploy_pr_preview.yaml" target="_blank">how we generate a preview of the elao_ website</a> for each of our PRs.</p>
+<h3 id="deploy-to-a-server">Deploy to a server<a href="#deploy-to-a-server" class="anchor"></a></h3>
+<p>Deploying to a server is as simple as uploading the generated files from the <code class="code-inline" id="4fef79e7177ba769987a8da36c892c5f">build/</code> directory to your server,
+for instance using <code class="code-inline" id="a7f72e7f3739fc488ea094ffb1cf2449">ssh/scp</code> or <code class="code-inline" id="89a4551b0f29c1a652648b1cb8747021">rsync</code>.</p>
+<p>You can have a look to <a href="https://github.com/Elao/elao_/blob/master/.github/workflows/deploy.yaml" target="_blank">how we deploy the elao_ website</a> to production.</p></body>
+        </article>
+
+        <footer>
+            <small>
+                Published on 11/09/2022
+                by
+                                                        Ogi                            </small>
+        </footer>
+
+        <nav class="row">
+            <div class="column">
+                <a href="/skeleton/articles/">← Back to the list</a>
+            </div>
+            <div class="column">
+                            </div>
+        </nav>
+    </main>
+            </main>
+
+                            <footer class="footer">
+    <aside>
+        <p class="note">
+            <a href="https://stenopephp.github.io/Stenope">Stenope</a>,
+            the static website generation tool for Symfony.
+        </p>
+    </aside>
+
+    <nav>
+        <ul>
+                            <li>
+                    <a href="/skeleton/" >
+                        <span>Home</span>
+                    </a>
+                </li>
+                            <li>
+                    <a href="/skeleton/articles/" >
+                        <span>Articles</span>
+                    </a>
+                </li>
+                            <li>
+                    <a href="https://github.com/StenopePHP/stenope" target="_blank">
+                        <span>Stenope on Github</span>
+                    </a>
+                </li>
+                            <li>
+                    <a href="https://github.com/StenopePHP/skeleton" target="_blank">
+                        <span>This skeleton on Github</span>
+                    </a>
+                </li>
+                    </ul>
+    </nav>
+</footer>
+                    </div>
+    </body>
+</html>

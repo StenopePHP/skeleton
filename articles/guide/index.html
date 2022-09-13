@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="fr" class="no-js">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Guide | Stenope Skeleton</title>
+
+                    <meta name="description" content="Learn more about writing contents with Stenope and this skeleton specificities." />
+            <link rel="canonical" href="https://stenopephp.github.io/skeleton/articles/guide" />
+
+            <!-- Open Graph / Facebook -->
+            <meta property="og:title" content="Guide | Stenope Skeleton" />
+            <meta property="og:locale" content="fr" />
+            <meta property="og:description" content="Learn more about writing contents with Stenope and this skeleton specificities." />
+            <meta property="og:url" content="https://stenopephp.github.io/skeleton/articles/guide" />
+            <meta property="og:site_name" content="Stenope Skeleton" />
+
+                                        <meta property="og:image" content="/skeleton/resized/content/images/articles/banners/guide.jpg/8e054b8317735e2a17f0c9f1db4a295a.jpg">
+            
+            <!-- Twitter -->
+            <meta property="twitter:card" content="summary_large_image">
+            <meta property="twitter:title" content="Guide | Stenope Skeleton">
+            <meta property="twitter:description" content="Learn more about writing contents with Stenope and this skeleton specificities.">
+            <meta property="twitter:site" content="@elao">
+            <meta property="twitter:creator" content="@elao">
+                                        <meta property="twitter:image" content="https://stenopephp.github.io/skeleton/resized/content/images/articles/banners/guide.jpg/c5255ab0d0477490dff8bb073af11149.jpg">
+                    
+                    <link rel="stylesheet" href="/build/app.29bd8b2d.css">
+        
+                    <script src="/build/runtime.bbcd9364.js" defer></script><script src="/build/80.994455e5.js" defer></script><script src="/build/app.e41c3b11.js" defer></script>
+            </head>
+    <body
+        data-controller="swup-plugins symfony--ux-swup--swup" data-symfony--ux-swup--swup-cache-value="true" data-symfony--ux-swup--swup-animate-history-browsing-value="true" data-symfony--ux-swup--swup-debug-value="false">
+
+        <div class="container" id="swup">
+                            <header id="nav" class="header">
+    <a href="/skeleton/" class="title">
+        <span class="screen-reader">Stenope Skeleton</span>
+    </a>
+
+    <nav class="nav">
+        <ul>
+                                                            <li class="nav__item ">
+                    <a href="/skeleton/" >
+                                                <span>Home</span>
+                    </a>
+                </li>
+                                                            <li class="nav__item nav__item--active">
+                    <a href="/skeleton/articles/" >
+                                                <span>Articles</span>
+                    </a>
+                </li>
+                                                            <li class="nav__item ">
+                    <a href="https://stenopephp.github.io/Stenope" target="_blank">
+                                                <span>Docs</span>
+                    </a>
+                </li>
+                    </ul>
+    </nav>
+</header>
+            
+            <main>
+                    <main class="article">
+        <nav>
+            <a href="/skeleton/articles/">← Back to the list</a>
+        </nav>
+
+        <header>
+            <div class="banner">
+                <img src="/skeleton/resized/content/images/articles/banners/guide.jpg/bdff6e860c20025e0136b94bc4a393ef.jpg" alt="Guide" />
+            </div>
+            <h1>Guide</h1>
+        </header>
+
+            <ol class="table-of-content" data-aos="fade-up">
+                    <li class="table-of-content__item">
+                <a href="#what-s-inside">What&#039;s inside</a>
+
+                            </li>
+                    <li class="table-of-content__item">
+                <a href="#writing-content">Writing content</a>
+
+                            </li>
+                    <li class="table-of-content__item">
+                <a href="#table-of-content">Table of Content</a>
+
+                            </li>
+                    <li class="table-of-content__item">
+                <a href="#links">Links</a>
+
+                                    <ol class="table-of-content__sub-level">
+                                                    <li>
+                                <a href="#external-links">External links</a>
+                            </li>
+                                                    <li>
+                                <a href="#internal-links-to-another-content-page">Internal links to another content page</a>
+                            </li>
+                                            </ol>
+                            </li>
+                    <li class="table-of-content__item">
+                <a href="#images">Images</a>
+
+                                    <ol class="table-of-content__sub-level">
+                                                    <li>
+                                <a href="#using-a-relative-path-recommended">Using a relative path (recommended)</a>
+                            </li>
+                                                    <li>
+                                <a href="#using-absolute-path">Using absolute path</a>
+                            </li>
+                                                    <li>
+                                <a href="#automatic-image-resizing-retina-images">Automatic image resizing &amp; retina images</a>
+                            </li>
+                                                    <li>
+                                <a href="#resize-image-in-templates">Resize image in templates</a>
+                            </li>
+                                            </ol>
+                            </li>
+            </ol>
+
+        <article>
+            <body><h2 id="what-s-inside">What's inside<a href="#what-s-inside" class="anchor"></a></h2>
+<p>This skeleton contains some opinionated tools and configurations to help you start your project:</p>
+<ul>
+<li>Out-of-the-box <a href="/skeleton/articles/swup">Swup</a> integration</li>
+<li>Glide integration to resize images on the fly from templates</li>
+<li>A Stenope custom processor to automatically resize images in contents with a Glide preset</li>
+<li>Page, Article and Author models, controllers &amp; templates for rendering this documentation and help you discovering the
+way Stenope works.</li>
+<li>a basic <a href="/skeleton/../404.html">404 error page</a>.</li>
+<li>A basic Github Workflow to <a href="/skeleton/./deploy.md">deploy to Github Pages</a></li>
+<li>A basic Github Workflow for automated tests and linting</li>
+</ul>
+<p>This might be a good start for wiring your own content-based application, but not everything might suit to your needs.<br>
+Consult the <a href="/skeleton/articles/clean">« Cleaning the skeleton » article</a> to get an overview of the related files.</p>
+<h2 id="writing-content">Writing content<a href="#writing-content" class="anchor"></a></h2>
+<p>The articles sampled in this starter kit are written in Markdown, and are located in the <code class="code-inline" id="f6ca3ea9feb268d247d32b7909c0efb8">content/articles</code> directory.</p>
+<p>The model used is the <code class="code-inline" id="fa46fea3eb9039195a08b16a430805ca">src/Model/Article.php</code> class, which describes the available properties of an article.</p>
+<p>You can start playing around by writing your own articles in the <code class="code-inline" id="f6ca3ea9feb268d247d32b7909c0efb8">content/articles</code> directory.</p>
+<h2 id="table-of-content">Table of Content<a href="#table-of-content" class="anchor"></a></h2>
+<p>The <code class="code-inline" id="b63622fc3ddd8525714d0e130f310b9b">TableOfContentProcessor</code> registered by default by Stenope allows you to get a structured object
+from your document titles by adding a <code class="code-inline" id="dbe3a120640ee0e78a38ad68ce8b2f36">tableOfContent</code> property to your model:</p>
+<pre class="code-multiline language-php"><code class="language-php" id="21f2811040972fd8821ed1da124c3f17"><span class="token keyword">class</span> <span class="token class-name-definition class-name">Article</span> <span class="token punctuation">{</span>
+    <span class="token comment">// […]</span>
+    <span class="token doc-comment comment">/** 
+     * Automatically populated by <span class="token punctuation">{</span><span class="token keyword">@link</span> TableOfContentProcessor<span class="token punctuation">}</span> 
+     */</span>
+    <span class="token keyword">public</span> <span class="token operator">?</span><span class="token class-name type-declaration">TableOfContent</span> <span class="token variable">$tableOfContent</span> <span class="token operator">=</span> <span class="token constant">null</span>
+    <span class="token comment">// […]</span>
+<span class="token punctuation">}</span></code></pre>
+<p>Using:</p>
+<pre class="code-multiline language-yaml"><code class="language-yaml" id="c03e826de117188710cfda583a289d46"><span class="token key atrule">tableOfContent</span><span class="token punctuation">:</span> <span class="token boolean important">true</span></code></pre>
+<p>the <code class="code-inline" id="dbe3a120640ee0e78a38ad68ce8b2f36">tableOfContent</code> property will be populated with a <code class="code-inline" id="605a2e911a972f67d4bd8ba5d0de4a8d">TableOfContent</code> object you can use in your template to render a
+table of content:</p>
+<pre class="code-multiline language-twig"><code class="language-twig" id="1b0608a29d0555d2c76d112340a1551b"><span class="token twig language-twig"><span class="token delimiter punctuation">{%</span> <span class="token tag-name keyword">if</span> article<span class="token punctuation">.</span>tableOfContent <span class="token operator">is</span> <span class="token operator">not</span> empty <span class="token delimiter punctuation">%}</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>ol</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>table-of-content<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+        <span class="token twig language-twig"><span class="token delimiter punctuation">{%</span> <span class="token tag-name keyword">for</span> headline <span class="token operator">in</span> article<span class="token punctuation">.</span>tableOfContent <span class="token delimiter punctuation">%}</span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>li</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>table-of-content__item<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+                <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>#<span class="token twig language-twig"><span class="token delimiter punctuation">{{</span> headline<span class="token punctuation">.</span>id <span class="token delimiter punctuation">}}</span></span><span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span class="token twig language-twig"><span class="token delimiter punctuation">{{</span> headline<span class="token punctuation">.</span>content <span class="token delimiter punctuation">}}</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a</span><span class="token punctuation">&gt;</span></span>
+
+                <span class="token twig language-twig"><span class="token delimiter punctuation">{%</span> <span class="token tag-name keyword">if</span> headline<span class="token punctuation">.</span>children <span class="token operator">is</span> <span class="token operator">not</span> empty <span class="token delimiter punctuation">%}</span></span>
+                    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>ol</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>table-of-content__sub-level<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+                        <span class="token twig language-twig"><span class="token delimiter punctuation">{%</span> <span class="token tag-name keyword">for</span> child <span class="token operator">in</span> headline<span class="token punctuation">.</span>children <span class="token delimiter punctuation">%}</span></span>
+                            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>li</span><span class="token punctuation">&gt;</span></span>
+                                <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>#<span class="token twig language-twig"><span class="token delimiter punctuation">{{</span> child<span class="token punctuation">.</span>id <span class="token delimiter punctuation">}}</span></span><span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span class="token twig language-twig"><span class="token delimiter punctuation">{{</span> child<span class="token punctuation">.</span>content <span class="token delimiter punctuation">}}</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a</span><span class="token punctuation">&gt;</span></span>
+                            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>li</span><span class="token punctuation">&gt;</span></span>
+                        <span class="token twig language-twig"><span class="token delimiter punctuation">{%</span> <span class="token tag-name keyword">endfor</span> <span class="token delimiter punctuation">%}</span></span>
+                    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>ol</span><span class="token punctuation">&gt;</span></span>
+                <span class="token twig language-twig"><span class="token delimiter punctuation">{%</span> <span class="token tag-name keyword">endif</span> <span class="token delimiter punctuation">%}</span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>li</span><span class="token punctuation">&gt;</span></span>
+        <span class="token twig language-twig"><span class="token delimiter punctuation">{%</span> <span class="token tag-name keyword">endfor</span> <span class="token delimiter punctuation">%}</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>ol</span><span class="token punctuation">&gt;</span></span>
+<span class="token twig language-twig"><span class="token delimiter punctuation">{%</span> <span class="token tag-name keyword">endif</span> <span class="token delimiter punctuation">%}</span></span></code></pre>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>
+    The table of content is generated from the <code class="code-inline" id="490b2834e65737c1fce95e468cc8b8bf">h2</code> to <code class="code-inline" id="d8544ba1b053e41368fa915864c6ea1c">h6</code> tags. The <code class="code-inline" id="346b81a32e7007eccadf60252bb599f0">h1</code> represents the article title.
+</p>
+</div>
+<p>You can also specify the depth of the table of content:</p>
+<pre class="code-multiline language-yaml"><code class="language-yaml" id="9e631ce685c2ec390629c1b4833d6fa7"><span class="token key atrule">tableOfContent</span><span class="token punctuation">:</span> <span class="token number">3</span></code></pre>
+<h2 id="links">Links<a href="#links" class="anchor"></a></h2>
+<h3 id="external-links">External links<a href="#external-links" class="anchor"></a></h3>
+<p>External links automatically are opened in a new tab.</p>
+<h3 id="internal-links-to-another-content-page">Internal links to another content page<a href="#internal-links-to-another-content-page" class="anchor"></a></h3>
+<p>Any content managed by Stenope can be referenced from another content page using regular relative Markdown links:</p>
+<pre class="code-multiline language-md"><code class="language-md" id="29bb26667927c4b642918c8e329d0e0f">Discover <span class="token url">[<span class="token content">what is Stenope</span>](<span class="token url">./what-is-stenope.md</span>)</span></code></pre>
+<p>Renders:</p>
+<p>Discover <a href="/skeleton/articles/what-is-stenope">what is Stenope</a></p>
+<p>See <a href="https://stenopephp.github.io/Stenope/link-contents/" target="_blank">the official documentation about linking contents</a> to learn
+more about the feature and how ton configure it.</p>
+<h2 id="images">Images<a href="#images" class="anchor"></a></h2>
+<h3 id="using-a-relative-path-recommended">Using a relative path (recommended)<a href="#using-a-relative-path-recommended" class="anchor"></a></h3>
+<p>Images are referenced in the Markdown files using the <code class="code-inline" id="cc454d355596a644289603e0979fba15">![alt](path)</code> syntax, where <code class="code-inline" id="d6fe1d0be6347b8ef2427fa629c04485">path</code> is the path to the image file,
+relative to the Markdown file:</p>
+<img src="/skeleton/resized/content/images/articles/guide/exemple-image.jpg/fc9309834035327193cb8b151c7379ce.jpg" alt="Image d'exemple en relatif" title="Image d'exemple en relatif" srcset="/skeleton/resized/content/images/articles/guide/exemple-image.jpg/fc9309834035327193cb8b151c7379ce.jpg 1x,
+/skeleton/resized/content/images/articles/guide/exemple-image.jpg/f1659dd62d31ab5b0d8a2a77ace123cf.jpg 2x," id="image-d-exemple-en-relatif">
+<pre class="code-multiline language-md"><code class="language-md" id="96df98f600268a818ddd99144c190984"><span class="token url"><span class="token operator">!</span>[<span class="token content">Image d'exemple en relatif</span>](<span class="token url">./../images/articles/guide/exemple-image.jpg</span>)</span></code></pre>
+<h3 id="using-absolute-path">Using absolute path<a href="#using-absolute-path" class="anchor"></a></h3>
+<p>You can also reference the image using an absolute path, from the root of the project:</p>
+<img src="/skeleton/resized/content/images/articles/guide/exemple-image.jpg/fc9309834035327193cb8b151c7379ce.jpg" alt="Image d'exemple depuis la racine du projet" title="Image d'exemple depuis la racine du projet" srcset="/skeleton/resized/content/images/articles/guide/exemple-image.jpg/fc9309834035327193cb8b151c7379ce.jpg 1x,
+/skeleton/resized/content/images/articles/guide/exemple-image.jpg/f1659dd62d31ab5b0d8a2a77ace123cf.jpg 2x," id="image-d-exemple-depuis-la-racine-du-projet">
+<pre class="code-multiline language-md"><code class="language-md" id="b1cf45a41d34545ac4288462eaea61af"><span class="token url"><span class="token operator">!</span>[<span class="token content">Image d'exemple depuis la racine du projet</span>](<span class="token url">content/images/articles/guide/exemple-image.jpg</span>)</span></code></pre>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>
+    Actually, the "absolute" path is relative to the <code class="code-inline" id="d6299818081a71bceaf2746883f92170">glide.source</code> directory, which is defined
+    to <code class="code-inline" id="a16a79397396ac4f3cd3a77416ed75ea">%kernel.project_dir%</code> in this app.
+</p>
+</div>
+<h3 id="automatic-image-resizing-retina-images">Automatic image resizing &amp; retina images<a href="#automatic-image-resizing-retina-images" class="anchor"></a></h3>
+<p>This skeleton showcases a custom <code class="code-inline" id="6a72c51501fad253aead0ac47af07d55">ResizeImagesContentProcessor</code> <a href="https://stenopephp.github.io/Stenope/processors/" target="_blank">processor</a>,
+which search for any images in the <code class="code-inline" id="9a0364b9e99bb480dd25e1f0284c8555">content</code> property of your model, and resizes them to a specific width,
+using a Glide preset (<code class="code-inline" id="d4963c252a4c1522c10995cec8b8a4c7">article_content</code> in our case).</p>
+<p>This behavior is registered for the Article model, in the <code class="code-inline" id="d680e5f81a33ac0408c74d570800403c">services.yaml</code> file:</p>
+<pre class="code-multiline language-yaml"><code class="language-yaml" id="72c37f6d64f77f058f7454974172bf7d"><span class="token key atrule">resize_images_content_processor.article</span><span class="token punctuation">:</span>
+        <span class="token key atrule">class</span><span class="token punctuation">:</span> App\Bridge\Glide\Stenope\Processor\ResizeImagesContentProcessor
+        <span class="token key atrule">arguments</span><span class="token punctuation">:</span>
+            <span class="token key atrule">$type</span><span class="token punctuation">:</span> App\Model\Article
+            <span class="token key atrule">$preset</span><span class="token punctuation">:</span> article_content
+            <span class="token key atrule">$projectDir</span><span class="token punctuation">:</span> <span class="token string">'%kernel.project_dir%'</span></code></pre>
+<p>Of course, this is only an arbitrary example, and you can register this processor for any model you want, or create your
+own processor.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>
+    GIFs cannot be resized by Glide, but can still be referenced.
+</p>
+</div>
+<img src="/skeleton/resized/content/images/articles/guide/exemple-gif.gif/9884db197eac83800d6db6556bae0859.gif" alt="Test gif" title="Test gif" id="test-gif">
+<pre class="code-multiline language-md"><code class="language-md" id="8d5f9b69ca12fcefbaf202970410b6f1"><span class="token url"><span class="token operator">!</span>[<span class="token content">Test gif</span>](<span class="token url">./../images/articles/guide/exemple-gif.gif</span>)</span></code></pre>
+<h3 id="resize-image-in-templates">Resize image in templates<a href="#resize-image-in-templates" class="anchor"></a></h3>
+<p>This starter kit comes with an embedded Glide bundle, which allows you to resize local images in your templates,
+with predefined presets (defined in the <code class="code-inline" id="54883a9bbe6aa85ed63bde51f2e7e833">config/packages/glide.yaml</code> file):</p>
+<pre class="code-multiline language-twig"><code class="language-twig" id="e41cf068a652326c34b1a95741754a1d"><span class="token twig language-twig"><span class="token delimiter punctuation">{{</span> article<span class="token punctuation">.</span>image<span class="token operator">|</span>glide_image_preset<span class="token punctuation">(</span><span class="token string"><span class="token punctuation">'</span>article_thumbnail<span class="token punctuation">'</span></span><span class="token punctuation">)</span> <span class="token delimiter punctuation">}}</span></span></code></pre>
+<p>See <a href="https://glide.thephpleague.com/1.0/api/quick-reference/" target="_blank">Glide's documentation</a> for available options.</p></body>
+        </article>
+
+        <footer>
+            <small>
+                Published on 02/09/2022
+                by
+                                                        Ogi                            </small>
+        </footer>
+
+        <nav class="row">
+            <div class="column">
+                <a href="/skeleton/articles/">← Back to the list</a>
+            </div>
+            <div class="column">
+                                                        <a href="/skeleton/articles/write-your-own-contents">
+                        ➜ Next: « Writing your own contents »
+                    </a>
+                            </div>
+        </nav>
+    </main>
+            </main>
+
+                            <footer class="footer">
+    <aside>
+        <p class="note">
+            <a href="https://stenopephp.github.io/Stenope">Stenope</a>,
+            the static website generation tool for Symfony.
+        </p>
+    </aside>
+
+    <nav>
+        <ul>
+                            <li>
+                    <a href="/skeleton/" >
+                        <span>Home</span>
+                    </a>
+                </li>
+                            <li>
+                    <a href="/skeleton/articles/" >
+                        <span>Articles</span>
+                    </a>
+                </li>
+                            <li>
+                    <a href="https://github.com/StenopePHP/stenope" target="_blank">
+                        <span>Stenope on Github</span>
+                    </a>
+                </li>
+                            <li>
+                    <a href="https://github.com/StenopePHP/skeleton" target="_blank">
+                        <span>This skeleton on Github</span>
+                    </a>
+                </li>
+                    </ul>
+    </nav>
+</footer>
+                    </div>
+    </body>
+</html>
