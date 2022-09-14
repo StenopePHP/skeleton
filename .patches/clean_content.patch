@@ -1,0 +1,1811 @@
+Index: assets/scss/skeleton-theme/base/variables.scss
+===================================================================
+diff --git a/assets/scss/skeleton-theme/base/variables.scss b/assets/scss/skeleton-theme/base/variables.scss
+deleted file mode 100644
+--- a/assets/scss/skeleton-theme/base/variables.scss	(revision 4d9d80981deedd6e07ad600fc60730d5e7375a02)
++++ /dev/null	(revision 4d9d80981deedd6e07ad600fc60730d5e7375a02)
+@@ -1,35 +0,0 @@
+-/* Colors */
+-$color-brand: #91C4F2;
+-$color-primary: #8CA0D7;
+-$color-secondary: #9D79BC;
+-$color-tertiary: #A14DA0;
+-$color-quaternary: #7E1F86;
+-
+-$color-bg-light: #a7a7a7;
+-$color-warning: #ba934f;
+-$color-info: #6da3b6;
+-
+-$color-text: #000;
+-$color-text-light: #fff;
+-
+-$border-radius: 0.3rem;
+-
+-/* Size */
+-$gutter: 2rem;
+-
+-// Breakpoints
+-$screen-m: 1200px; // desktop
+-$screen-s: 768px; // phone
+-
+-/* Code highlighting */
+-$code-font: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+-$code-background: $color-tertiary;
+-$code-red: #c32949;
+-$code-green: $color-primary;
+-$code-yellow: #690;
+-$code-orange: #e29100;
+-$code-purple: #905;
+-$code-blue: #07a;
+-$code-white: $color-secondary;
+-$code-grey: #8c8c8c;
+-$code-muted: #999;
+Index: assets/scss/skeleton-theme/components/admonitions.scss
+===================================================================
+diff --git a/assets/scss/skeleton-theme/components/admonitions.scss b/assets/scss/skeleton-theme/components/admonitions.scss
+deleted file mode 100644
+--- a/assets/scss/skeleton-theme/components/admonitions.scss	(revision 4d9d80981deedd6e07ad600fc60730d5e7375a02)
++++ /dev/null	(revision 4d9d80981deedd6e07ad600fc60730d5e7375a02)
+@@ -1,49 +0,0 @@
+-.admonition {
+-  margin: 15px 0;
+-  background-color: lighten($color-bg-light, 30);
+-
+-  .admonition-title {
+-    color: transparentize($color-text, 0.5);
+-    background-color: lighten($color-bg-light, 25);
+-  }
+-
+-  p {
+-    padding: 10px;
+-    margin: 0;
+-    color: transparentize($color-text, 0.3);
+-  }
+-
+-  &.warning {
+-    background-color: lighten($color-warning, 30);
+-
+-    .admonition-title {
+-      color: $color-warning;
+-      background-color: lighten($color-warning, 25);
+-    }
+-
+-    p {
+-      color: $color-warning;
+-    }
+-  }
+-
+-  &.info,
+-  &.note {
+-    background-color: lighten($color-info, 40);
+-
+-    .admonition-title {
+-      color: $color-info;
+-      background-color: lighten($color-info, 35);
+-    }
+-
+-    p {
+-      color: $color-info;
+-    }
+-  }
+-
+-  .admonition-title {
+-    padding: 10px;
+-    text-transform: capitalize;
+-    font-weight: bold;
+-    margin: 0;
+-  }
+-}
+Index: assets/scss/skeleton-theme/components/chip.scss
+===================================================================
+diff --git a/assets/scss/skeleton-theme/components/chip.scss b/assets/scss/skeleton-theme/components/chip.scss
+deleted file mode 100644
+--- a/assets/scss/skeleton-theme/components/chip.scss	(revision 4d9d80981deedd6e07ad600fc60730d5e7375a02)
++++ /dev/null	(revision 4d9d80981deedd6e07ad600fc60730d5e7375a02)
+@@ -1,8 +0,0 @@
+-.chip {
+-  padding: $gutter * 0.25;
+-  margin: $gutter * 0.5 0 0;
+-  background-color: $color-secondary;
+-  color: $color-text-light;
+-  font-size: 0.8em;
+-  border-radius: $border-radius;
+-}
+Index: assets/scss/skeleton-theme/components/code.scss
+===================================================================
+diff --git a/assets/scss/skeleton-theme/components/code.scss b/assets/scss/skeleton-theme/components/code.scss
+deleted file mode 100644
+--- a/assets/scss/skeleton-theme/components/code.scss	(revision 4d9d80981deedd6e07ad600fc60730d5e7375a02)
++++ /dev/null	(revision 4d9d80981deedd6e07ad600fc60730d5e7375a02)
+@@ -1,95 +0,0 @@
+-pre {
+-  overflow: hidden;
+-  display: grid;
+-
+-  code {
+-    overflow: auto;
+-  }
+-}
+-
+-code {
+-  font-size: 1em;
+-}
+-
+-.code-inline {
+-  color: $code-green;
+-}
+-
+-.token.comment,
+-.token.block-comment,
+-.token.prolog,
+-.token.doctype,
+-.token.cdata {
+-  color: $code-muted;
+-}
+-
+-.token.property,
+-.token.delimiter {
+-  color: $code-white;
+-}
+-
+-.token.punctuation {
+-  color: $code-grey;
+-}
+-
+-.token.tag,
+-.token.attr-name,
+-.token.namespace,
+-.token.deleted {
+-  color: $code-red;
+-}
+-
+-.token.class-name,
+-.token.function-name,
+-.token.function {
+-  color: $code-green;
+-}
+-
+-.token.boolean,
+-.token.number {
+-  color: $code-purple;
+-}
+-
+-.token.constant,
+-.token.symbol,
+-.token.variable {
+-  color: $code-orange;
+-}
+-
+-.token.selector,
+-.token.important,
+-.token.atrule,
+-.token.keyword,
+-.token.builtin {
+-  color: $code-red;
+-}
+-
+-.token.string,
+-.token.char,
+-.token.attr-value,
+-.token.regex, {
+-  color: $code-yellow;
+-}
+-
+-.token.operator,
+-.token.entity,
+-.token.url {
+-  color: $code-blue;
+-}
+-
+-.token.important,
+-.token.bold {
+-  font-weight: bold;
+-}
+-
+-.token.italic {
+-  font-style: italic;
+-}
+-
+-.token.entity {
+-  cursor: help;
+-}
+-
+-.token.inserted {
+-  color: $code-green;
+-}
+Index: assets/scss/skeleton-theme/components/footer.scss
+===================================================================
+diff --git a/assets/scss/skeleton-theme/components/footer.scss b/assets/scss/skeleton-theme/components/footer.scss
+deleted file mode 100644
+--- a/assets/scss/skeleton-theme/components/footer.scss	(revision 4d9d80981deedd6e07ad600fc60730d5e7375a02)
++++ /dev/null	(revision 4d9d80981deedd6e07ad600fc60730d5e7375a02)
+@@ -1,31 +0,0 @@
+-.footer {
+-  display: flex;
+-  flex: 0;
+-  margin: $gutter * 2 0;
+-  padding: $gutter 0;
+-  border-top: 1px solid rgba($color-secondary, 0.33);
+-
+-  nav {
+-    ul {
+-      display: flex;
+-      justify-content: space-between;
+-      flex-direction: column;
+-      list-style: none;
+-      padding: 0;
+-      margin: 0;
+-    }
+-
+-    li {
+-      text-align: right;
+-    }
+-  }
+-
+-  aside {
+-    display: flex;
+-    flex: 1;
+-
+-    .note {
+-      color: rgba($color-secondary, 0.66);
+-    }
+-  }
+-}
+Index: assets/scss/skeleton-theme/components/header.scss
+===================================================================
+diff --git a/assets/scss/skeleton-theme/components/header.scss b/assets/scss/skeleton-theme/components/header.scss
+deleted file mode 100644
+--- a/assets/scss/skeleton-theme/components/header.scss	(revision 4d9d80981deedd6e07ad600fc60730d5e7375a02)
++++ /dev/null	(revision 4d9d80981deedd6e07ad600fc60730d5e7375a02)
+@@ -1,51 +0,0 @@
+-.header {
+-  display: flex;
+-  align-items: center;
+-  margin: 0 0 $gutter * 2 0;
+-  border-bottom: 1px solid rgba($color-primary, 0.33);
+-
+-  .title {
+-    flex: 0;
+-    white-space: nowrap;
+-    font-size: 1.5em;
+-    font-weight: 700;
+-    margin: $gutter 0;
+-  }
+-
+-  nav {
+-    flex: 1;
+-    margin: $gutter 0;
+-
+-    ul {
+-      display: flex;
+-      justify-content: flex-end;
+-      list-style: none;
+-      margin: 0;
+-      padding: 0;
+-    }
+-
+-    .nav__item {
+-      margin: 0 $gutter * 0.5 0 0;
+-      padding: 0 $gutter * 0.5;
+-
+-      &--active {
+-        font-weight: 700;
+-        background-color: $color-secondary;
+-        border-radius: $border-radius;
+-
+-        a {
+-          color: $color-text-light;
+-        }
+-      }
+-    }
+-  }
+-
+-  aside {
+-    display: flex;
+-    flex: 1;
+-
+-    .note {
+-      color: rgba($color-primary, 0.66);
+-    }
+-  }
+-}
+Index: assets/scss/skeleton-theme/components/swup.scss
+===================================================================
+diff --git a/assets/scss/skeleton-theme/components/swup.scss b/assets/scss/skeleton-theme/components/swup.scss
+deleted file mode 100644
+--- a/assets/scss/skeleton-theme/components/swup.scss	(revision 4d9d80981deedd6e07ad600fc60730d5e7375a02)
++++ /dev/null	(revision 4d9d80981deedd6e07ad600fc60730d5e7375a02)
+@@ -1,4 +0,0 @@
+-.swup-progress-bar {
+-  height: 4px;
+-  background-color: $color-tertiary;
+-}
+Index: assets/scss/skeleton-theme/pages/article.scss
+===================================================================
+diff --git a/assets/scss/skeleton-theme/pages/article.scss b/assets/scss/skeleton-theme/pages/article.scss
+deleted file mode 100644
+--- a/assets/scss/skeleton-theme/pages/article.scss	(revision 4d9d80981deedd6e07ad600fc60730d5e7375a02)
++++ /dev/null	(revision 4d9d80981deedd6e07ad600fc60730d5e7375a02)
+@@ -1,41 +0,0 @@
+-.article {
+-  nav {
+-    margin: 0 0 $gutter * 2;
+-
+-    .column {
+-      &:nth-child(2) {
+-        text-align: right;
+-      }
+-    }
+-  }
+-
+-  header {
+-    margin: 0 0 $gutter;
+-
+-    .banner {
+-      width: 100%;
+-      height: 420px;
+-      margin: 0 0 $gutter;
+-      overflow: hidden;
+-      background-color: rgba($color-secondary, 0.3);
+-      border-radius: $border-radius * 2 $border-radius * 2 0 0;
+-
+-      img {
+-        width: 100%;
+-        height: 100%;
+-        object-fit: cover;
+-        background-repeat: no-repeat;
+-        background-size: cover;
+-      }
+-    }
+-
+-    h1 {
+-      color: lighten($color-tertiary, 20);
+-    }
+-  }
+-
+-  footer {
+-    display: flex;
+-    justify-content: flex-end;
+-  }
+-}
+Index: assets/scss/skeleton-theme/pages/articles.scss
+===================================================================
+diff --git a/assets/scss/skeleton-theme/pages/articles.scss b/assets/scss/skeleton-theme/pages/articles.scss
+deleted file mode 100644
+--- a/assets/scss/skeleton-theme/pages/articles.scss	(revision 4d9d80981deedd6e07ad600fc60730d5e7375a02)
++++ /dev/null	(revision 4d9d80981deedd6e07ad600fc60730d5e7375a02)
+@@ -1,35 +0,0 @@
+-.articles {
+-  article {
+-    margin: 0 0 $gutter * 2 0;
+-
+-    .article_header {
+-      margin: 0 0 $gutter * 2 0;
+-      border-bottom: 1px solid rgba($color-primary, 0.33);
+-
+-      a {
+-        color: $color-primary;
+-      }
+-    }
+-
+-    .thumbnail {
+-      line-height: 0;
+-
+-      img {
+-        max-width: unset;
+-        width: 400px;
+-        height: 287px;
+-      }
+-    }
+-
+-    .content {
+-      display: flex;
+-      flex-direction: column;
+-      padding: 0 $gutter;
+-      margin: 0;
+-
+-      p {
+-        flex: 1;
+-      }
+-    }
+-  }
+-}
+Index: assets/scss/skeleton-theme/index.scss
+===================================================================
+diff --git a/assets/scss/skeleton-theme/index.scss b/assets/scss/skeleton-theme/index.scss
+deleted file mode 100644
+--- a/assets/scss/skeleton-theme/index.scss	(revision 4d9d80981deedd6e07ad600fc60730d5e7375a02)
++++ /dev/null	(revision 4d9d80981deedd6e07ad600fc60730d5e7375a02)
+@@ -1,19 +0,0 @@
+-// Add Milligram through CDN:
+-@import url(https://fonts.googleapis.com/css?family=Roboto:300,300italic,700,700italic);
+-@import url(https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css);
+-@import url(https://cdnjs.cloudflare.com/ajax/libs/milligram/1.4.1/milligram.css);
+-
+-// base
+-@import "base/variables";
+-
+-// components
+-@import "components/admonitions";
+-@import "components/code";
+-@import "components/chip";
+-@import "components/header";
+-@import "components/footer";
+-@import "components/swup";
+-
+-// pages
+-@import "pages/articles";
+-@import "pages/article";
+Index: content/articles/clean.md
+===================================================================
+diff --git a/content/articles/clean.md b/content/articles/clean.md
+deleted file mode 100644
+--- a/content/articles/clean.md	(revision 4d9d80981deedd6e07ad600fc60730d5e7375a02)
++++ /dev/null	(revision 4d9d80981deedd6e07ad600fc60730d5e7375a02)
+@@ -1,77 +0,0 @@
+----
+-title:              "Clean the skeleton"
+-description:        "Whenever you feel ready and does not need anymore some of the features provided by the skeleton, you can remove them."
+-publishedAt:        "2022-09-12"
+-lastModified:       ~
+-tableOfContent:     2
+-
+-image:              "content/images/articles/banners/clean.jpg"
+-tags:               ["dev", "stenope", "skeleton"]
+-authors:            ["ogi"]
+----
+-
+-Whenever you feel ready and does not need anymore some of the features provided by the skeleton, you can remove them.
+-
+-## Styles
+-
+-Remove the `assets/scss/skeleton-theme` directory and the `@import` from `assets/styles.scss` file.  
+-You shouldn't need to remove any dependency from `package.json` as the skeleton theme was only using a CDN.
+-
+-## Models
+-
+-Remove any unused modale from the `src/Model` directory.
+-
+-You might also want to update the `config/packages/stenope.yaml` file to remove the references to models you don't need anymore.
+-
+-## Templates
+-
+-Remove any unused template from the `templates` directory.
+-
+-## Controllers
+-
+-Remove the `src/Controller/ArticleController.php` file, unless you adapted the model to your own needs.
+-Beware you might still have references to the following articles routes in your templates or `config/site.yaml`: 
+-- `article_show`
+-- `article_list`
+-
+-## Contents
+-
+-Remove any unused file from the `content/{articles,authors}` and `content/images/articles` directory.
+-
+-## Images
+-
+-### Automatic resize of content images
+-
+-If you don't need the automatic resize of content images, you can remove
+-the `src/Bridge/Glide/Stenope/Processor/ResizeImagesContentProcessor.php` file and references to it in
+-the `config/services.yaml` file.
+-
+-### Glide integration
+-
+-If you don't need to resize image, or want to use your own tool or third-party integration, you can remove the embedded Glide bundle:
+-
+-- the `config/packages/glide.yaml` file.
+-- reference to `GlideBundle` in `config/bundles.php`
+-- source code in `src/Bridge/Glide`
+-
+-## Swup
+-
+-If you don't need the Swup integration, you can remove the `assets/js/controllers/swup_plugins_controller.js` file,
+-update `templates/base.html.twig` to remove the `data-controller="swup-plugins"` attribute from the `body` tag:
+-
+-```diff
+--    <body
+--        {{ stimulus_controller('swup_plugins')
+--         | stimulus_controller('symfony/ux-swup/swup', {
+--               // …
+--           })
+--        }}>
+-+    <body>
+-```
+-
+-and run:
+-
+-```shell
+-symfony composer remove symfony/ux-swup
+-npm uninstall @swup/debug-plugin @swup/fade-theme @swup/progress-plugin @swup/scroll-plugin @swup/slide-theme
+-```
+Index: content/articles/deployment.md
+===================================================================
+diff --git a/content/articles/deployment.md b/content/articles/deployment.md
+deleted file mode 100644
+--- a/content/articles/deployment.md	(revision 4d9d80981deedd6e07ad600fc60730d5e7375a02)
++++ /dev/null	(revision 4d9d80981deedd6e07ad600fc60730d5e7375a02)
+@@ -1,34 +0,0 @@
+----
+-title:              "Deploy"
+-description:        "Learn how to deploy your static website"
+-publishedAt:        "2022-09-11"
+-lastModified:       ~
+-tableOfContent:     true
+-
+-image:              "content/images/articles/banners/deploy.jpg"
+-tags:               ["deploy", "stenope"]
+-authors:            ["ogi"]
+----
+-
+-## Deploy
+-
+-The process of deploying a static website with Stenope is quite straightforward.
+-
+-1. Build your assets (e.g: with Webpack Encore: `npx encore production`)
+-2. Build your content with Stenope (`APP_ENV=PROD symfony console stenope:build`)
+-3. Upload the generated files from the `build/` directory to your server.
+-
+-### Deploy to GH Pages
+-
+-This starter kit already provides a Github workflow (`.github/workflows/deploy.yaml`) to deploy your static website to
+-Github Pages. You can reuse it as is or adapt it to your needs.
+-
+-You can even build a version of your site into a subdir to generate a preview for each of your PR.
+-Have a look to [how we generate a preview of the elao_ website](https://github.com/Elao/elao_/blob/master/.github/workflows/deploy_pr_preview.yaml) for each of our PRs.
+-
+-### Deploy to a server
+-
+-Deploying to a server is as simple as uploading the generated files from the `build/` directory to your server, 
+-for instance using `ssh/scp` or `rsync`.
+-
+-You can have a look to [how we deploy the elao_ website](https://github.com/Elao/elao_/blob/master/.github/workflows/deploy.yaml) to production.
+Index: content/articles/guide.md
+===================================================================
+diff --git a/content/articles/guide.md b/content/articles/guide.md
+deleted file mode 100644
+--- a/content/articles/guide.md	(revision 4d9d80981deedd6e07ad600fc60730d5e7375a02)
++++ /dev/null	(revision 4d9d80981deedd6e07ad600fc60730d5e7375a02)
+@@ -1,192 +0,0 @@
+----
+-title:              "Guide"
+-description:        "Learn more about writing contents with Stenope and this skeleton specificities."
+-publishedAt:        "2022-09-02"
+-lastModified:       ~
+-tableOfContent:     true
+-
+-image:              "content/images/articles/banners/guide.jpg"
+-tags:               ["dev", "stenope", "skeleton"]
+-authors:            ["ogi"]
+-nextArticle:        "write-your-own-contents"
+----
+-
+-## What's inside
+-
+-This skeleton contains some opinionated tools and configurations to help you start your project:
+-
+-- Out-of-the-box [Swup](./swup.md) integration
+-- Glide integration to resize images on the fly from templates
+-- A Stenope custom processor to automatically resize images in contents with a Glide preset
+-- Page, Article and Author models, controllers & templates for rendering this documentation and help you discovering the
+-  way Stenope works.
+-- a basic 404 error page.
+-- A basic Github Workflow to [deploy to Github Pages](./deploy.md)
+-- A basic Github Workflow for automated tests and linting
+-- A catch-all route allowing to expose simple pages from Markdown files in the `content/pages` directory.
+-
+-This might be a good start for wiring your own content-based application, but not everything might suit to your needs.  
+-Consult the [« Cleaning the skeleton » article](./clean.md) to get an overview of the related files.
+-
+-## Writing content
+-
+-### Basic pages
+-
+-You can create simple pages from Markdown files in the `content/pages` directory out-of-the box, like the [About page](../pages/about.md).
+-
+-The page will be accessible using the filename in URL. E.g: a `foo/bar.md` file will be accessible at `/foo/bar`.
+-
+-Pages are rendered by default using the `page.html.twig` template, but each page can have its own. 
+-E.g: a `foo/bar.md` file will use the `foo/bar.html.twig` template if it exists.
+-
+-### Articles
+-
+-The articles sampled in this starter kit are written in Markdown, and are located in the `content/articles` directory.
+-
+-The model used is the `src/Model/Article.php` class, which describes the available properties of an article.
+-
+-You can start playing around by writing your own articles in the `content/articles` directory.
+-
+-## Table of Content
+-
+-The `TableOfContentProcessor` registered by default by Stenope allows you to get a structured object 
+-from your document titles by adding a `tableOfContent` property to your model:
+-
+-```php
+-class Article {
+-    // […]
+-    /** 
+-     * Automatically populated by {@link TableOfContentProcessor} 
+-     */
+-    public ?TableOfContent $tableOfContent = null
+-    // […]
+-}
+-```
+-
+-Using:
+-
+-```yaml
+-tableOfContent: true
+-```
+-
+-the `tableOfContent` property will be populated with a `TableOfContent` object you can use in your template to render a 
+-table of content:
+-
+-```twig
+-{% if article.tableOfContent is not empty %}
+-    <ol class="table-of-content">
+-        {% for headline in article.tableOfContent %}
+-            <li class="table-of-content__item">
+-                <a href="#{{ headline.id }}">{{ headline.content }}</a>
+-
+-                {% if headline.children is not empty %}
+-                    <ol class="table-of-content__sub-level">
+-                        {% for child in headline.children %}
+-                            <li>
+-                                <a href="#{{ child.id }}">{{ child.content }}</a>
+-                            </li>
+-                        {% endfor %}
+-                    </ol>
+-                {% endif %}
+-            </li>
+-        {% endfor %}
+-    </ol>
+-{% endif %}
+-```
+-
+-!!! Note
+-    The table of content is generated from the `h2` to `h6` tags. The `h1` represents the article title.
+-
+-You can also specify the depth of the table of content:
+-
+-```yaml
+-tableOfContent: 3
+-```
+-
+-## Links
+-
+-### External links
+-
+-External links automatically are opened in a new tab.
+-
+-### Internal links to another content page
+-
+-Any content managed by Stenope can be referenced from another content page using regular relative Markdown links:
+-
+-```md
+-Discover [what is Stenope](./what-is-stenope.md)
+-```
+-
+-Renders:
+-
+-Discover [what is Stenope](./what-is-stenope.md)
+-
+-See [the official documentation about linking contents](https://stenopephp.github.io/Stenope/link-contents/) to learn
+-more about the feature and how ton configure it.
+-
+-## Images
+-
+-### Using a relative path (recommended)
+-
+-Images are referenced in the Markdown files using the `![alt](path)` syntax, where `path` is the path to the image file,
+-relative to the Markdown file:
+-
+-![Exemple image with relative path](./../images/articles/guide/exemple-image.jpg)
+-
+-```md
+-![Exemple image with relative path](./../images/articles/guide/exemple-image.jpg)
+-```
+-
+-### Using absolute path
+-
+-You can also reference the image using an absolute path, from the root of the project:
+-
+-![Exemple image from project root](content/images/articles/guide/exemple-image.jpg)
+-
+-```md
+-![Exemple image from project root](content/images/articles/guide/exemple-image.jpg)
+-```
+-
+-!!! Note
+-    Actually, the "absolute" path is relative to the `glide.source` directory, which is defined 
+-    to `%kernel.project_dir%` in this app.
+-
+-### Automatic image resizing & retina images
+-
+-This skeleton showcases a custom `ResizeImagesContentProcessor` [processor](https://stenopephp.github.io/Stenope/cookbooks/processors/), 
+-which search for any images in the `content` property of your model, and resizes them to a specific width, 
+-using a Glide preset (`article_content` in our case).
+-
+-This behavior is registered for the Article model, in the `services.yaml` file:
+-
+-```yaml
+-    resize_images_content_processor.article:
+-        class: App\Bridge\Glide\Stenope\Processor\ResizeImagesContentProcessor
+-        arguments:
+-            $type: App\Model\Article
+-            $preset: article_content
+-            $projectDir: '%kernel.project_dir%'
+-```
+-
+-Of course, this is only an arbitrary example, and you can register this processor for any model you want, or create your
+-own processor.
+-
+-!!! Note
+-    GIFs cannot be resized by Glide, but can still be referenced.
+-
+-![Test gif](./../images/articles/guide/exemple-gif.gif)  
+-
+-```md
+-![Test gif](./../images/articles/guide/exemple-gif.gif)
+-```
+-
+-### Resize image in templates
+-
+-This starter kit comes with an embedded Glide bundle, which allows you to resize local images in your templates,
+-with predefined presets (defined in the `config/packages/glide.yaml` file):
+-
+-```twig
+-{{ article.image|glide_image_preset('article_thumbnail') }}
+-```
+-
+-See [Glide's documentation](https://glide.thephpleague.com/1.0/api/quick-reference/) for available options.
+Index: content/articles/swup.md
+===================================================================
+diff --git a/content/articles/swup.md b/content/articles/swup.md
+deleted file mode 100644
+--- a/content/articles/swup.md	(revision 4d9d80981deedd6e07ad600fc60730d5e7375a02)
++++ /dev/null	(revision 4d9d80981deedd6e07ad600fc60730d5e7375a02)
+@@ -1,22 +0,0 @@
+----
+-title:              "Swup"
+-description:        "Give a Single-Page-Application feel to your static website"
+-publishedAt:        "2022-09-11"
+-lastModified:       ~
+-tableOfContent:     false
+-
+-image:              "content/images/articles/banners/swup.jpg"
+-tags:               ["dev", "stenope", "skeleton", "extra"]
+-authors:            ["ogi"]
+----
+-
+-[Swup](https://swup.js.org/) is a library that allows you to give a <abbr title="Single Page Application">SPA</abbr>
+-feel to your static website.
+-
+-This skeleton integrates it using [Symfony UX](https://ux.symfony.com/swup) and
+-configures [scroll](https://swup.js.org/plugins/scroll-plugin) and [progress](https://swup.js.org/plugins/progress-plugin) 
+-plugins to enhance the navigation experience.
+-
+-!!! Note
+-    A custom style is provided by the skeleton theme in `assets/scss/skeleton-theme/components/swup.scss`.  
+-    If you'd like to keep Swup, think about creating your own before removing the skeleton theme.
+Index: content/articles/what-is-stenope.md
+===================================================================
+diff --git a/content/articles/what-is-stenope.md b/content/articles/what-is-stenope.md
+deleted file mode 100644
+--- a/content/articles/what-is-stenope.md	(revision 4d9d80981deedd6e07ad600fc60730d5e7375a02)
++++ /dev/null	(revision 4d9d80981deedd6e07ad600fc60730d5e7375a02)
+@@ -1,77 +0,0 @@
+----
+-title:              "What is Stenope?"
+-description:        "Discover Stenope: the static site generator for Symfony developers and its purposes."
+-publishedAt:        "2022-09-01"
+-lastModified:       ~
+-tableOfContent:     true
+-
+-image:              "content/images/articles/banners/what-is-stenope.jpg"
+-tags:               ["dev", "stenope"]
+-authors:            ["tom32i", "ogi", "elao"]
+-nextArticle:        "guide"
+----
+-
+-## A tailored solution
+-
+-For our site [at Elao](https://www.elao.com), we were seduced by the approach of the static site automatically generated
+-from Markdown content.
+-
+-In the previous version of it, we used [Hugo](https://gohugo.io/), but we also tested 
+-[many of the existing static generation tools](https://jamstack.org/generators/).  
+-
+-It has the advantage of serving a high-performance site, with very low susceptibility to attacks and whose content is
+-controlled through a git workflow: an article is written as a feature, via a PR, with proofreading and validation by
+-colleagues.
+-
+-We really liked the concept, but most of the time we felt limited by these solutions: the source code that was too closed
+-or difficult to extend. So, either we adapt our needs to what the solution is capable of offering, or we accumulate workarounds…
+-
+-But at Elao, we consider ourselves as artisans. So this time, we wanted to be completely free, have total control over 
+-the solution and no longer depend on a project or language we don't know well.
+-
+-Hence, we developed a simple tool, for PHP developers, that can be used over any Symfony web-app and tailored to any needs.
+-
+-## Symfony + Static = Stenope
+-
+-As Symfony experts, it was the evidence: to completely master our code base, let's develop our site with Symfony, then
+-serve it statically!
+-
+-So we started developing [Stenope](https://stenopephp.github.io/Stenope/), a simple tool registered as a bundle and
+-relying on the Symfony HTTP Kernel to generate a static site.
+-
+-> Stenope generates a static site from any Symfony project.
+-
+-!!! Info
+-    Stenope [is referenced](https://jamstack.org/generators/stenope/) in the static generators sections
+-    of the [Jamstack initiative](https://jamstack.org/).
+-
+-### Philosophy
+-
+-Stenope was designed with these goals in mind:
+-
+-- Stenope meets your needs, not the other way around. No structure nor format is imposed.
+-- Stenope runs in any Symfony project out of the box, connects with standard Symfony components and feels natural to
+-  Symfony developers.
+-- Stenope is highly extensible: features can be replaced, added or removed.
+-
+-The bundle also comes with a handy set of content manager, providers & tools to help you generate pages from YAML,
+-Markdown or JSON content files (or virtually any format supported by Symfony's Serializer or your owns).
+-
+-### How it works
+-
+-- 🔍 Stenope scans your Symfony app (like a search engine crawler would) and dumps every page into a static HTML file.
+-- 🛠 Stenope provides tools for loading and parsing various data sources (like local Markdown files or distant headless
+-  CMS).
+-- 🖌 Stenope enriches the parsed data by applying a series of processors (like Syntax Highlighting, slug generation,
+-  etc.).
+-- 🧲 Stenope finally hydrates your custom PHP objects with the enriched data and provides interfaces for listing and
+-  retrieving them (like an ORM would).
+-- ⚙️ Stenope gives you a lot of control over the whole process by providing entrypoints, interfaces and default
+-  implementations that are entirely replaceable.
+-
+-### What Stenope is not
+-
+-Stenope is not a ready-to-use blogging system: but you could quickly write your own blog system with it!
+-
+-It strictly targets Symfony developers & web integrators to build the content management system of their dreams.  
+-But once the engine is set up, anybody should be able to write content.
+Index: content/articles/write-your-own-contents.md
+===================================================================
+diff --git a/content/articles/write-your-own-contents.md b/content/articles/write-your-own-contents.md
+deleted file mode 100644
+--- a/content/articles/write-your-own-contents.md	(revision 4d9d80981deedd6e07ad600fc60730d5e7375a02)
++++ /dev/null	(revision 4d9d80981deedd6e07ad600fc60730d5e7375a02)
+@@ -1,249 +0,0 @@
+----
+-title:              "Writing your own contents"
+-description:        "Take control over your app and start creating your own models, contents and templates"
+-publishedAt:        "2022-09-03"
+-lastModified:       ~
+-tableOfContent:     true
+-
+-image:              "content/images/articles/banners/writing-your-own-contents.jpg"
+-tags:               ["dev", "stenope"]
+-authors:            ["ogi"]
+-nextArticle:        "clean"
+----
+-
+-First of all, you can start by reading the [Stenope documentation](https://stenopephp.github.io/Stenope/loading-content/#setup).
+-
+-Since this skeleton already showcases writing blog-post like content, using Markdown, 
+-let's take another example and use a different format.
+-
+-Let's say you'd like to expose galleries of images somewhere in your app.
+-
+-## Model
+-
+-Start by creating your model in `src/Model/Gallery.php`:
+-
+-```php
+-namespace App\Model;
+-
+-use Symfony\Component\Serializer\Annotation\Context;
+-use Symfony\Component\Serializer\Normalizer\DateTimeNormalizer;
+-
+-class Gallery
+-{
+-    public function __construct(
+-        public string $slug,
+-        public string $title,
+-        public string $description,
+-        #[Context([DateTimeNormalizer::FORMAT_KEY => 'Y-m-d'])]
+-        public \DateTime $createdAt,
+-        public bool $published = true,
+-    ) {
+-    }
+-}
+-```
+-
+-Our gallery consists of a `title`, a `description` a `creation date` and a `published/unpublished` status.  
+-The `slug` property is automatically injected by Stenope, and consists of the content filename.
+-
+-Let's add a property holding an array of images:
+-
+-```diff
+-class Gallery
+-{
+-    public function __construct(
+-        public string $slug,
+-        public string $title,
+-        public string $description,
+-+        /** @var GalleryImage[] */
+-+        public array $images,
+-        #[Context([DateTimeNormalizer::FORMAT_KEY => 'Y-m-d'])]
+-        public \DateTime $createdAt,
+-        public bool $published = true,
+-    ) {
+-    }
+-}
+-```
+-
+-and a dedicated model:
+-
+-```php
+-namespace App\Model;
+-
+-class GalleryImage
+-{
+-    public function __construct(
+-        public string $path,
+-        public ?string $title = null,
+-        public ?string $description = null,
+-    ) {
+-    }
+-}
+-```
+-
+-Each image will have a mandatory path on the filesystem, and an optional title and description.
+-
+-## Configuration
+-
+-Let's now indicate to Stenope where our gallery contents will be stored:
+-
+-```yaml
+-# config/packages/stenope.yaml
+-stenope:
+-    providers:
+-        # […]
+-        App\Model\Gallery: '%kernel.project_dir%/content/galleries'
+-```
+-
+-## Writing your first content
+-
+-For our use-case, since we do not have a main textual content, like we do with our articles in markdown, we'll use YAML
+-as a structured format for our galleries.
+-
+-Let's create a first gallery in `content/galleries/christmas.yaml`:
+-
+-```yaml
+-title: Christmas photos
+-description: A gallery of Christmas photos
+-createdAt: "2020-12-25"
+-
+-images:
+-    - { path: 'images/galleries/christmas/img1.jpg', title: 'Image 1', description: 'Some description' }
+-    - { path: 'images/galleries/christmas/img2.jpg', title: 'Image 2' }
+-    - { path: 'images/galleries/christmas/img3.jpg' }
+-```
+-
+-!!! Note
+-    The images paths are place in the `public/images` directory so that they are accessible from the web directly.  
+-    In case you need to resize them, you can use the [Glide integration described in the guide](./guide.md).  
+-    In such case, the orignals does not need to be in the `public` directory,
+-    unless you want to let your user download it for instance.
+-
+-## Controller
+-
+-Now, we need to create a controller action for each pages we want to expose our galleries.  
+-We'll start with a simple list of galleries and a detail page for each:
+-
+-```php
+-namespace App\Controller;
+-
+-use App\Model\Gallery;
+-use Stenope\Bundle\ContentManagerInterface;
+-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+-use Symfony\Component\HttpFoundation\Response;
+-use Symfony\Component\Routing\Annotation\Route;
+-
+-#[Route('/galleries')]
+-class GalleryController extends AbstractController
+-{
+-    public function __construct(private readonly ContentManagerInterface $manager)
+-    {
+-    }
+-
+-    #[Route('/', name: 'gallery_list')]
+-    public function list(): Response
+-    {
+-        $galleries = $this->manager->getContents(
+-            Gallery::class,
+-            sortBy: ['createdAt' => false], // Sort by creation date, descending
+-            filterBy: '_.published', // Filters out unpublished galleries
+-        );
+-
+-        return $this->render('galleries/list.html.twig', [
+-            'galleries' => $galleries,
+-        ]);
+-    }
+-
+-    #[Route('/{gallery}', name: 'gallery_show', requirements: ['gallery' => '.+'])]
+-    public function show(Gallery $gallery): Response
+-    {
+-        return $this->render('galleries/show.html.twig', [
+-            'gallery' => $gallery,
+-        ]);
+-    }
+-}
+-```
+-
+-This controller makes use of the `ContentManagerInterface` to fetch, sort and filter contents managed by Stenope.  
+-
+-Learn more on the documentation about:
+-- [Fetching](https://stenopephp.github.io/Stenope/loading-content/#fetching-a-specific-content)
+-- [Sorting](https://stenopephp.github.io/Stenope/loading-content/#sorting-contents)
+-- [Filtering](https://stenopephp.github.io/Stenope/loading-content/#filtering-contents)
+-
+-## Templates
+-
+-Let's create the templates for each controller:
+-
+-**List**:
+-
+-```twig
+-{# templates/galleries/list.html.twig #}
+-{% extends 'base.html.twig' %}
+-
+-{% block meta_title 'List of galleries' %}
+-
+-{% block content %}
+-    <h1>Galleries</h1>
+-
+-    <ul>
+-        {% for gallery in galleries %}
+-            <li>
+-                <a href="{{ path('gallery_show', { gallery: gallery.slug }) }}">
+-                    {{ gallery.title }}
+-                </a>
+-            </li>
+-        {% endfor %}
+-    </ul>
+-{% endblock %}
+-
+-```
+-
+-**Show**:
+-
+-```twig
+-{# templates/galleries/show.html.twig #}
+-{% extends 'base.html.twig' %}
+-
+-{% block meta_title gallery.title %}
+-
+-{% block content %}
+-    <h1>{{ gallery.title }}</h1>
+-
+-    <small>Created on {{ gallery.createdAt|date('Y-m-d') }}</small>
+-
+-    <p>{{ gallery.description }}</p>
+-
+-    {% for image in gallery.images %}
+-        <figure>
+-            <img src="{{ asset(image.path) }}" alt="{{ image.title }}">
+-            <figcaption>{{ image.description }}</figcaption>
+-        </figure>
+-    {% endfor %}
+-{% endblock %}
+-```
+-
+-!!! Note
+-    We use the [`{{ asset() }}`](https://symfony.com/doc/current/reference/twig_reference.html#asset) function 
+-    to generate the image path, so that it is correctly prefixed with the app base URL, if any.
+-
+-## Referencing your content pages
+-
+-Our galleries are now available at `/galleries` and `/galleries/{slug}` path, but there is no link pointing to these pages,
+-so it'll be excluded from the static build, since unreachable.
+-
+-Let's add a link to our galleries listing in the main menu:
+-
+-```yaml
+-# config/site.yaml
+-twig:
+-  globals:
+-    site:
+-      #[…]
+-
+-      menu:
+-        - { path: 'home', label: 'Home' }
+-        - { path: 'article_list', label: 'Articles', children: ['article_show'] }
+-        - { path: 'gallery_list', label: 'Galleries', children: ['gallery_show'] }
+-```
+-
+-Of course this is just an exemple using the skeleton layout. Adapt to your own needs!
+Index: content/authors/elao.yaml
+===================================================================
+diff --git a/content/authors/elao.yaml b/content/authors/elao.yaml
+deleted file mode 100644
+--- a/content/authors/elao.yaml	(revision 4d9d80981deedd6e07ad600fc60730d5e7375a02)
++++ /dev/null	(revision 4d9d80981deedd6e07ad600fc60730d5e7375a02)
+@@ -1,2 +0,0 @@
+-name: Elao
+-since: "2005-01-04"
+Index: content/authors/ogi.yaml
+===================================================================
+diff --git a/content/authors/ogi.yaml b/content/authors/ogi.yaml
+deleted file mode 100644
+--- a/content/authors/ogi.yaml	(revision 4d9d80981deedd6e07ad600fc60730d5e7375a02)
++++ /dev/null	(revision 4d9d80981deedd6e07ad600fc60730d5e7375a02)
+@@ -1,2 +0,0 @@
+-name: Ogi
+-since: "2016-01-04"
+Index: content/authors/tom32i.yaml
+===================================================================
+diff --git a/content/authors/tom32i.yaml b/content/authors/tom32i.yaml
+deleted file mode 100644
+--- a/content/authors/tom32i.yaml	(revision 4d9d80981deedd6e07ad600fc60730d5e7375a02)
++++ /dev/null	(revision 4d9d80981deedd6e07ad600fc60730d5e7375a02)
+@@ -1,2 +0,0 @@
+-name: Tom32i
+-since: "2013-01-28"
+Index: content/pages/about.md
+===================================================================
+diff --git a/content/pages/about.md b/content/pages/about.md
+deleted file mode 100644
+--- a/content/pages/about.md	(revision 4d9d80981deedd6e07ad600fc60730d5e7375a02)
++++ /dev/null	(revision 4d9d80981deedd6e07ad600fc60730d5e7375a02)
+@@ -1,6 +0,0 @@
+-# About
+-
+-_This is only a sample page to demonstrate how to write basic pages from Markdown contents._
+-
+-Learn more about **[what is Stenope](../articles/what-is-stenope.md)** and [writing pages](../articles/guide.md#basic-pages)
+-or [your own contents](../articles/write-your-own-contents.md).
+Index: content/pages/home.md
+===================================================================
+diff --git a/content/pages/home.md b/content/pages/home.md
+deleted file mode 100644
+--- a/content/pages/home.md	(revision 4d9d80981deedd6e07ad600fc60730d5e7375a02)
++++ /dev/null	(revision 4d9d80981deedd6e07ad600fc60730d5e7375a02)
+@@ -1,29 +0,0 @@
+-# Stenope Skeleton
+-
+-This skeleton is an opinionated starter kit for creating your static website
+-with [Stenope](https://stenopephp.github.io/Stenope/).
+-
+-## Create a new project
+-
+-Start a new app from scratch using this skeleton with:
+-
+-```shell
+-composer create-project stenope/skeleton -s dev
+-```
+-
+-## Serve
+-
+-Serve the application with:
+-
+-```shell
+-make serve
+-```
+-
+-## Explore
+-
+-[Learn more about Stenope](../articles/what-is-stenope.md) and discover the [features showcased](../articles/guide.md) 
+-in this starter kit and how to write your own content by browsing the articles.
+-
+-Whenever you feel ready, start creating your models, content and templates and [clean the app](../articles/clean.md) 
+-from the undesired elements from this starter kit.
+-
+Index: src/Controller/ArticleController.php
+===================================================================
+diff --git a/src/Controller/ArticleController.php b/src/Controller/ArticleController.php
+deleted file mode 100644
+--- a/src/Controller/ArticleController.php	(revision 4d9d80981deedd6e07ad600fc60730d5e7375a02)
++++ /dev/null	(revision 4d9d80981deedd6e07ad600fc60730d5e7375a02)
+@@ -1,38 +0,0 @@
+-<?php
+-
+-declare(strict_types=1);
+-
+-namespace App\Controller;
+-
+-use App\Model\Article;
+-use Stenope\Bundle\ContentManagerInterface;
+-use Stenope\Bundle\Service\ContentUtils;
+-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+-use Symfony\Component\HttpFoundation\Response;
+-use Symfony\Component\Routing\Annotation\Route;
+-
+-#[Route('/articles')]
+-class ArticleController extends AbstractController
+-{
+-    public function __construct(private readonly ContentManagerInterface $manager)
+-    {
+-    }
+-
+-    #[Route('/', name: 'article_list')]
+-    public function list(): Response
+-    {
+-        $articles = $this->manager->getContents(Article::class, ['publishedAt' => true], '_.isPublished()');
+-
+-        return $this->render('articles/list.html.twig', [
+-            'articles' => $articles,
+-        ])->setLastModified(ContentUtils::max($articles, 'lastModifiedOrCreated'));
+-    }
+-
+-    #[Route('/{article}', name: 'article_show', requirements: ['article' => '.+'])]
+-    public function show(Article $article): Response
+-    {
+-        return $this->render('articles/show.html.twig', [
+-            'article' => $article,
+-        ])->setLastModified($article->getLastModifiedOrCreated());
+-    }
+-}
+Index: src/Controller/DefaultController.php
+===================================================================
+diff --git a/src/Controller/DefaultController.php b/src/Controller/DefaultController.php
+deleted file mode 100644
+--- a/src/Controller/DefaultController.php	(revision 4d9d80981deedd6e07ad600fc60730d5e7375a02)
++++ /dev/null	(revision 4d9d80981deedd6e07ad600fc60730d5e7375a02)
+@@ -1,54 +0,0 @@
+-<?php
+-
+-declare(strict_types=1);
+-
+-namespace App\Controller;
+-
+-use App\Model\Page;
+-use Stenope\Bundle\ContentManagerInterface;
+-use Stenope\Bundle\Exception\ContentNotFoundException;
+-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+-use Symfony\Component\HttpFoundation\Response;
+-use Symfony\Component\Routing\Annotation\Route;
+-use Twig\Environment;
+-
+-class DefaultController extends AbstractController
+-{
+-    public function __construct(
+-        private readonly ContentManagerInterface $contentManager,
+-        private readonly Environment $twig,
+-    ) {
+-    }
+-
+-    #[Route('/', name: 'home')]
+-    public function home(): Response
+-    {
+-        return $this->render('home.html.twig');
+-    }
+-
+-    /**
+-     * This route is used to display pages from `content/pages`.
+-     * Since this is a catch-all route, it has a very low priority.
+-     */
+-    #[Route('/{slug}', name: 'page', requirements: ['slug' => '[^\.]+'], priority: -500)]
+-    public function page(string $slug): Response
+-    {
+-        try {
+-            $page = $this->contentManager->getContent(Page::class, $slug);
+-        } catch (ContentNotFoundException $exception) {
+-            throw $this->createNotFoundException(sprintf(
+-                'Page not found. Did you forget to create a `content/pages/%s.md` file?',
+-                $slug,
+-            ), $exception);
+-        }
+-
+-        // You can create a custom template for each page, named after its slug,
+-        // (e.g: For "foo/bar.md" file => use "foo/bar.html.twig")
+-        // or use the generic "page.html.twig" one.
+-        if (!$this->twig->getLoader()->exists($template = "$slug.html.twig")) {
+-            $template = 'page.html.twig';
+-        }
+-
+-        return $this->render($template, ['page' => $page]);
+-    }
+-}
+Index: src/Model/Article.php
+===================================================================
+diff --git a/src/Model/Article.php b/src/Model/Article.php
+deleted file mode 100644
+--- a/src/Model/Article.php	(revision 4d9d80981deedd6e07ad600fc60730d5e7375a02)
++++ /dev/null	(revision 4d9d80981deedd6e07ad600fc60730d5e7375a02)
+@@ -1,47 +0,0 @@
+-<?php
+-
+-declare(strict_types=1);
+-
+-namespace App\Model;
+-
+-use Stenope\Bundle\Attribute\SuggestedDebugQuery;
+-use Stenope\Bundle\Processor\TableOfContentProcessor;
+-use Stenope\Bundle\TableOfContent\TableOfContent;
+-use Symfony\Component\Serializer\Annotation\Context;
+-use Symfony\Component\Serializer\Normalizer\DateTimeNormalizer;
+-
+-#[SuggestedDebugQuery('Scheduled', filters: 'not _.isPublished()', orders: 'desc:publishedAt')]
+-#[SuggestedDebugQuery('By author', filters: "'tom32i' in keys(_.authors)", orders: 'desc:publishedAt')]
+-#[SuggestedDebugQuery('By tag', filters: "'stenope' in _.tags", orders: 'desc:publishedAt')]
+-#[SuggestedDebugQuery('Matching slug', filters: "_.slug matches '/symfony/'", orders: 'desc:publishedAt')]
+-class Article
+-{
+-    use MetaTrait;
+-
+-    public function __construct(
+-        public string $slug,
+-        public string $title,
+-        public ?string $description,
+-        public string $content,
+-        public string $image,
+-        public ?string $nextArticle,
+-        public array $authors,
+-        public array $tags,
+-        #[Context([DateTimeNormalizer::FORMAT_KEY => 'Y-m-d'])]
+-        public \DateTimeInterface $publishedAt,
+-        public ?\DateTimeInterface $lastModified = null,
+-        /** Automatically populated by {@link TableOfContentProcessor} */
+-        public ?TableOfContent $tableOfContent = null,
+-    ) {
+-    }
+-
+-    public function getLastModifiedOrCreated(): \DateTimeInterface
+-    {
+-        return $this->lastModified ?? $this->publishedAt;
+-    }
+-
+-    public function isPublished(): bool
+-    {
+-        return new \DateTimeImmutable() >= $this->publishedAt;
+-    }
+-}
+Index: src/Model/Author.php
+===================================================================
+diff --git a/src/Model/Author.php b/src/Model/Author.php
+deleted file mode 100644
+--- a/src/Model/Author.php	(revision 4d9d80981deedd6e07ad600fc60730d5e7375a02)
++++ /dev/null	(revision 4d9d80981deedd6e07ad600fc60730d5e7375a02)
+@@ -1,24 +0,0 @@
+-<?php
+-
+-declare(strict_types=1);
+-
+-namespace App\Model;
+-
+-use Stenope\Bundle\Attribute\SuggestedDebugQuery;
+-use Symfony\Component\Serializer\Annotation\Context;
+-use Symfony\Component\Serializer\Normalizer\DateTimeNormalizer;
+-
+-#[SuggestedDebugQuery('Ative', filters: '_.active', orders: 'desc:since')]
+-class Author
+-{
+-    public function __construct(
+-        public string $slug,
+-        public string $name,
+-        public ?string $avatar = null,
+-        public bool $active = true,
+-        #[Context([DateTimeNormalizer::FORMAT_KEY => 'Y-m-d'])]
+-        public ?\DateTimeInterface $since = null,
+-        public ?\DateTimeInterface $lastModified = null,
+-    ) {
+-    }
+-}
+Index: src/Model/MetaTrait.php
+===================================================================
+diff --git a/src/Model/MetaTrait.php b/src/Model/MetaTrait.php
+deleted file mode 100644
+--- a/src/Model/MetaTrait.php	(revision 4d9d80981deedd6e07ad600fc60730d5e7375a02)
++++ /dev/null	(revision 4d9d80981deedd6e07ad600fc60730d5e7375a02)
+@@ -1,25 +0,0 @@
+-<?php
+-
+-declare(strict_types=1);
+-
+-namespace App\Model;
+-
+-/**
+- * Trait for SEO & social networks metadata.
+- */
+-trait MetaTrait
+-{
+-    public ?string $metaTitle = null;
+-    public ?string $metaDescription = null;
+-
+-    // https://developers.facebook.com/docs/sharing/webmasters?locale=en
+-    public ?string $ogTitle = null;
+-    public ?string $ogDescription = null;
+-    public ?string $ogImage = null;
+-
+-    // https://developer.twitter.com/en/docs/twitter-for-websites/cards/guides/getting-started
+-    public ?string $twitterCardType = null;
+-    public ?string $twitterTitle = null;
+-    public ?string $twitterDescription = null;
+-    public ?string $twitterImage = null;
+-}
+Index: src/Model/Page.php
+===================================================================
+diff --git a/src/Model/Page.php b/src/Model/Page.php
+deleted file mode 100644
+--- a/src/Model/Page.php	(revision 4d9d80981deedd6e07ad600fc60730d5e7375a02)
++++ /dev/null	(revision 4d9d80981deedd6e07ad600fc60730d5e7375a02)
+@@ -1,17 +0,0 @@
+-<?php
+-
+-declare(strict_types=1);
+-
+-namespace App\Model;
+-
+-class Page
+-{
+-    use MetaTrait;
+-
+-    public function __construct(
+-        public string $slug,
+-        public string $title,
+-        public string $content,
+-    ) {
+-    }
+-}
+Index: templates/articles/list.html.twig
+===================================================================
+diff --git a/templates/articles/list.html.twig b/templates/articles/list.html.twig
+deleted file mode 100644
+--- a/templates/articles/list.html.twig	(revision 4d9d80981deedd6e07ad600fc60730d5e7375a02)
++++ /dev/null	(revision 4d9d80981deedd6e07ad600fc60730d5e7375a02)
+@@ -1,39 +0,0 @@
+-{% extends 'base.html.twig' %}
+-
+-{% block meta_title "Articles" ~ ' | ' ~ parent() %}
+-
+-{% block content %}
+-    <h1>Articles</h1>
+-
+-    <p>Learn more about Stenope and the skeleton app.</p>
+-
+-    <main class="articles">
+-        {% for article in articles %}
+-            <article class="row">
+-                <div class="column-50 thumbnail">
+-                    <img src="{{ article.image|glide_image_preset('article_thumbnail') }}" alt="{{ article.title }}" />
+-                </div>
+-
+-                <div class="column content">
+-                    <h2 class="article_header">
+-                        <a href="{{ path('article_show', { article: article.slug }) }}">{{ article.title }}</a>
+-                    </h2>
+-
+-                    <p>{{ article.description }}</p>
+-
+-                    <div>
+-                        <a href="{{ path('article_show', { article: article.slug }) }}" class="button button-outline">
+-                            Read the post
+-                        </a>
+-
+-                        <aside>
+-                            {% for tag in article.tags %}
+-                                <span class="chip">#{{ tag }}</span>
+-                            {% endfor %}
+-                        </aside>
+-                    </div>
+-                </div>
+-            </article>
+-        {% endfor %}
+-    </main>
+-{% endblock %}
+Index: templates/articles/show.html.twig
+===================================================================
+diff --git a/templates/articles/show.html.twig b/templates/articles/show.html.twig
+deleted file mode 100644
+--- a/templates/articles/show.html.twig	(revision 4d9d80981deedd6e07ad600fc60730d5e7375a02)
++++ /dev/null	(revision 4d9d80981deedd6e07ad600fc60730d5e7375a02)
+@@ -1,57 +0,0 @@
+-{% extends 'base.html.twig' %}
+-
+-{% block meta_title article.title ~ ' | ' ~ parent() %}
+-{% block meta_description article.description %}
+-
+-{% block og_image asset(article.image|glide_image_preset('opengraph_image')) %}
+-{% block twitter_image absolute_url(asset(article.image|glide_image_preset('twitter_card'))) %}
+-
+-{% block content %}
+-    <main class="article">
+-        <nav>
+-            <a href="{{ path('article_list') }}">← Back to the list</a>
+-        </nav>
+-
+-        <header>
+-            <div class="banner">
+-                <img src="{{ article.image|glide_image_preset('article_banner') }}" alt="{{ article.title }}" />
+-            </div>
+-            <h1>{{ article.title }}</h1>
+-        </header>
+-
+-        {% include 'articles/toc.html.twig' with { toc: article.tableOfContent } only %}
+-
+-        <article>
+-            {{ article.content|raw }}
+-        </article>
+-
+-        <footer>
+-            <small>
+-                Published on {{ article.publishedAt|date('d/m/Y') }}
+-                by
+-                {% for authorSlug in article.authors %}
+-                    {% set author = content_get('App\\Model\\Author', authorSlug) %}
+-                    {{ author.name -}}
+-                    {%- if loop.length > 1 -%}
+-                        {{ loop.revindex0 > 1 ? ', ' : '' }}
+-                        {{ loop.revindex0 == 1 ? 'and ' : '' }}
+-                    {% endif %}
+-                {% endfor %}
+-            </small>
+-        </footer>
+-
+-        <nav class="row">
+-            <div class="column">
+-                <a href="{{ path('article_list') }}">← Back to the list</a>
+-            </div>
+-            <div class="column">
+-                {% if article.nextArticle %}
+-                    {% set nextArticle = content_get('App\\Model\\Article', article.nextArticle) %}
+-                    <a href="{{ path('article_show', { article: nextArticle.slug }) }}">
+-                        ➜ Next: « {{ nextArticle.title }} »
+-                    </a>
+-                {% endif %}
+-            </div>
+-        </nav>
+-    </main>
+-{% endblock %}
+Index: templates/articles/toc.html.twig
+===================================================================
+diff --git a/templates/articles/toc.html.twig b/templates/articles/toc.html.twig
+deleted file mode 100644
+--- a/templates/articles/toc.html.twig	(revision 4d9d80981deedd6e07ad600fc60730d5e7375a02)
++++ /dev/null	(revision 4d9d80981deedd6e07ad600fc60730d5e7375a02)
+@@ -1,19 +0,0 @@
+-{% if toc is not empty %}
+-    <ol class="table-of-content" data-aos="fade-up">
+-        {% for headline in toc %}
+-            <li class="table-of-content__item">
+-                <a href="#{{ headline.id }}">{{ headline.content }}</a>
+-
+-                {% if headline.children is not empty %}
+-                    <ol class="table-of-content__sub-level">
+-                        {% for child in headline.children %}
+-                            <li>
+-                                <a href="#{{ child.id }}">{{ child.content }}</a>
+-                            </li>
+-                        {% endfor %}
+-                    </ol>
+-                {% endif %}
+-            </li>
+-        {% endfor %}
+-    </ol>
+-{% endif %}
+Index: templates/home.html.twig
+===================================================================
+diff --git a/templates/home.html.twig b/templates/home.html.twig
+deleted file mode 100644
+--- a/templates/home.html.twig	(revision 4d9d80981deedd6e07ad600fc60730d5e7375a02)
++++ /dev/null	(revision 4d9d80981deedd6e07ad600fc60730d5e7375a02)
+@@ -1,16 +0,0 @@
+-{% extends 'base.html.twig' %}
+-
+-{% set page = content_get('App\\Model\\Page', 'home') %}
+-
+-{% block meta_title page.title %}
+-
+-{% block meta %}
+-    {{ parent() }}
+-{% endblock %}
+-
+-{% block content %}
+-
+-    {{ page.content|raw }}
+-
+-    <a class="button" href="{{ path('article_list') }}">Read the articles</a>
+-{% endblock %}
+Index: templates/page.html.twig
+===================================================================
+diff --git a/templates/page.html.twig b/templates/page.html.twig
+deleted file mode 100644
+--- a/templates/page.html.twig	(revision 4d9d80981deedd6e07ad600fc60730d5e7375a02)
++++ /dev/null	(revision 4d9d80981deedd6e07ad600fc60730d5e7375a02)
+@@ -1,16 +0,0 @@
+-{% extends 'base.html.twig' %}
+-
+-{% block meta_title page.title ~ ' | ' ~ parent() %}
+-
+-{% block meta %}
+-    {{ parent() }}
+-{% endblock %}
+-
+-{% block content %}
+-
+-    {{ page.content|raw }}
+-
+-    <nav>
+-        <a href="{{ path('home') }}">< Back to home</a>
+-    </nav>
+-{% endblock %}
+Index: assets/scss/app.scss
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/assets/scss/app.scss b/assets/scss/app.scss
+--- a/assets/scss/app.scss	(revision 4d9d80981deedd6e07ad600fc60730d5e7375a02)
++++ b/assets/scss/app.scss	(date 1663165365764)
+@@ -1,4 +1,0 @@
+-// Remove the skeleton CSS
+-@import "skeleton-theme";
+-
+-// and write your own CSS here
+Index: config/packages/stenope.yaml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/config/packages/stenope.yaml b/config/packages/stenope.yaml
+--- a/config/packages/stenope.yaml	(revision 4d9d80981deedd6e07ad600fc60730d5e7375a02)
++++ b/config/packages/stenope.yaml	(date 1663165389442)
+@@ -1,12 +1,0 @@
+-stenope:
+-    shared_html_crawlers: true
+-
+-    providers:
+-        App\Model\Article: '%kernel.project_dir%/content/articles'
+-        App\Model\Author: '%kernel.project_dir%/content/authors'
+-        App\Model\Page: '%kernel.project_dir%/content/pages'
+-
+-    resolve_links:
+-        #App\Model\Author: { route: 'author_show', slug: 'author' }
+-        App\Model\Article: { route: 'article_show', slug: 'article' }
+-        App\Model\Page: { route: 'page', slug: 'slug' }
+Index: config/packages/glide.yaml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/config/packages/glide.yaml b/config/packages/glide.yaml
+--- a/config/packages/glide.yaml	(revision 4d9d80981deedd6e07ad600fc60730d5e7375a02)
++++ b/config/packages/glide.yaml	(date 1663165567968)
+@@ -11,31 +11,6 @@
+ 
+     # https://glide.thephpleague.com/1.0/api/quick-reference/
+     presets:
+-        article_thumbnail:
+-            w: 400
+-            h: 287
+-            fit: crop
+-        article_banner:
+-            w: 1080
+-            h: 420
+-            fit: crop
+-
+-        # Base format for images inside an article content.
+-        # It's declined with dpr 2x automatically for retina screens.
+-        article_content:
+-            w: 1080
+-            fit: fill-max
+-            dpr: 1
+-
+-        author_avatar:
+-            w: 100
+-            h: 100
+-            fit: crop
+-
+-        # Recommended sizes for social network images:
+-        twitter_card:
+-            w: 600
+-            h: 600
+ 
+         opengraph_image:
+             w: 1200
+Index: config/site.yaml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/config/site.yaml b/config/site.yaml
+--- a/config/site.yaml	(revision 4d9d80981deedd6e07ad600fc60730d5e7375a02)
++++ b/config/site.yaml	(date 1663165434227)
+@@ -9,14 +9,8 @@
+                 creator: "elao"
+ 
+             menu:
+-                - { path: 'home', label: 'Home' }
+-                - { path: 'article_list', label: 'Articles', children: ['article_show'] }
+-                - { path: 'page', params: { slug: 'about' }, label: 'About' }
+                 - { url: 'https://stenopephp.github.io/Stenope', label: 'Docs' }
+ 
+             footer:
+-                - { path: 'home', label: 'Home' }
+-                - { path: 'page', params: { slug: 'about' }, label: 'About' }
+-                - { path: 'article_list', label: 'Articles' }
+                 - { url: 'https://github.com/StenopePHP/stenope', label: 'Stenope on Github' }
+                 - { url: 'https://github.com/StenopePHP/skeleton', label: 'This skeleton on Github' }
+Index: config/services.yaml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/config/services.yaml b/config/services.yaml
+--- a/config/services.yaml	(revision 4d9d80981deedd6e07ad600fc60730d5e7375a02)
++++ b/config/services.yaml	(date 1663165411334)
+@@ -23,11 +23,3 @@
+ 
+     # add more service definitions when explicit configuration is needed
+     # please note that last definitions always *replace* previous ones
+-
+-    # Custom processor allowing to resize automatically the images found inside contents:
+-    resize_images_content_processor.article:
+-        class: App\Bridge\Glide\Stenope\Processor\ResizeImagesContentProcessor
+-        arguments:
+-            $type: App\Model\Article
+-            $preset: article_content
+-            $projectDir: '%kernel.project_dir%'
+diff --git a/src/Controller/.gitkeep b/src/Controller/.gitkeep
+new file mode 100644
+diff --git a/content/images/articles/banners/clean.jpg b/content/images/articles/banners/clean.jpg
+deleted file mode 100644
+index 5d2d54c3ce9e2f30928cdd1000c0b8fa772a6fbc..0000000000000000000000000000000000000000
+GIT binary patch
+literal 0
+Hc$@<O00001
+
+diff --git a/content/images/articles/banners/deploy.jpg b/content/images/articles/banners/deploy.jpg
+deleted file mode 100644
+index daa8f7bf30480222c20dc6c1150711236f9c4b4e..0000000000000000000000000000000000000000
+GIT binary patch
+literal 0
+Hc$@<O00001
+
+diff --git a/content/images/articles/banners/guide.jpg b/content/images/articles/banners/guide.jpg
+deleted file mode 100644
+index 95d102b0f172755dbc4021c539e82ab3f036ddee..0000000000000000000000000000000000000000
+GIT binary patch
+literal 0
+Hc$@<O00001
+
+diff --git a/content/images/articles/banners/swup.jpg b/content/images/articles/banners/swup.jpg
+deleted file mode 100644
+index 5c1fc82a996c1df6637dde92b175dac70a21a478..0000000000000000000000000000000000000000
+GIT binary patch
+literal 0
+Hc$@<O00001
+
+diff --git a/content/images/articles/banners/what-is-stenope.jpg b/content/images/articles/banners/what-is-stenope.jpg
+deleted file mode 100644
+index 017551765820b52be8b477a85136914d3ea49bd5..0000000000000000000000000000000000000000
+GIT binary patch
+literal 0
+Hc$@<O00001
+
+diff --git a/content/images/articles/banners/writing-your-own-contents.jpg b/content/images/articles/banners/writing-your-own-contents.jpg
+deleted file mode 100644
+index 35becf40f4c2904eb46767ea027c64355dd29dc3..0000000000000000000000000000000000000000
+GIT binary patch
+literal 0
+Hc$@<O00001
+
+diff --git a/content/images/articles/guide/exemple-gif.gif b/content/images/articles/guide/exemple-gif.gif
+deleted file mode 100644
+index aac532b0038c2acbff762df41fce3b5d853e03ef..0000000000000000000000000000000000000000
+GIT binary patch
+literal 0
+Hc$@<O00001
+
+diff --git a/content/images/articles/guide/exemple-image.jpg b/content/images/articles/guide/exemple-image.jpg
+deleted file mode 100644
+index 48a07367fc459440b476218af4e2f927ed4d5ef3..0000000000000000000000000000000000000000
+GIT binary patch
+literal 0
+Hc$@<O00001
+

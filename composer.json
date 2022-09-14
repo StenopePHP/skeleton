@@ -82,6 +82,9 @@
         "symfony/polyfill-php56": "*"
     },
     "scripts": {
+        "skeleton-cleaning-scripts": {
+            "clean": "symfony console skeleton:clean"
+        },
         "auto-scripts": {
             "cache:clear": "symfony-cmd",
             "assets:install %PUBLIC_DIR%": "symfony-cmd"
@@ -91,6 +94,9 @@
         ],
         "post-update-cmd": [
             "@auto-scripts"
+        ],
+        "post-create-project-cmd": [
+            "@skeleton-cleaning-scripts"
         ]
     },
     "conflict": {

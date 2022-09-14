@@ -1,0 +1,922 @@
+Index: config/packages/glide.yaml
+===================================================================
+diff --git a/config/packages/glide.yaml b/config/packages/glide.yaml
+deleted file mode 100644
+--- a/config/packages/glide.yaml	(revision 55c979959ce0fc4d9390e97ad55211ea25ee61cd)
++++ /dev/null	(revision 55c979959ce0fc4d9390e97ad55211ea25ee61cd)
+@@ -1,18 +0,0 @@
+-glide:
+-    base_url: /image/resize
+-    source: '%kernel.project_dir%'
+-    cache: '%kernel.project_dir%/public/resized'
+-    pre_generate: '%env(bool:GLIDE_PRE_GENERATE_CACHE)%'
+-    cache_with_file_extensions: true
+-    group_cache_in_folders: true
+-    skipped_types:
+-        - 'image/gif'
+-        - 'image/svg+xml'
+-
+-    # https://glide.thephpleague.com/1.0/api/quick-reference/
+-    presets:
+-
+-        opengraph_image:
+-            w: 1200
+-            h: 627
+-            q: 85
+Index: config/routes/glide.yaml
+===================================================================
+diff --git a/config/routes/glide.yaml b/config/routes/glide.yaml
+deleted file mode 100644
+--- a/config/routes/glide.yaml	(revision 55c979959ce0fc4d9390e97ad55211ea25ee61cd)
++++ /dev/null	(revision 55c979959ce0fc4d9390e97ad55211ea25ee61cd)
+@@ -1,2 +0,0 @@
+-glide:
+-    resource: ../../src/Bridge/Glide/Bundle/Resources/config/routing.yaml
+Index: src/Bridge/Glide/Bundle/Controller/ResizeImageController.php
+===================================================================
+diff --git a/src/Bridge/Glide/Bundle/Controller/ResizeImageController.php b/src/Bridge/Glide/Bundle/Controller/ResizeImageController.php
+deleted file mode 100644
+--- a/src/Bridge/Glide/Bundle/Controller/ResizeImageController.php	(revision 55c979959ce0fc4d9390e97ad55211ea25ee61cd)
++++ /dev/null	(revision 55c979959ce0fc4d9390e97ad55211ea25ee61cd)
+@@ -1,41 +0,0 @@
+-<?php
+-
+-declare(strict_types=1);
+-
+-namespace App\Bridge\Glide\Bundle\Controller;
+-
+-use League\Glide\Filesystem\FileNotFoundException;
+-use League\Glide\Server;
+-use League\Glide\Signatures\SignatureException;
+-use League\Glide\Signatures\SignatureFactory;
+-use Symfony\Component\HttpFoundation\Request;
+-use Symfony\Component\HttpFoundation\Response;
+-use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
+-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+-
+-class ResizeImageController
+-{
+-    public function __construct(private Server $server, private ?string $signKey = null)
+-    {
+-    }
+-
+-    public function __invoke(Request $request, string $path): Response
+-    {
+-        if (null !== $this->signKey) {
+-            try {
+-                SignatureFactory::create($this->signKey)
+-                    ->validateRequest(urldecode($request->getPathInfo()), $request->query->all())
+-                ;
+-            } catch (SignatureException $e) {
+-                throw new AccessDeniedHttpException('Invalid image signature', $e);
+-            }
+-        }
+-
+-        try {
+-            /* @phpstan-ignore-next-line */
+-            return $this->server->getImageResponse($path, $request->query->all());
+-        } catch (FileNotFoundException $exception) {
+-            throw new NotFoundHttpException(sprintf('Image at path "%s" not found', $path));
+-        }
+-    }
+-}
+Index: src/Bridge/Glide/Bundle/DependencyInjection/Configuration.php
+===================================================================
+diff --git a/src/Bridge/Glide/Bundle/DependencyInjection/Configuration.php b/src/Bridge/Glide/Bundle/DependencyInjection/Configuration.php
+deleted file mode 100644
+--- a/src/Bridge/Glide/Bundle/DependencyInjection/Configuration.php	(revision 55c979959ce0fc4d9390e97ad55211ea25ee61cd)
++++ /dev/null	(revision 55c979959ce0fc4d9390e97ad55211ea25ee61cd)
+@@ -1,88 +0,0 @@
+-<?php
+-
+-declare(strict_types=1);
+-
+-namespace App\Bridge\Glide\Bundle\DependencyInjection;
+-
+-use Symfony\Component\Config\Definition\Builder\TreeBuilder;
+-use Symfony\Component\Config\Definition\ConfigurationInterface;
+-
+-class Configuration implements ConfigurationInterface
+-{
+-    /**
+-     * {@inheritdoc}
+-     */
+-    public function getConfigTreeBuilder(): TreeBuilder
+-    {
+-        $rootNode = ($treeBuilder = new TreeBuilder('glide'))->getRootNode();
+-
+-        $rootNode
+-            ->children()
+-                ->scalarNode('base_url')
+-                    ->info('You can choose the path to use for the glide controller.')
+-                    ->defaultValue(null)
+-                ->end()
+-                ->scalarNode('sign_key')->defaultValue(null)->end()
+-                ->scalarNode('source')->isRequired()->end()
+-                ->booleanNode('group_cache_in_folders')
+-                    ->info('Whether to group cached images in folders')
+-                    ->defaultValue(true)
+-                ->end()
+-                ->booleanNode('cache_with_file_extensions')
+-                    ->info('Whether to reuse the original extension inside generated cache path')
+-                    ->defaultValue(true)
+-                ->end()
+-                ->scalarNode('cache')->info('Where the resized images files are cached.')->isRequired()->end()
+-                ->booleanNode('pre_generate')
+-                    ->info('Calling the Twig filters will pre-generate the images in cache before the request is served and return the public cache path directly. Use it to warmup the images cache when generating a static version of your site for instance.')
+-                    ->defaultValue(false)
+-                ->end()
+-                ->scalarNode('public_dir')
+-                    ->info('The path to the web public dir')
+-                    ->defaultValue('%kernel.project_dir%/public')
+-                    ->cannotBeEmpty()
+-                ->end()
+-                ->arrayNode('skipped_types')
+-                    ->scalarPrototype()->end()
+-                    ->defaultValue([])
+-                    ->info('MIME types to skip for image manipulation but still move to the resized dir (so it is accessible publicly).')
+-                ->end()
+-                ->arrayNode('presets')
+-                    ->useAttributeAsKey('name')
+-                    ->prototype('array')
+-                        ->children()
+-                            // The available Glide options:
+-                            ->scalarNode('or')->defaultNull()->end()
+-                            ->scalarNode('crop')->defaultNull()->end()
+-                            ->integerNode('w')->info('width')->defaultNull()->end()
+-                            ->integerNode('h')->info('height')->defaultNull()->end()
+-                            ->scalarNode('fit')->defaultNull()->end()
+-                            ->integerNode('dpr')->defaultNull()->end()
+-                            ->integerNode('bri')->defaultNull()->end()
+-                            ->integerNode('con')->defaultNull()->end()
+-                            ->floatNode('gam')->defaultNull()->end()
+-                            ->integerNode('sharp')->defaultNull()->end()
+-                            ->integerNode('blur')->defaultNull()->end()
+-                            ->integerNode('pixel')->defaultNull()->end()
+-                            ->scalarNode('filt')->defaultNull()->end()
+-                            ->scalarNode('mark')->defaultNull()->end()
+-                            ->scalarNode('markw')->defaultNull()->end()
+-                            ->scalarNode('markh')->defaultNull()->end()
+-                            ->scalarNode('markx')->defaultNull()->end()
+-                            ->scalarNode('marky')->defaultNull()->end()
+-                            ->scalarNode('markpad')->defaultNull()->end()
+-                            ->scalarNode('markpos')->defaultNull()->end()
+-                            ->scalarNode('markalpha')->defaultNull()->end()
+-                            ->scalarNode('bg')->defaultNull()->end()
+-                            ->scalarNode('border')->defaultNull()->end()
+-                            ->integerNode('q')->defaultNull()->end()
+-                            ->scalarNode('fm')->defaultNull()->end()
+-                        ->end()
+-                    ->end()
+-                ->end()
+-            ->end()
+-        ;
+-
+-        return $treeBuilder;
+-    }
+-}
+Index: src/Bridge/Glide/Bundle/DependencyInjection/GlideExtension.php
+===================================================================
+diff --git a/src/Bridge/Glide/Bundle/DependencyInjection/GlideExtension.php b/src/Bridge/Glide/Bundle/DependencyInjection/GlideExtension.php
+deleted file mode 100644
+--- a/src/Bridge/Glide/Bundle/DependencyInjection/GlideExtension.php	(revision 55c979959ce0fc4d9390e97ad55211ea25ee61cd)
++++ /dev/null	(revision 55c979959ce0fc4d9390e97ad55211ea25ee61cd)
+@@ -1,101 +0,0 @@
+-<?php
+-
+-declare(strict_types=1);
+-
+-namespace App\Bridge\Glide\Bundle\DependencyInjection;
+-
+-use App\Bridge\Glide\Bundle\Controller\ResizeImageController;
+-use App\Bridge\Glide\Bundle\GlideUrlBuilder;
+-use App\Bridge\Glide\Bundle\ResizedUrlGenerator;
+-use App\Bridge\Glide\Bundle\SkippedTypes;
+-use League\Flysystem\Filesystem;
+-use League\Flysystem\Local\LocalFilesystemAdapter;
+-use League\Glide\Responses\SymfonyResponseFactory;
+-use League\Glide\Server;
+-use Symfony\Component\Config\FileLocator;
+-use Symfony\Component\Config\Loader\DelegatingLoader;
+-use Symfony\Component\Config\Loader\LoaderResolver;
+-use Symfony\Component\DependencyInjection\ContainerBuilder;
+-use Symfony\Component\DependencyInjection\Extension\Extension;
+-use Symfony\Component\DependencyInjection\Loader\DirectoryLoader;
+-use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
+-use Symfony\Component\DependencyInjection\Reference;
+-use Symfony\Component\Filesystem\Filesystem as Fs;
+-
+-class GlideExtension extends Extension
+-{
+-    /**
+-     * {@inheritdoc}
+-     */
+-    public function load(array $configs, ContainerBuilder $container): void
+-    {
+-        $configuration = new Configuration();
+-        $config = $this->processConfiguration($configuration, $configs);
+-
+-        $locator = new FileLocator(__DIR__ . '/../Resources/config/');
+-        $resolver = new LoaderResolver([
+-            new YamlFileLoader($container, $locator),
+-            new DirectoryLoader($container, $locator),
+-        ]);
+-        $loader = new DelegatingLoader($resolver);
+-        $loader->load('services/');
+-
+-        $signKey = $config['sign_key'];
+-        $baseUrl = $config['base_url'];
+-        $container->setParameter('glide_base_url', $config['base_url']);
+-        $container->getDefinition(GlideUrlBuilder::class)
+-            ->replaceArgument(1, $baseUrl)
+-            ->replaceArgument(2, $signKey)
+-        ;
+-        $container->getDefinition(ResizeImageController::class)->replaceArgument(1, $signKey);
+-        $container->getDefinition(ResizedUrlGenerator::class)
+-            ->replaceArgument(2, array_keys($config['presets']))
+-            ->replaceArgument(3, $config['pre_generate'])
+-        ;
+-
+-        $this->configureServer(
+-            $container,
+-            $config['source'],
+-            $config['cache'],
+-            $config['cache_with_file_extensions'],
+-            $config['group_cache_in_folders'],
+-            $config['presets'],
+-            $config['skipped_types'],
+-        );
+-
+-        $publicCacheDir = (new Fs())->makePathRelative(
+-            $container->getParameterBag()->resolveValue($config['cache']),
+-            $container->getParameterBag()->resolveValue($config['public_dir']),
+-        );
+-        $container->setParameter('glide_public_cache_path', trim($publicCacheDir, '/'));
+-    }
+-
+-    public function configureServer(
+-        ContainerBuilder $container,
+-        string $source,
+-        string $cache,
+-        bool $cacheWithExtensions,
+-        bool $groupCacheInFolders,
+-        array $presets = [],
+-        array $skippedTypes = [],
+-    ): void {
+-        $container->register('glide_source', LocalFilesystemAdapter::class)->setArguments([$source]);
+-        $container->register('glide_cache', LocalFilesystemAdapter::class)->setArguments([$cache]);
+-
+-        $container->register('glide_source_fs', Filesystem::class)->setArgument(0, new Reference('glide_source'));
+-        $container->register('glide_cache_fs', Filesystem::class)->setArgument(0, new Reference('glide_cache'));
+-
+-        $container->getDefinition(SkippedTypes::class)->replaceArgument('$skippedTypes', $skippedTypes);
+-
+-        $container->getDefinition(Server::class)->replaceArgument('$config', [
+-            'source' => new Reference('glide_source_fs'),
+-            'cache' => new Reference('glide_cache_fs'),
+-            'response' => new Reference(SymfonyResponseFactory::class),
+-            'defaults' => [],
+-            'presets' => $presets,
+-            'cache_with_file_extensions' => $cacheWithExtensions,
+-            'group_cache_in_folders' => $groupCacheInFolders,
+-        ])
+-        ->setPublic(true);
+-    }
+-}
+Index: src/Bridge/Glide/Bundle/Resources/config/services/services.yaml
+===================================================================
+diff --git a/src/Bridge/Glide/Bundle/Resources/config/services/services.yaml b/src/Bridge/Glide/Bundle/Resources/config/services/services.yaml
+deleted file mode 100644
+--- a/src/Bridge/Glide/Bundle/Resources/config/services/services.yaml	(revision 55c979959ce0fc4d9390e97ad55211ea25ee61cd)
++++ /dev/null	(revision 55c979959ce0fc4d9390e97ad55211ea25ee61cd)
+@@ -1,39 +0,0 @@
+-services:
+-    App\Bridge\Glide\Bundle\GlideUrlBuilder:
+-        arguments:
+-            - '@router'
+-            - ~ # $route set by the extension
+-            - ~ # $signKey set by the extension
+-
+-    App\Bridge\Glide\Bundle\ResizedUrlGenerator:
+-        arguments:
+-            - '@League\Glide\Server'
+-            - '@App\Bridge\Glide\Bundle\GlideUrlBuilder'
+-            - ~ # $presetsNames set by the extension
+-            - ~ # $preGenerate set by the extension
+-            - '@logger'
+-        tags:
+-            - { name: monolog.logger, channel: glide }
+-
+-    App\Bridge\Glide\Bundle\Twig\GlideExtension:
+-        arguments:
+-            - '@App\Bridge\Glide\Bundle\ResizedUrlGenerator'
+-        tags:
+-            - { name: twig.extension }
+-
+-    App\Bridge\Glide\Bundle\SkippedTypes:
+-        $skippedTypes: !abstract array set by the extension
+-
+-    League\Glide\Responses\SymfonyResponseFactory: ~
+-
+-    League\Glide\Server:
+-        factory: [App\Bridge\Glide\Bundle\DecoratingApiServerFactory, createWithSkippedTypes]
+-        arguments:
+-            $skippedTypes: '@App\Bridge\Glide\Bundle\SkippedTypes'
+-            $config: !abstract set by the extension
+-
+-    App\Bridge\Glide\Bundle\Controller\ResizeImageController:
+-        public: true
+-        arguments:
+-            - '@League\Glide\Server'
+-            - # $signKey set by the extension
+Index: src/Bridge/Glide/Bundle/Resources/config/routing.yaml
+===================================================================
+diff --git a/src/Bridge/Glide/Bundle/Resources/config/routing.yaml b/src/Bridge/Glide/Bundle/Resources/config/routing.yaml
+deleted file mode 100644
+--- a/src/Bridge/Glide/Bundle/Resources/config/routing.yaml	(revision 55c979959ce0fc4d9390e97ad55211ea25ee61cd)
++++ /dev/null	(revision 55c979959ce0fc4d9390e97ad55211ea25ee61cd)
+@@ -1,10 +0,0 @@
+-glide_image_resize:
+-    path: '%glide_base_url%/{path}'
+-    controller: 'App\Bridge\Glide\Bundle\Controller\ResizeImageController'
+-    requirements:
+-        path: ".+"
+-
+-glide_image_resized_url:
+-    path: '%glide_public_cache_path%/{path}'
+-    requirements:
+-        path: ".+"
+Index: src/Bridge/Glide/Bundle/Twig/GlideExtension.php
+===================================================================
+diff --git a/src/Bridge/Glide/Bundle/Twig/GlideExtension.php b/src/Bridge/Glide/Bundle/Twig/GlideExtension.php
+deleted file mode 100644
+--- a/src/Bridge/Glide/Bundle/Twig/GlideExtension.php	(revision 55c979959ce0fc4d9390e97ad55211ea25ee61cd)
++++ /dev/null	(revision 55c979959ce0fc4d9390e97ad55211ea25ee61cd)
+@@ -1,37 +0,0 @@
+-<?php
+-
+-declare(strict_types=1);
+-
+-namespace App\Bridge\Glide\Bundle\Twig;
+-
+-use App\Bridge\Glide\Bundle\ResizedUrlGenerator;
+-use Twig\Extension\AbstractExtension;
+-use Twig\TwigFilter;
+-
+-class GlideExtension extends AbstractExtension
+-{
+-    private ResizedUrlGenerator $resizedUrlGenerator;
+-
+-    public function __construct(ResizedUrlGenerator $resizer)
+-    {
+-        $this->resizedUrlGenerator = $resizer;
+-    }
+-
+-    public function getFilters(): array
+-    {
+-        return [
+-            new TwigFilter('glide_image_resize', \Closure::fromCallable([$this, 'resizeImage'])),
+-            new TwigFilter('glide_image_preset', \Closure::fromCallable([$this, 'resizeImageWithPreset'])),
+-        ];
+-    }
+-
+-    public function resizeImageWithPreset(string $filename, string $preset, array $options = []): string
+-    {
+-        return $this->resizedUrlGenerator->withPreset($filename, $preset, $options);
+-    }
+-
+-    public function resizeImage(string $filename, array $options): string
+-    {
+-        return $this->resizedUrlGenerator->withOptions($filename, $options);
+-    }
+-}
+Index: src/Bridge/Glide/Bundle/DecoratingApiServerFactory.php
+===================================================================
+diff --git a/src/Bridge/Glide/Bundle/DecoratingApiServerFactory.php b/src/Bridge/Glide/Bundle/DecoratingApiServerFactory.php
+deleted file mode 100644
+--- a/src/Bridge/Glide/Bundle/DecoratingApiServerFactory.php	(revision 55c979959ce0fc4d9390e97ad55211ea25ee61cd)
++++ /dev/null	(revision 55c979959ce0fc4d9390e97ad55211ea25ee61cd)
+@@ -1,31 +0,0 @@
+-<?php
+-
+-declare(strict_types=1);
+-
+-namespace App\Bridge\Glide\Bundle;
+-
+-use League\Glide\Server;
+-use League\Glide\ServerFactory;
+-
+-class DecoratingApiServerFactory extends ServerFactory
+-{
+-    public function __construct(private SkippedTypes $skippedTypes, array $config = [])
+-    {
+-        parent::__construct($config);
+-    }
+-
+-    public function getSkippingApi(): SkippingMimeTypesApi
+-    {
+-        return new SkippingMimeTypesApi(parent::getApi(), $this->skippedTypes);
+-    }
+-
+-    public static function createWithSkippedTypes(SkippedTypes $skippedTypes, array $config = []): Server
+-    {
+-        $server = parent::create($config);
+-        $decoratedFactory = (new self($skippedTypes, $config));
+-
+-        $server->setApi($decoratedFactory->getSkippingApi());
+-
+-        return $server;
+-    }
+-}
+Index: src/Bridge/Glide/Bundle/GlideBundle.php
+===================================================================
+diff --git a/src/Bridge/Glide/Bundle/GlideBundle.php b/src/Bridge/Glide/Bundle/GlideBundle.php
+deleted file mode 100644
+--- a/src/Bridge/Glide/Bundle/GlideBundle.php	(revision 55c979959ce0fc4d9390e97ad55211ea25ee61cd)
++++ /dev/null	(revision 55c979959ce0fc4d9390e97ad55211ea25ee61cd)
+@@ -1,11 +0,0 @@
+-<?php
+-
+-declare(strict_types=1);
+-
+-namespace App\Bridge\Glide\Bundle;
+-
+-use Symfony\Component\HttpKernel\Bundle\Bundle;
+-
+-class GlideBundle extends Bundle
+-{
+-}
+Index: src/Bridge/Glide/Bundle/GlideUrlBuilder.php
+===================================================================
+diff --git a/src/Bridge/Glide/Bundle/GlideUrlBuilder.php b/src/Bridge/Glide/Bundle/GlideUrlBuilder.php
+deleted file mode 100644
+--- a/src/Bridge/Glide/Bundle/GlideUrlBuilder.php	(revision 55c979959ce0fc4d9390e97ad55211ea25ee61cd)
++++ /dev/null	(revision 55c979959ce0fc4d9390e97ad55211ea25ee61cd)
+@@ -1,28 +0,0 @@
+-<?php
+-
+-declare(strict_types=1);
+-
+-namespace App\Bridge\Glide\Bundle;
+-
+-use League\Glide\Urls\UrlBuilderFactory;
+-use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
+-
+-class GlideUrlBuilder
+-{
+-    public function __construct(
+-        private UrlGeneratorInterface $urlGenerator,
+-        private string $basePath,
+-        private ?string $signKey = null,
+-    ) {
+-    }
+-
+-    public function buildUrl(string $filename, array $params = []): string
+-    {
+-        return UrlBuilderFactory::create($this->basePath, $this->signKey)->getUrl($filename, $params);
+-    }
+-
+-    public function getPublicCachePath(string $cachePath): string
+-    {
+-        return $this->urlGenerator->generate('glide_image_resized_url', ['path' => $cachePath]);
+-    }
+-}
+Index: src/Bridge/Glide/Bundle/ResizedUrlGenerator.php
+===================================================================
+diff --git a/src/Bridge/Glide/Bundle/ResizedUrlGenerator.php b/src/Bridge/Glide/Bundle/ResizedUrlGenerator.php
+deleted file mode 100644
+--- a/src/Bridge/Glide/Bundle/ResizedUrlGenerator.php	(revision 55c979959ce0fc4d9390e97ad55211ea25ee61cd)
++++ /dev/null	(revision 55c979959ce0fc4d9390e97ad55211ea25ee61cd)
+@@ -1,68 +0,0 @@
+-<?php
+-
+-declare(strict_types=1);
+-
+-namespace App\Bridge\Glide\Bundle;
+-
+-use League\Glide\Filesystem\FileNotFoundException;
+-use League\Glide\Server;
+-use Psr\Log\LoggerInterface;
+-use Psr\Log\NullLogger;
+-
+-class ResizedUrlGenerator
+-{
+-    private LoggerInterface $logger;
+-
+-    public function __construct(
+-        private Server $server,
+-        private GlideUrlBuilder $glideUrlBuilder,
+-        private array $presetsNames = [],
+-        private bool $preGenerate = false,
+-        ?LoggerInterface $logger = null
+-    ) {
+-        $this->logger = $logger ?? new NullLogger();
+-    }
+-
+-    public function withPreset(string $filename, string $preset, array $options = []): string
+-    {
+-        if (!\in_array($preset, $this->presetsNames, true)) {
+-            throw new \InvalidArgumentException(sprintf(
+-                'Preset "%s" does not exists. Known presets are %s',
+-                $preset,
+-                json_encode($this->presetsNames, JSON_THROW_ON_ERROR),
+-            ));
+-        }
+-
+-        return $this->withOptions($filename, ['p' => $preset] + $options);
+-    }
+-
+-    public function withOptions(string $filename, array $options): string
+-    {
+-        if ($this->isUrl($filename)) {
+-            // Don't attempt to process external files
+-            return $filename;
+-        }
+-
+-        if (!$this->preGenerate) {
+-            // In case no pre-generation is asked, do only generate a link to the resize controller:
+-            return $this->glideUrlBuilder->buildUrl($filename, $options);
+-        }
+-
+-        try {
+-            // Otherwise, pre-create the image in cache, and generate an URL to its public cache path:
+-            return $this->glideUrlBuilder->getPublicCachePath($this->server->makeImage($filename, $options));
+-        } catch (FileNotFoundException $exception) {
+-            $this->logger->warning('Image at path "{path}" not found', [
+-                'path' => $filename,
+-                'glide_options' => $options,
+-            ]);
+-
+-            return $filename;
+-        }
+-    }
+-
+-    private function isUrl(string $path): bool
+-    {
+-        return \is_string(parse_url($path, PHP_URL_HOST));
+-    }
+-}
+Index: src/Bridge/Glide/Bundle/SkippedTypes.php
+===================================================================
+diff --git a/src/Bridge/Glide/Bundle/SkippedTypes.php b/src/Bridge/Glide/Bundle/SkippedTypes.php
+deleted file mode 100644
+--- a/src/Bridge/Glide/Bundle/SkippedTypes.php	(revision 55c979959ce0fc4d9390e97ad55211ea25ee61cd)
++++ /dev/null	(revision 55c979959ce0fc4d9390e97ad55211ea25ee61cd)
+@@ -1,30 +0,0 @@
+-<?php
+-
+-declare(strict_types=1);
+-
+-namespace App\Bridge\Glide\Bundle;
+-
+-use Symfony\Component\Mime\MimeTypes;
+-use Symfony\Component\Mime\MimeTypesInterface;
+-
+-final class SkippedTypes
+-{
+-    public function __construct(
+-        private array $skippedTypes = ['image/gif'],
+-        private MimeTypesInterface $types = new MimeTypes(),
+-    ) {
+-    }
+-
+-    public function isSkippedUrl(string $url): bool
+-    {
+-        return 0 !== \count(array_intersect(
+-            $this->types->getMimeTypes(pathinfo($url, PATHINFO_EXTENSION)),
+-            $this->skippedTypes,
+-        ));
+-    }
+-
+-    public function isSkippedFile(string $path): bool
+-    {
+-        return \in_array($this->types->guessMimeType($path), $this->skippedTypes, true);
+-    }
+-}
+Index: src/Bridge/Glide/Bundle/SkippingMimeTypesApi.php
+===================================================================
+diff --git a/src/Bridge/Glide/Bundle/SkippingMimeTypesApi.php b/src/Bridge/Glide/Bundle/SkippingMimeTypesApi.php
+deleted file mode 100644
+--- a/src/Bridge/Glide/Bundle/SkippingMimeTypesApi.php	(revision 55c979959ce0fc4d9390e97ad55211ea25ee61cd)
++++ /dev/null	(revision 55c979959ce0fc4d9390e97ad55211ea25ee61cd)
+@@ -1,30 +0,0 @@
+-<?php
+-
+-declare(strict_types=1);
+-
+-namespace App\Bridge\Glide\Bundle;
+-
+-use League\Glide\Api\ApiInterface;
+-
+-/**
+- * An API implementation allowing to skip Glide resize on some specific MIME types
+- * (usually unsupported by Glide, or removing GIF animations for instance),
+- * but still allowing to pass through Glide's server and move the images to a properly public location.
+- */
+-class SkippingMimeTypesApi implements ApiInterface
+-{
+-    public function __construct(
+-        private ApiInterface $decorated,
+-        private SkippedTypes $skippedTypes,
+-    ) {
+-    }
+-
+-    public function run($source, array $params): string
+-    {
+-        if ($this->skippedTypes->isSkippedFile($source)) {
+-            return (string) file_get_contents($source);
+-        }
+-
+-        return $this->decorated->run($source, $params);
+-    }
+-}
+Index: src/Bridge/Glide/Stenope/Processor/ResizeImagesContentProcessor.php
+===================================================================
+diff --git a/src/Bridge/Glide/Stenope/Processor/ResizeImagesContentProcessor.php b/src/Bridge/Glide/Stenope/Processor/ResizeImagesContentProcessor.php
+deleted file mode 100644
+--- a/src/Bridge/Glide/Stenope/Processor/ResizeImagesContentProcessor.php	(revision 55c979959ce0fc4d9390e97ad55211ea25ee61cd)
++++ /dev/null	(revision 55c979959ce0fc4d9390e97ad55211ea25ee61cd)
+@@ -1,170 +0,0 @@
+-<?php
+-
+-declare(strict_types=1);
+-
+-namespace App\Bridge\Glide\Stenope\Processor;
+-
+-use App\Bridge\Glide\Bundle\ResizedUrlGenerator;
+-use App\Bridge\Glide\Bundle\SkippedTypes;
+-use App\Bridge\Glide\Bundle\SkippingMimeTypesApi;
+-use Stenope\Bundle\Behaviour\HtmlCrawlerManagerInterface;
+-use Stenope\Bundle\Behaviour\ProcessorInterface;
+-use Stenope\Bundle\Content;
+-use Stenope\Bundle\Provider\Factory\LocalFilesystemProviderFactory;
+-use Symfony\Component\Filesystem\Path;
+-
+-/**
+- * Provide resized and optimized images, for retina devices as well, inside a specific content.
+- */
+-class ResizeImagesContentProcessor implements ProcessorInterface
+-{
+-    public function __construct(
+-        private ResizedUrlGenerator $resizedUrlGenerator,
+-        private HtmlCrawlerManagerInterface $crawlers,
+-        private SkippedTypes $skippedTypes,
+-        private string $projectDir,
+-        private string $type,
+-        private string $preset,
+-        private string $property = 'content'
+-    ) {
+-    }
+-
+-    public function __invoke(array &$data, Content $content): void
+-    {
+-        if ($content->getType() !== $this->type) {
+-            return;
+-        }
+-
+-        $crawler = $this->crawlers->get($content, $data, $this->property);
+-
+-        if (\is_null($crawler)) {
+-            // Content is not valid HTML.
+-            return;
+-        }
+-
+-        /** @var \DOMElement $element */
+-        foreach ($crawler->filter('img') as $element) {
+-            $this->processImage($element, $content);
+-        }
+-
+-        /** @var \DOMElement $element */
+-        foreach ($crawler->filter('video') as $element) {
+-            $this->processVideoPoster($element, $content);
+-        }
+-
+-        $this->crawlers->save($content, $data, $this->property);
+-    }
+-
+-    private function processImage(\DOMElement $element, Content $content): void
+-    {
+-        if (!$element->hasAttribute('src')) {
+-            return;
+-        }
+-
+-        $source = $element->getAttribute('src');
+-
+-        if (!$this->isLocalImage($source)) {
+-            return;
+-        }
+-
+-        $source = $this->normalizePath($source, $content);
+-
+-        if (!$this->isSupportedImage($source)) {
+-            $this->processUnsupportedImage($element, $source);
+-
+-            return;
+-        }
+-
+-        $dpr1 = $this->resizedUrlGenerator->withPreset($source, $this->preset);
+-        $dpr2 = $this->resizedUrlGenerator->withPreset($source, $this->preset, ['dpr' => 2]);
+-
+-        $element->setAttribute('src', $dpr1);
+-        $element->setAttribute('srcset', <<<HTML
+-        $dpr1 1x,
+-        $dpr2 2x,
+-        HTML);
+-    }
+-
+-    private function processVideoPoster(\DOMElement $element, Content $content): void
+-    {
+-        if (!$element->hasAttribute('poster')) {
+-            return;
+-        }
+-
+-        $source = $element->getAttribute('poster');
+-
+-        if (!$this->isLocalImage($source)) {
+-            return;
+-        }
+-
+-        $source = $this->normalizePath($source, $content);
+-
+-        if (!$this->isSupportedImage($source)) {
+-            $this->processUnsupportedImage($element, $source);
+-
+-            return;
+-        }
+-
+-        $resized = $this->resizedUrlGenerator->withPreset($source, $this->preset);
+-
+-        $element->setAttribute('poster', $resized);
+-    }
+-
+-    /**
+-     * In case the image is not supported, we'll still generate an URL with Glide, but with no preset/options:
+-     */
+-    private function processUnsupportedImage(\DOMElement $element, string $source): void
+-    {
+-        $element->setAttribute('src', $this->resizedUrlGenerator->withOptions($source, []));
+-    }
+-
+-    private function isLocalImage(string $url): bool
+-    {
+-        return !\is_string(parse_url($url, PHP_URL_HOST));
+-    }
+-
+-    /**
+-     * Normalizes the path to be relative to the Glide source directory, i.e project root dir.
+-     */
+-    private function normalizePath(string $imgPath, Content $content): string
+-    {
+-        // Ignore of not attempting to resolve an image path relative to current content
+-        if (!$this->isRelativeImagePath($imgPath)) {
+-            return $imgPath;
+-        }
+-
+-        // Ignore if not using the file provider
+-        if (!$this->isFilesystemProvider($content)) {
+-            return $imgPath;
+-        }
+-
+-        $currentContentPath = $content->getMetadata()['path'];
+-
+-        return Path::makeRelative(
+-            // Resolve path relative to current content as absolute full path:
+-            Path::makeAbsolute($imgPath, Path::getDirectory($currentContentPath)),
+-            // And return it relative to the project dir:
+-            $this->projectDir,
+-        );
+-    }
+-
+-    private function isRelativeImagePath(string $imgPath): bool
+-    {
+-        return str_starts_with($imgPath, './') || str_starts_with($imgPath, '../');
+-    }
+-
+-    private function isFilesystemProvider(Content $content): bool
+-    {
+-        return LocalFilesystemProviderFactory::TYPE === ($content->getMetadata()['provider'] ?? null);
+-    }
+-
+-    /**
+-     * Is the image supported for resize.
+-     *
+-     * @see SkippingMimeTypesApi
+-     */
+-    private function isSupportedImage(string $src): bool
+-    {
+-        return !$this->skippedTypes->isSkippedUrl($src);
+-    }
+-}
+Index: .env.prod
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.env.prod b/.env.prod
+--- a/.env.prod	(revision 55c979959ce0fc4d9390e97ad55211ea25ee61cd)
++++ b/.env.prod	(date 1663167744941)
+@@ -1,5 +1,0 @@
+-###> app ###
+-# We want to pre-generate the resized images cache in prod env,
+-# in order to make them available in the static build version of the site:
+-GLIDE_PRE_GENERATE_CACHE=1
+-###< app ###
+Index: .gitignore
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.gitignore b/.gitignore
+--- a/.gitignore	(revision 55c979959ce0fc4d9390e97ad55211ea25ee61cd)
++++ b/.gitignore	(date 1663167744947)
+@@ -27,7 +27,3 @@
+ /.php-cs-fixer.php
+ /.php-cs-fixer.cache
+ ###< friendsofphp/php-cs-fixer ###
+-
+-###> glide ###
+-/public/resized
+-###< glide ###
+Index: config/services.yaml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/config/services.yaml b/config/services.yaml
+--- a/config/services.yaml	(revision 55c979959ce0fc4d9390e97ad55211ea25ee61cd)
++++ b/config/services.yaml	(date 1663167744936)
+@@ -19,7 +19,6 @@
+             - '../src/DependencyInjection/'
+             - '../src/Model/'
+             - '../src/Kernel.php'
+-            - '../src/Bridge/Glide/'
+ 
+     # add more service definitions when explicit configuration is needed
+     # please note that last definitions always *replace* previous ones
+Index: config/bundles.php
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/config/bundles.php b/config/bundles.php
+--- a/config/bundles.php	(revision 55c979959ce0fc4d9390e97ad55211ea25ee61cd)
++++ b/config/bundles.php	(date 1663167744938)
+@@ -11,5 +11,4 @@
+     Symfony\Bundle\MakerBundle\MakerBundle::class => ['dev' => true],
+     Symfony\WebpackEncoreBundle\WebpackEncoreBundle::class => ['all' => true],
+     Stenope\Bundle\StenopeBundle::class => ['all' => true],
+-    App\Bridge\Glide\Bundle\GlideBundle::class => ['all' => true],
+ ];
+Index: Makefile
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/Makefile b/Makefile
+--- a/Makefile	(revision 55c979959ce0fc4d9390e97ad55211ea25ee61cd)
++++ b/Makefile	(date 1663167744945)
+@@ -51,10 +51,6 @@
+ clear.build:
+ 	rm -rf build public/build
+ 
+-## Clear - Clear resized images cache
+-clear.images:
+-	rm -rf public/resized
+-
+ #########
+ # Build #
+ #########
+@@ -72,7 +68,6 @@
+ 
+ ## Build - Build static site without resizing images, for moar speed
+ build.content.without-images: export APP_ENV = prod
+-build.content.without-images: export GLIDE_PRE_GENERATE_CACHE = 0
+ build.content.without-images:
+ 	symfony console cache:clear
+ 	symfony console stenope:build
+@@ -140,7 +135,5 @@
+ # Test #
+ ########
+ 
+-## Test - Most basic test: check the build command, without images
+-test: build.content.without-images
+-test:
+-	$(call message_success, Most basic tests succeeded. You can ensure a \`make build.content\` is successful for more complete tests.)
++## Test - Most basic test: check the build command
++test: build.content
+Index: .env
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.env b/.env
+--- a/.env	(revision 55c979959ce0fc4d9390e97ad55211ea25ee61cd)
++++ b/.env	(date 1663167744933)
+@@ -21,7 +21,3 @@
+ #TRUSTED_HOSTS='^(localhost|example\.com)$'
+ ROUTER_DEFAULT_URI=http://localhost
+ ###< symfony/framework-bundle ###
+-
+-###> app ###
+-GLIDE_PRE_GENERATE_CACHE=0
+-###< app ###
