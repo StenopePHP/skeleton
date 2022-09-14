@@ -31,7 +31,7 @@
                     <script src="/skeleton/build/runtime.bbcd9364.js" defer></script><script src="/skeleton/build/80.994455e5.js" defer></script><script src="/skeleton/build/app.e41c3b11.js" defer></script>
             </head>
     <body
-        data-controller="swup-plugins symfony--ux-swup--swup" data-symfony--ux-swup--swup-cache-value="true" data-symfony--ux-swup--swup-animate-history-browsing-value="true" data-symfony--ux-swup--swup-debug-value="false" data-symfony--ux-swup--swup-link-selector-value="a&#x5B;href&#x5E;&#x3D;&quot;https&#x3A;&#x2F;&#x2F;stenopephp.github.io&#x2F;skeleton&quot;&#x5D;&#x3A;not&#x28;&#x5B;data-no-swup&#x5D;&#x29;&#x3A;not&#x28;&#x5B;target&#x3D;&quot;_blank&quot;&#x5D;&#x29;,&#x20;a&#x5B;href&#x5E;&#x3D;&quot;&#x2F;&quot;&#x5D;&#x3A;not&#x28;&#x5B;data-no-swup&#x5D;&#x29;&#x3A;not&#x28;&#x5B;target&#x3D;&quot;_blank&quot;&#x5D;&#x29;">
+        data-controller="swup-plugins symfony--ux-swup--swup" data-symfony--ux-swup--swup-cache-value="true" data-symfony--ux-swup--swup-animate-history-browsing-value="true" data-symfony--ux-swup--swup-debug-value="false" data-symfony--ux-swup--swup-link-selector-value="a&#x5B;href&#x5E;&#x3D;&quot;https&#x3A;&#x2F;&#x2F;stenopephp.github.io&#x2F;skeleton&quot;&#x5D;&#x3A;not&#x28;&#x5B;data-no-swup&#x5D;&#x29;&#x3A;not&#x28;&#x5B;target&#x3D;&quot;_blank&quot;&#x5D;&#x29;,a&#x5B;href&#x5E;&#x3D;&quot;&#x2F;&quot;&#x5D;&#x3A;not&#x28;&#x5B;data-no-swup&#x5D;&#x29;&#x3A;not&#x28;&#x5B;target&#x3D;&quot;_blank&quot;&#x5D;&#x29;">
 
         <div class="container" id="swup">
                             <header id="nav" class="header">
@@ -165,14 +165,23 @@ The <code class="code-inline" id="2dbcba41b9ac4c5d22886ba672463cb4">slug</code> 
 <p>For our use-case, since we do not have a main textual content, like we do with our articles in markdown, we'll use YAML
 as a structured format for our galleries.</p>
 <p>Let's create a first gallery in <code class="code-inline" id="e2a64bc287cb661ddf153a2cda5b2f33">content/galleries/christmas.yaml</code>:</p>
-<pre class="code-multiline language-yaml"><code class="language-yaml" id="62d397b3ae16f77334c3309d1a70b0fb"><span class="token key atrule">title</span><span class="token punctuation">:</span> Christmas photos
+<pre class="code-multiline language-yaml"><code class="language-yaml" id="fd1e2e2244a0865331ebf2ca372adfa3"><span class="token key atrule">title</span><span class="token punctuation">:</span> Christmas photos
 <span class="token key atrule">description</span><span class="token punctuation">:</span> A gallery of Christmas photos
 <span class="token key atrule">createdAt</span><span class="token punctuation">:</span> <span class="token string">"2020-12-25"</span>
 
 <span class="token key atrule">images</span><span class="token punctuation">:</span>
-    <span class="token punctuation">-</span> <span class="token punctuation">{</span> <span class="token key atrule">path</span><span class="token punctuation">:</span> <span class="token string">'/content/images/galleries/christmas/img1.jpg'</span><span class="token punctuation">,</span> <span class="token key atrule">title</span><span class="token punctuation">:</span> <span class="token string">'Image 1'</span><span class="token punctuation">,</span> <span class="token key atrule">description</span><span class="token punctuation">:</span> <span class="token string">'Some description'</span> <span class="token punctuation">}</span>
-    <span class="token punctuation">-</span> <span class="token punctuation">{</span> <span class="token key atrule">path</span><span class="token punctuation">:</span> <span class="token string">'/content/images/galleries/christmas/img2.jpg'</span><span class="token punctuation">,</span> <span class="token key atrule">title</span><span class="token punctuation">:</span> <span class="token string">'Image 2'</span> <span class="token punctuation">}</span>
-    <span class="token punctuation">-</span> <span class="token punctuation">{</span> <span class="token key atrule">path</span><span class="token punctuation">:</span> <span class="token string">'/content/images/galleries/christmas/img3.jpg'</span> <span class="token punctuation">}</span></code></pre>
+    <span class="token punctuation">-</span> <span class="token punctuation">{</span> <span class="token key atrule">path</span><span class="token punctuation">:</span> <span class="token string">'images/galleries/christmas/img1.jpg'</span><span class="token punctuation">,</span> <span class="token key atrule">title</span><span class="token punctuation">:</span> <span class="token string">'Image 1'</span><span class="token punctuation">,</span> <span class="token key atrule">description</span><span class="token punctuation">:</span> <span class="token string">'Some description'</span> <span class="token punctuation">}</span>
+    <span class="token punctuation">-</span> <span class="token punctuation">{</span> <span class="token key atrule">path</span><span class="token punctuation">:</span> <span class="token string">'images/galleries/christmas/img2.jpg'</span><span class="token punctuation">,</span> <span class="token key atrule">title</span><span class="token punctuation">:</span> <span class="token string">'Image 2'</span> <span class="token punctuation">}</span>
+    <span class="token punctuation">-</span> <span class="token punctuation">{</span> <span class="token key atrule">path</span><span class="token punctuation">:</span> <span class="token string">'images/galleries/christmas/img3.jpg'</span> <span class="token punctuation">}</span></code></pre>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>
+    The images paths are place in the <code class="code-inline" id="3e5e9f6f685bf848f0a777187ab65e53">public/images</code> directory so that they are accessible from the web directly.<br>
+    In case you need to resize them, you can use the <a href="/skeleton/articles/guide">Glide integration described in the guide</a>.<br>
+    In such case, the orignals does not need to be in the <code class="code-inline" id="4c9184f37cff01bcdc32dc486ec36961">public</code> directory,
+    unless you want to let your user download it for instance.
+</p>
+</div>
 <h2 id="controller">Controller<a href="#controller" class="anchor"></a></h2>
 <p>Now, we need to create a controller action for each pages we want to expose our galleries.<br>
 We'll start with a simple list of galleries and a detail page for each:</p>
@@ -223,7 +232,7 @@ We'll start with a simple list of galleries and a detail page for each:</p>
 <h2 id="templates">Templates<a href="#templates" class="anchor"></a></h2>
 <p>Let's create the templates for each controller:</p>
 <p><strong>List</strong>:</p>
-<pre class="code-multiline language-twig"><code class="language-twig" id="abfe2ddb50ebd129289b963e39459790"><span class="token twig language-twig"><span class="token comment">{# templates/galleries/show.html.twig #}</span></span>
+<pre class="code-multiline language-twig"><code class="language-twig" id="f2a7a11cdf5e7174e82a69dfc074035a"><span class="token twig language-twig"><span class="token comment">{# templates/galleries/list.html.twig #}</span></span>
 <span class="token twig language-twig"><span class="token delimiter punctuation">{%</span> <span class="token tag-name keyword">extends</span> <span class="token string"><span class="token punctuation">'</span>base.html.twig<span class="token punctuation">'</span></span> <span class="token delimiter punctuation">%}</span></span>
 
 <span class="token twig language-twig"><span class="token delimiter punctuation">{%</span> <span class="token tag-name keyword">block</span> meta_title <span class="token string"><span class="token punctuation">'</span>List of galleries<span class="token punctuation">'</span></span> <span class="token delimiter punctuation">%}</span></span>
@@ -261,6 +270,12 @@ We'll start with a simple list of galleries and a detail page for each:</p>
         <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>figure</span><span class="token punctuation">&gt;</span></span>
     <span class="token twig language-twig"><span class="token delimiter punctuation">{%</span> <span class="token tag-name keyword">endfor</span> <span class="token delimiter punctuation">%}</span></span>
 <span class="token twig language-twig"><span class="token delimiter punctuation">{%</span> <span class="token tag-name keyword">endblock</span> <span class="token delimiter punctuation">%}</span></span></code></pre>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>
+    We use the <code class="code-inline" id="02c12db0a8a54c9d1286133f4ff4f7b2">{{ asset() }}</code> function to generate the image path, so that it is correctly prefixed with the app base URL, if any.
+</p>
+</div>
 <h2 id="referencing-your-content-pages">Referencing your content pages<a href="#referencing-your-content-pages" class="anchor"></a></h2>
 <p>Our galleries are now available at <code class="code-inline" id="226b33b32547bfaf22ce96e2cee897bb">/galleries</code> and <code class="code-inline" id="e1d6f11036b9fad6c8f7207afeb658d2">/galleries/{slug}</code> path, but there is no link pointing to these pages,
 so it'll be excluded from the static build, since unreachable.</p>

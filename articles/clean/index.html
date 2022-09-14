@@ -31,7 +31,7 @@
                     <script src="/skeleton/build/runtime.bbcd9364.js" defer></script><script src="/skeleton/build/80.994455e5.js" defer></script><script src="/skeleton/build/app.e41c3b11.js" defer></script>
             </head>
     <body
-        data-controller="swup-plugins symfony--ux-swup--swup" data-symfony--ux-swup--swup-cache-value="true" data-symfony--ux-swup--swup-animate-history-browsing-value="true" data-symfony--ux-swup--swup-debug-value="false" data-symfony--ux-swup--swup-link-selector-value="a&#x5B;href&#x5E;&#x3D;&quot;https&#x3A;&#x2F;&#x2F;stenopephp.github.io&#x2F;skeleton&quot;&#x5D;&#x3A;not&#x28;&#x5B;data-no-swup&#x5D;&#x29;&#x3A;not&#x28;&#x5B;target&#x3D;&quot;_blank&quot;&#x5D;&#x29;,&#x20;a&#x5B;href&#x5E;&#x3D;&quot;&#x2F;&quot;&#x5D;&#x3A;not&#x28;&#x5B;data-no-swup&#x5D;&#x29;&#x3A;not&#x28;&#x5B;target&#x3D;&quot;_blank&quot;&#x5D;&#x29;">
+        data-controller="swup-plugins symfony--ux-swup--swup" data-symfony--ux-swup--swup-cache-value="true" data-symfony--ux-swup--swup-animate-history-browsing-value="true" data-symfony--ux-swup--swup-debug-value="false" data-symfony--ux-swup--swup-link-selector-value="a&#x5B;href&#x5E;&#x3D;&quot;https&#x3A;&#x2F;&#x2F;stenopephp.github.io&#x2F;skeleton&quot;&#x5D;&#x3A;not&#x28;&#x5B;data-no-swup&#x5D;&#x29;&#x3A;not&#x28;&#x5B;target&#x3D;&quot;_blank&quot;&#x5D;&#x29;,a&#x5B;href&#x5E;&#x3D;&quot;&#x2F;&quot;&#x5D;&#x3A;not&#x28;&#x5B;data-no-swup&#x5D;&#x29;&#x3A;not&#x28;&#x5B;target&#x3D;&quot;_blank&quot;&#x5D;&#x29;">
 
         <div class="container" id="swup">
                             <header id="nav" class="header">
@@ -138,12 +138,10 @@ the <code class="code-inline" id="55b5b167120840a9198b5779c9b1de66">config/servi
 <h2 id="swup">Swup<a href="#swup" class="anchor"></a></h2>
 <p>If you don't need the Swup integration, you can remove the <code class="code-inline" id="c4abfb79e2ef5fca18fb05ff85f457fb">assets/js/controllers/swup_plugins_controller.js</code> file,
 update <code class="code-inline" id="66c1bb1be81fba286ce73fa5e6c8207b">templates/base.html.twig</code> to remove the <code class="code-inline" id="c077bdcee3192dd0a9074c16b1990544">data-controller="swup-plugins"</code> attribute from the <code class="code-inline" id="841a2d689ad86bd1611447453c22c6fc">body</code> tag:</p>
-<pre class="code-multiline language-diff"><code class="language-diff" id="620f487adbc74b1831dff21ea9762193"><span class="token deleted-sign deleted"><span class="token prefix deleted">-</span><span class="token line">    &lt;body
+<pre class="code-multiline language-diff"><code class="language-diff" id="dcfb4aff7c4dc0dd5a8bb1691108a0e4"><span class="token deleted-sign deleted"><span class="token prefix deleted">-</span><span class="token line">    &lt;body
 </span><span class="token prefix deleted">-</span><span class="token line">        {{ stimulus_controller('swup_plugins')
 </span><span class="token prefix deleted">-</span><span class="token line">         | stimulus_controller('symfony/ux-swup/swup', {
-</span><span class="token prefix deleted">-</span><span class="token line">               cache: true,
-</span><span class="token prefix deleted">-</span><span class="token line">               animateHistoryBrowsing: true,
-</span><span class="token prefix deleted">-</span><span class="token line">               debug: app.debug,
+</span><span class="token prefix deleted">-</span><span class="token line">               // …
 </span><span class="token prefix deleted">-</span><span class="token line">           })
 </span><span class="token prefix deleted">-</span><span class="token line">        }}&gt;
 </span></span><span class="token inserted-sign inserted"><span class="token prefix inserted">+</span><span class="token line">    &lt;body&gt;</span></span></code></pre>
