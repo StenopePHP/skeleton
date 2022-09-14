@@ -80,9 +80,15 @@ with <a href="https://stenopephp.github.io/Stenope/" target="_blank">Stenope</a>
 <h2 id="create-a-new-project">Create a new project<a href="#create-a-new-project" class="anchor"></a></h2>
 <p>Start a new app from scratch using this skeleton with:</p>
 <pre class="code-multiline language-shell"><code class="language-shell" id="56d99842887a90327882225032e7280f"><span class="token function">composer</span> create-project stenope/skeleton <span class="token parameter variable">-s</span> dev</code></pre>
-<h2 id="serve">Serve<a href="#serve" class="anchor"></a></h2>
+<p>and install the dependencies:</p>
+<pre class="code-multiline language-shell"><code class="language-shell" id="12b64827119f4815ca8d43608d228f36"><span class="token function">make</span> <span class="token function">install</span></code></pre>
+<h2 id="commands">Commands<a href="#commands" class="anchor"></a></h2>
+<h3 id="serve">Serve<a href="#serve" class="anchor"></a></h3>
 <p>Serve the application with:</p>
 <pre class="code-multiline language-shell"><code class="language-shell" id="4e72a84a2c0202547720df8baec08696"><span class="token function">make</span> serve</code></pre>
+<h3 id="build">Build<a href="#build" class="anchor"></a></h3>
+<p>Build and serve the static version:</p>
+<pre class="code-multiline language-shell"><code class="language-shell" id="d9295fc2827e28c563d2636ce4c5ae56"><span class="token function">make</span> build.static serve.static</code></pre>
 <h2 id="explore">Explore<a href="#explore" class="anchor"></a></h2>
 <p><a href="/skeleton/articles/what-is-stenope">Learn more about Stenope</a> and discover the <a href="/skeleton/articles/guide">features showcased</a>
 in this starter kit and how to write your own content by browsing the articles.</p>
