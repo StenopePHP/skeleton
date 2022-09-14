@@ -42,17 +42,30 @@
     <nav class="nav">
         <ul>
                                                             <li class="nav__item ">
-                    <a href="/skeleton/" >
+                    <a
+                        href="/skeleton/"
+                                            >
                                                 <span>Home</span>
                     </a>
                 </li>
                                                             <li class="nav__item nav__item--active">
-                    <a href="/skeleton/articles/" >
+                    <a
+                        href="/skeleton/articles/"
+                                            >
                                                 <span>Articles</span>
                     </a>
                 </li>
                                                             <li class="nav__item ">
-                    <a href="https://stenopephp.github.io/Stenope" target="_blank">
+                    <a
+                        href="/skeleton/about"
+                                            >
+                                                <span>About</span>
+                    </a>
+                </li>
+                                                            <li class="nav__item ">
+                    <a
+                        href="https://stenopephp.github.io/Stenope"
+                        target="_blank"                    >
                                                 <span>Docs</span>
                     </a>
                 </li>
@@ -81,6 +94,14 @@
                     <li class="table-of-content__item">
                 <a href="#writing-content">Writing content</a>
 
+                                    <ol class="table-of-content__sub-level">
+                                                    <li>
+                                <a href="#basic-pages">Basic pages</a>
+                            </li>
+                                                    <li>
+                                <a href="#articles">Articles</a>
+                            </li>
+                                            </ol>
                             </li>
                     <li class="table-of-content__item">
                 <a href="#table-of-content">Table of Content</a>
@@ -130,10 +151,17 @@ way Stenope works.</li>
 <li>a basic 404 error page.</li>
 <li>A basic Github Workflow to <a href="/skeleton/./deploy.md">deploy to Github Pages</a></li>
 <li>A basic Github Workflow for automated tests and linting</li>
+<li>A catch-all route allowing to expose simple pages from Markdown files in the <code class="code-inline" id="f2dff45f6e72dedba99b3520855ec785">content/pages</code> directory.</li>
 </ul>
 <p>This might be a good start for wiring your own content-based application, but not everything might suit to your needs.<br>
 Consult the <a href="/skeleton/articles/clean">« Cleaning the skeleton » article</a> to get an overview of the related files.</p>
 <h2 id="writing-content">Writing content<a href="#writing-content" class="anchor"></a></h2>
+<h3 id="basic-pages">Basic pages<a href="#basic-pages" class="anchor"></a></h3>
+<p>You can create simple pages from Markdown files in the <code class="code-inline" id="f2dff45f6e72dedba99b3520855ec785">content/pages</code> directory out-of-the box, like the <a href="/skeleton/about">About page</a>.</p>
+<p>The page will be accessible using the filename in URL. E.g: a <code class="code-inline" id="61935910f09b2d567b04ee5b918456b1">foo/bar.md</code> file will be accessible at <code class="code-inline" id="1df481b1ec67d4d8bec721f521d4937d">/foo/bar</code>.</p>
+<p>Pages are rendered by default using the <code class="code-inline" id="f9fbd1c36383eba41bb21a34c5a39897">page.html.twig</code> template, but each page can have its own.
+E.g: a <code class="code-inline" id="61935910f09b2d567b04ee5b918456b1">foo/bar.md</code> file will use the <code class="code-inline" id="a6c6dd60bd88cd6176afa465df70db0d">foo/bar.html.twig</code> template if it exists.</p>
+<h3 id="articles">Articles<a href="#articles" class="anchor"></a></h3>
 <p>The articles sampled in this starter kit are written in Markdown, and are located in the <code class="code-inline" id="f6ca3ea9feb268d247d32b7909c0efb8">content/articles</code> directory.</p>
 <p>The model used is the <code class="code-inline" id="fa46fea3eb9039195a08b16a430805ca">src/Model/Article.php</code> class, which describes the available properties of an article.</p>
 <p>You can start playing around by writing your own articles in the <code class="code-inline" id="f6ca3ea9feb268d247d32b7909c0efb8">content/articles</code> directory.</p>
@@ -267,22 +295,37 @@ with predefined presets (defined in the <code class="code-inline" id="54883a9bbe
     <nav>
         <ul>
                             <li>
-                    <a href="/skeleton/" >
+                    <a
+                        href="/skeleton/"
+                                            >
                         <span>Home</span>
                     </a>
                 </li>
                             <li>
-                    <a href="/skeleton/articles/" >
+                    <a
+                        href="/skeleton/about"
+                                            >
+                        <span>About</span>
+                    </a>
+                </li>
+                            <li>
+                    <a
+                        href="/skeleton/articles/"
+                                            >
                         <span>Articles</span>
                     </a>
                 </li>
                             <li>
-                    <a href="https://github.com/StenopePHP/stenope" target="_blank">
+                    <a
+                        href="https://github.com/StenopePHP/stenope"
+                        target="_blank"                    >
                         <span>Stenope on Github</span>
                     </a>
                 </li>
                             <li>
-                    <a href="https://github.com/StenopePHP/skeleton" target="_blank">
+                    <a
+                        href="https://github.com/StenopePHP/skeleton"
+                        target="_blank"                    >
                         <span>This skeleton on Github</span>
                     </a>
                 </li>
