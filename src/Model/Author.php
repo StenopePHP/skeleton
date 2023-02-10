@@ -8,7 +8,7 @@ use Stenope\Bundle\Attribute\SuggestedDebugQuery;
 use Symfony\Component\Serializer\Annotation\Context;
 use Symfony\Component\Serializer\Normalizer\DateTimeNormalizer;
 
-#[SuggestedDebugQuery('Ative', filters: '_.active', orders: 'desc:since')]
+#[SuggestedDebugQuery('Active', filters: '_.active', orders: 'desc:since')]
 class Author
 {
     public function __construct(
