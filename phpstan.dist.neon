@@ -10,7 +10,11 @@ parameters:
     level: 'max'
 
     paths:
-        - 'src'
+        - bin/
+        - config/
+        - public/
+        - src/
+        - tests/
 
     symfony:
         container_xml_path: '%rootDir%/../../../var/cache/test/App_KernelTestDebugContainer.xml'

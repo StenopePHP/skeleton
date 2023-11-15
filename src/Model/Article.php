@@ -7,7 +7,7 @@ namespace App\Model;
 use Stenope\Bundle\Attribute\SuggestedDebugQuery;
 use Stenope\Bundle\Processor\TableOfContentProcessor;
 use Stenope\Bundle\TableOfContent\TableOfContent;
-use Symfony\Component\Serializer\Annotation\Context;
+use Symfony\Component\Serializer\Attribute\Context;
 use Symfony\Component\Serializer\Normalizer\DateTimeNormalizer;
 
 #[SuggestedDebugQuery('Scheduled', filters: 'not _.isPublished()', orders: 'desc:publishedAt')]

@@ -14,7 +14,7 @@ Whenever you feel ready and does not need anymore some of the features provided 
 
 ## Styles
 
-Remove the `assets/scss/skeleton-theme` directory and the `@import` from `assets/styles.scss` file.  
+Remove the `assets/styles/skeleton-theme` directory and the `@import` from `assets/styles.scss` file.  
 You shouldn't need to remove any dependency from `package.json` as the skeleton theme was only using a CDN.
 
 ## Models
@@ -56,7 +56,7 @@ If you don't need to resize image, or want to use your own tool or third-party i
 
 ## Swup
 
-If you don't need the Swup integration, you can remove the `assets/js/controllers/swup_plugins_controller.js` file,
+If you don't need the Swup integration, you can remove the `assets/controllers/swup_plugins_controller.js` file,
 update `templates/base.html.twig` to remove the `data-controller="swup-plugins"` attribute from the `body` tag:
 
 ```diff

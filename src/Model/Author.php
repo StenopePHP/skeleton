@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Model;
 
 use Stenope\Bundle\Attribute\SuggestedDebugQuery;
-use Symfony\Component\Serializer\Annotation\Context;
+use Symfony\Component\Serializer\Attribute\Context;
 use Symfony\Component\Serializer\Normalizer\DateTimeNormalizer;
 
 #[SuggestedDebugQuery('Ative', filters: '_.active', orders: 'desc:since')]

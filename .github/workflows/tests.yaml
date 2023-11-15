@@ -68,6 +68,10 @@ jobs:
             npm install --color=always --no-progress --no-audit
           echo "::endgroup::"
 
+          echo "::group::importmap install"
+            symfony console importmap:install --ansi
+          echo "::endgroup::"
+
       - name: 'Warmup'
         run: |
           bin/console cache:clear --ansi --no-warmup
@@ -108,7 +112,8 @@ jobs:
 
       - name: 'Check build static'
         run: |
-          npx encore production --color
+          bin/console sass:build --ansi
+          bin/console asset-map:compile --ansi
           bin/console stenope:build --no-interaction -vvv --ansi
         env:
           APP_ENV: prod
