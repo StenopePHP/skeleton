@@ -21,7 +21,7 @@ install.assets:
 	symfony console importmap:install
 
 ## Update dependencies
-update: update.composer update.npm
+update: update.composer
 
 update.composer:
 	symfony composer update
