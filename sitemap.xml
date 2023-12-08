@@ -2,38 +2,38 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
             <url>
             <loc>https://stenopephp.github.io/skeleton/articles/</loc>
-            <lastmod>2022-09-12T09:41:31+00:00</lastmod>            <priority>0</priority>            <changefreq>monthly</changefreq>
+            <lastmod>2022-09-12T09:44:43+00:00</lastmod>            <priority>0</priority>            <changefreq>monthly</changefreq>
         </url>
             <url>
             <loc>https://stenopephp.github.io/skeleton/</loc>
-            <lastmod>2023-12-08T09:41:32+00:00</lastmod>                        <changefreq>monthly</changefreq>
+            <lastmod>2023-12-08T09:44:43+00:00</lastmod>                        <changefreq>monthly</changefreq>
         </url>
             <url>
             <loc>https://stenopephp.github.io/skeleton/about</loc>
-            <lastmod>2023-12-08T09:41:32+00:00</lastmod>                        <changefreq>monthly</changefreq>
+            <lastmod>2023-12-08T09:44:43+00:00</lastmod>                        <changefreq>monthly</changefreq>
         </url>
             <url>
             <loc>https://stenopephp.github.io/skeleton/articles/what-is-stenope</loc>
-            <lastmod>2022-09-01T09:41:31+00:00</lastmod>                        <changefreq>monthly</changefreq>
+            <lastmod>2022-09-01T09:44:43+00:00</lastmod>                        <changefreq>monthly</changefreq>
         </url>
             <url>
             <loc>https://stenopephp.github.io/skeleton/articles/guide</loc>
-            <lastmod>2022-09-02T09:41:31+00:00</lastmod>                        <changefreq>monthly</changefreq>
+            <lastmod>2022-09-02T09:44:43+00:00</lastmod>                        <changefreq>monthly</changefreq>
         </url>
             <url>
             <loc>https://stenopephp.github.io/skeleton/articles/write-your-own-contents</loc>
-            <lastmod>2022-09-03T09:41:31+00:00</lastmod>                        <changefreq>monthly</changefreq>
+            <lastmod>2022-09-03T09:44:43+00:00</lastmod>                        <changefreq>monthly</changefreq>
         </url>
             <url>
             <loc>https://stenopephp.github.io/skeleton/articles/deployment</loc>
-            <lastmod>2022-09-11T09:41:31+00:00</lastmod>                        <changefreq>monthly</changefreq>
+            <lastmod>2022-09-11T09:44:43+00:00</lastmod>                        <changefreq>monthly</changefreq>
         </url>
             <url>
             <loc>https://stenopephp.github.io/skeleton/articles/swup</loc>
-            <lastmod>2022-09-11T09:41:31+00:00</lastmod>                        <changefreq>monthly</changefreq>
+            <lastmod>2022-09-11T09:44:43+00:00</lastmod>                        <changefreq>monthly</changefreq>
         </url>
             <url>
             <loc>https://stenopephp.github.io/skeleton/articles/clean</loc>
-            <lastmod>2022-09-12T09:41:31+00:00</lastmod>                        <changefreq>monthly</changefreq>
+            <lastmod>2022-09-12T09:44:43+00:00</lastmod>                        <changefreq>monthly</changefreq>
         </url>
     </urlset>
