@@ -23,6 +23,7 @@ jobs:
           coverage: "none"
           ini-values: "memory_limit=-1"
           php-version: "8.1"
+          tools: symfony
 
       - name: 'Determine composer cache directory'
         id: composer-cache

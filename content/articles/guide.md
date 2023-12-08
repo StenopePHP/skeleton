@@ -15,6 +15,8 @@ nextArticle:        "write-your-own-contents"
 
 This skeleton contains some opinionated tools and configurations to help you start your project:
 
+- Symfony 6.4 LTS, with AssetMapper component to handle frontend dependencies with no build.
+- Sass integration
 - Out-of-the-box [Swup](./swup.md) integration
 - Glide integration to resize images on the fly from templates
 - A Stenope custom processor to automatically resize images in contents with a Glide preset

@@ -6,8 +6,8 @@ with [Stenope](https://stenopephp.github.io/Stenope/).
 It contains [a few features](https://stenopephp.github.io/skeleton/articles/guide#what-s-inside) to get you started 
 if you plan to create a content website from scratch along with the following stack:
 
-- Symfony 6.1
-- Webpack Encore
+- Symfony 6.4
+- Symfony AssetMapper
 - Sass
 - Lint / CS (php-cs-fixer, phpstan, eslint, …)
 - Glide integration for images resizing
