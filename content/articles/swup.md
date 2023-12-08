@@ -18,5 +18,5 @@ configures [scroll](https://swup.js.org/plugins/scroll-plugin) and [progress](ht
 plugins to enhance the navigation experience.
 
 !!! Note
-    A custom style is provided by the skeleton theme in `assets/scss/skeleton-theme/components/swup.scss`.  
+    A custom style is provided by the skeleton theme in `assets/styles/skeleton-theme/components/swup.scss`.  
     If you'd like to keep Swup, think about creating your own before removing the skeleton theme.

@@ -35,11 +35,11 @@
         {% endblock %}
 
         {% block stylesheets %}
-            {{ encore_entry_link_tags('app') }}
+            <link rel="stylesheet" href="{{ asset('styles/app.scss') }}">
         {% endblock %}
 
         {% block javascripts %}
-            {{ encore_entry_script_tags('app') }}
+            {{ importmap('app') }}
         {% endblock %}
     </head>
     <body

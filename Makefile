@@ -9,7 +9,7 @@ include ./.make/help.mk
 ###########
 
 ## Install dependencies
-install: install.composer install.npm
+install: install.composer install.npm install.assets
 
 install.composer:
 	symfony composer install
@@ -17,68 +17,72 @@ install.composer:
 install.npm:
 	npm install
 
+install.assets:
+	symfony console importmap:install
+
 ## Update dependencies
-update: update.composer update.npm
+update: update.composer
 
 update.composer:
 	symfony composer update
-
-update.npm:
-	npm update
 
 ###############
 # Development #
 ###############
 
 ## Dev - Start the whole application for development purposes (local only)
-serve:
+serve: clear.assets
 	# https://www.npmjs.com/package/concurrently
-	npx concurrently "make serve.php" "make serve.assets" --names="Symfony,Webpack" --prefix=name --kill-others --kill-others-on-fail
+	npx concurrently "make serve.php" "make serve.assets" --names="Symfony,Assets" --prefix=name --kill-others --kill-others-on-fail
 
 ## Dev - Start Symfony server
 serve.php:
 	symfony server:start --no-tls
 
-## Dev - Start webpack dev server with HMR (Hot reload)
+## Dev - Build Saas files
 serve.assets:
-	npx encore dev-server --mode=development
+	symfony console sass:build --watch
 
-## Dev - Watch assets
-watch.assets:
-	npm run watch
+## Clear - Clear the assets
+clear.assets:
+	rm -rf public/assets
 
 ## Clear - Clear the build dir and assets
-clear.build:
-	rm -rf build public/build
+clear.build: clear.assets
+	rm -rf build
 
 ## Clear - Clear resized images cache
 clear.images:
 	rm -rf public/resized
+
+## Clear - Clear symfony cache
+clear.cache:
+	symfony console cache:clear
 
 #########
 # Build #
 #########
 
 ## Build - Build assets
+build.assets: export APP_ENV = prod
 build.assets:
-	npm run build
+	symfony console sass:build
+	symfony console asset-map:compile
 
 ## Build - Build static site
 build.content: export APP_ENV = prod
-build.content:
-	rm -rf public/resized
-	symfony console cache:clear
+build.content: clear.images clear.cache
 	symfony console stenope:build
 
 ## Build - Build static site without resizing images, for moar speed
 build.content.without-images: export APP_ENV = prod
 build.content.without-images: export GLIDE_PRE_GENERATE_CACHE = 0
-build.content.without-images:
-	symfony console cache:clear
+build.content.without-images: clear.cache
 	symfony console stenope:build
 
 ## Build - Build static site with assets
-build.static: build.assets build.content
+build.static: export APP_ENV = prod
+build.static: clear.cache build.assets build.content
 
 ## Serve - Serve the static version
 serve.static:
@@ -131,10 +135,10 @@ lint.phpstan@integration:
 	symfony php vendor/bin/phpstan --no-progress --no-interaction analyse
 
 lint.eslint:
-	npx eslint assets/js --ext .js,.json --fix
+	npx eslint assets --ext .js,.json --fix
 
 lint.eslint@integration:
-	npx eslint assets/js --ext .js,.json
+	npx eslint assets --ext .js,.json
 
 ########
 # Test #

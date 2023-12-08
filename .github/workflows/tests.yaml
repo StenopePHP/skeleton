@@ -47,12 +47,6 @@ jobs:
           path: public/resized
           key: resized-images-tests-${{ secrets.CACHE_VERSION }}
 
-      - name: 'Cache blurhash images'
-        uses: actions/cache@v2
-        with:
-          path: var/cache/pools/app
-          key: resized-blurhash-tests-${{ secrets.CACHE_VERSION }}
-
       - name: 'Install dependencies'
         id: deps
         run: |
@@ -66,6 +60,10 @@ jobs:
 
           echo "::group::npm install"
             npm install --color=always --no-progress --no-audit
+          echo "::endgroup::"
+
+          echo "::group::importmap install"
+            symfony console importmap:install --ansi
           echo "::endgroup::"
 
       - name: 'Warmup'
@@ -108,7 +106,8 @@ jobs:
 
       - name: 'Check build static'
         run: |
-          npx encore production --color
+          bin/console sass:build --ansi
+          bin/console asset-map:compile --ansi
           bin/console stenope:build --no-interaction -vvv --ansi
         env:
           APP_ENV: prod

@@ -1,0 +1,9 @@
+// Remove the skeleton CSS
+@import "skeleton-theme";
+
+// and write your own CSS here
+
+// Make the mini Sf toolbar more visible on white background
+.sf-minitoolbar {
+  background-color: #8d8d8d !important;
+}

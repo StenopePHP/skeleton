@@ -17,11 +17,6 @@ jobs:
       - name: 'Checkout'
         uses: actions/checkout@v3
 
-      - name: 'Setup node'
-        uses: actions/setup-node@v2
-        with:
-          node-version: '16'
-
       - name: 'Setup PHP'
         uses: shivammathur/setup-php@v2
         with:
@@ -45,33 +40,26 @@ jobs:
           path: public/resized
           key: resized-images-${{ secrets.CACHE_VERSION }}
 
-      - name: 'Cache NPM dependencies'
-        uses: actions/cache@v2
-        with:
-          path: ~/.npm
-          key: node-${{ hashFiles('package-lock.json') }}
-
       - name: 'Install dependencies'
         run: |
           echo "::group::composer install"
             composer install --no-progress --ansi
           echo "::endgroup::"
 
-          echo "::group::npm install"
-            npm install --color=always --no-progress --no-audit
+          echo "::group::importmap install"
+            symfony console importmap:install --ansi
           echo "::endgroup::"
 
       - name: 'Warmup'
         run: |
           echo "::group::warmup production env"
-            npx encore production --color
             bin/console cache:clear --ansi
             bin/console cache:warmup --ansi
+            bin/console sass:build --ansi
+            bin/console asset-map:compile --ansi
           echo "::endgroup::"
         env:
-          NODE_ENV: production
           APP_ENV: prod
-          WEBPACK_PUBLIC_PATH: /${{ github.event.repository.name }}/build
 
       - name: 'Build static site'
         run: bin/console stenope:build --no-interaction -vvv --ansi
@@ -79,6 +67,7 @@ jobs:
           APP_ENV: prod
           # Replace with your GH Pages URL:
           ROUTER_DEFAULT_URI: https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}
+          APP_BASE_PATH: /${{ github.event.repository.name }}
 
       # https://github.com/marketplace/actions/deploy-to-github-pages
       - name: '🚀 Deploy'
