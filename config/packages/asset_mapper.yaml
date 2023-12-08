@@ -1,11 +1,5 @@
-parameters:
-    env(APP_BASE_PATH): '/'
-
 framework:
     asset_mapper:
         # The paths to make available to the asset mapper.
         paths:
             - assets/
-
-    assets:
-        base_path: '%env(string:APP_BASE_PATH)%'
