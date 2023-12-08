@@ -1,0 +1,18 @@
+[
+    "\/assets\/bootstrap.js",
+    "@symfony\/stimulus-bundle",
+    "@hotwired\/stimulus",
+    "\/assets\/@symfony\/stimulus-bundle\/controllers.js",
+    "\/assets\/@symfony\/ux-swup\/controller.js",
+    "\/assets\/controllers\/swup_plugins_controller.js",
+    "swup",
+    "@swup\/debug-plugin",
+    "@swup\/forms-plugin",
+    "@swup\/fade-theme",
+    "@swup\/slide-theme",
+    "@swup\/scroll-plugin",
+    "@swup\/progress-plugin",
+    "delegate-it",
+    "@swup\/plugin",
+    "scrl"
+]

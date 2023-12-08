@@ -1,0 +1,35 @@
+/* Colors */
+$color-brand: #91C4F2;
+$color-primary: #8CA0D7;
+$color-secondary: #9D79BC;
+$color-tertiary: #A14DA0;
+$color-quaternary: #7E1F86;
+
+$color-bg-light: #a7a7a7;
+$color-warning: #ba934f;
+$color-info: #6da3b6;
+
+$color-text: #000;
+$color-text-light: #fff;
+
+$border-radius: 0.3rem;
+
+/* Size */
+$gutter: 2rem;
+
+// Breakpoints
+$screen-m: 1200px; // desktop
+$screen-s: 768px; // phone
+
+/* Code highlighting */
+$code-font: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+$code-background: $color-tertiary;
+$code-red: #c32949;
+$code-green: $color-primary;
+$code-yellow: #690;
+$code-orange: #e29100;
+$code-purple: #905;
+$code-blue: #07a;
+$code-white: $color-secondary;
+$code-grey: #8c8c8c;
+$code-muted: #999;
