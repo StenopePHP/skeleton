@@ -17,3 +17,7 @@
 // pages
 @import "pages/articles";
 @import "pages/article";
+
+html {
+  scroll-behavior: smooth;
+}

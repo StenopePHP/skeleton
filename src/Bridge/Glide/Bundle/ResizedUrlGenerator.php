@@ -11,16 +11,13 @@ use Psr\Log\NullLogger;
 
 class ResizedUrlGenerator
 {
-    private LoggerInterface $logger;
-
     public function __construct(
-        private Server $server,
-        private GlideUrlBuilder $glideUrlBuilder,
-        private array $presetsNames = [],
-        private bool $preGenerate = false,
-        LoggerInterface $logger = null
+        private readonly Server $server,
+        private readonly GlideUrlBuilder $glideUrlBuilder,
+        private readonly array $presetsNames = [],
+        private readonly bool $preGenerate = false,
+        private readonly LoggerInterface $logger = new NullLogger()
     ) {
-        $this->logger = $logger ?? new NullLogger();
     }
 
     public function withPreset(string $filename, string $preset, array $options = []): string
@@ -51,7 +48,7 @@ class ResizedUrlGenerator
         try {
             // Otherwise, pre-create the image in cache, and generate an URL to its public cache path:
             return $this->glideUrlBuilder->getPublicCachePath($this->server->makeImage($filename, $options));
-        } catch (FileNotFoundException $exception) {
+        } catch (FileNotFoundException) {
             $this->logger->warning('Image at path "{path}" not found', [
                 'path' => $filename,
                 'glide_options' => $options,

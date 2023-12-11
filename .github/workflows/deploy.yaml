@@ -22,7 +22,7 @@ jobs:
         with:
           coverage: "none"
           ini-values: "memory_limit=-1"
-          php-version: "8.1"
+          php-version: "8.3"
           tools: symfony
 
       - name: 'Determine composer cache directory'
