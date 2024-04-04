@@ -16,27 +16,27 @@
         "type": "js"
     },
     "\/assets\/controllers\/swup_plugins_controller.js": {
-        "path": "\/assets\/controllers\/swup_plugins_controller-7bd07a2e6c0ada0da4de590f6d658089.js",
-        "type": "js"
-    },
-    "@hotwired\/stimulus": {
-        "path": "\/assets\/vendor\/@hotwired\/stimulus\/stimulus.index-b5b1d00e42695b8959b4a1e94e3bc92a.js",
+        "path": "\/assets\/controllers\/swup_plugins_controller-08088a287697bb0249c04bd6d49b7047.js",
         "type": "js"
     },
     "@symfony\/stimulus-bundle": {
         "path": "\/assets\/@symfony\/stimulus-bundle\/loader-e1ee9ace0562f2e6a52301e4ccc8627d.js",
         "type": "js"
     },
+    "@hotwired\/stimulus": {
+        "path": "\/assets\/vendor\/@hotwired\/stimulus\/stimulus.index-b5b1d00e42695b8959b4a1e94e3bc92a.js",
+        "type": "js"
+    },
     "@swup\/debug-plugin": {
-        "path": "\/assets\/vendor\/@swup\/debug-plugin\/debug-plugin.index-00a046ea95151da112093c5d12cc894c.js",
+        "path": "\/assets\/vendor\/@swup\/debug-plugin\/debug-plugin.index-811bb9f24ae1184516f2436741fa0eb0.js",
         "type": "js"
     },
     "@swup\/fade-theme": {
-        "path": "\/assets\/vendor\/@swup\/fade-theme\/fade-theme.index-0f5b2eeb2c78ea087d0a805926c0d42b.js",
+        "path": "\/assets\/vendor\/@swup\/fade-theme\/fade-theme.index-6a63b210a83c0059380f51387b3d3271.js",
         "type": "js"
     },
     "@swup\/forms-plugin": {
-        "path": "\/assets\/vendor\/@swup\/forms-plugin\/forms-plugin.index-caa8edfbe6265fb9d1dab6a86404e1c3.js",
+        "path": "\/assets\/vendor\/@swup\/forms-plugin\/forms-plugin.index-2e3f1eb63819400be73420ec6cc9f7c6.js",
         "type": "js"
     },
     "@swup\/progress-plugin": {
@@ -44,15 +44,15 @@
         "type": "js"
     },
     "@swup\/scroll-plugin": {
-        "path": "\/assets\/vendor\/@swup\/scroll-plugin\/scroll-plugin.index-dd7623e744154b6c520b918f5a4c168d.js",
+        "path": "\/assets\/vendor\/@swup\/scroll-plugin\/scroll-plugin.index-85ce038b4a1d8df2ffff1f47faec2aee.js",
         "type": "js"
     },
     "@swup\/slide-theme": {
-        "path": "\/assets\/vendor\/@swup\/slide-theme\/slide-theme.index-58e72537f3c3f32ecada2fd8b7795a90.js",
+        "path": "\/assets\/vendor\/@swup\/slide-theme\/slide-theme.index-1fa16464da540db8540cc86abc9aee41.js",
         "type": "js"
     },
     "@swup\/plugin": {
-        "path": "\/assets\/vendor\/@swup\/plugin\/plugin.index-d81c7a11e510fb9dc2b63694ef879f00.js",
+        "path": "\/assets\/vendor\/@swup\/plugin\/plugin.index-3fe7cfa429c36247ca04ef7c2a104beb.js",
         "type": "js"
     },
     "@swup\/theme": {
@@ -60,7 +60,7 @@
         "type": "js"
     },
     "swup": {
-        "path": "\/assets\/vendor\/swup\/swup.index-afc671e453eba57ac50e90640b3c377b.js",
+        "path": "\/assets\/vendor\/swup\/swup.index-5d0aeeac7b80f6825f57f0d55e90af90.js",
         "type": "js"
     },
     "scrl": {
@@ -68,7 +68,7 @@
         "type": "js"
     },
     "delegate-it": {
-        "path": "\/assets\/vendor\/delegate-it\/delegate-it.index-f218d5480b6c7374dfc412c0e50327b0.js",
+        "path": "\/assets\/vendor\/delegate-it\/delegate-it.index-949e3890666efc7b375415ae46139db1.js",
         "type": "js"
     },
     "path-to-regexp": {

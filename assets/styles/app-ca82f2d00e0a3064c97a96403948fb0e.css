@@ -283,6 +283,10 @@ code {
   justify-content: flex-end;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 .sf-minitoolbar {
   background-color: #8d8d8d !important;
 }

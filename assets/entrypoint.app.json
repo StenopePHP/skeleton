@@ -14,5 +14,6 @@
     "@swup\/progress-plugin",
     "delegate-it",
     "@swup\/plugin",
+    "@swup\/theme",
     "scrl"
 ]
